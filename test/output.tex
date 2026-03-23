@@ -1,0 +1,74 @@
+\documentclass{article}
+\usepackage[margin=0.8cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{polyglossia}
+\usepackage{multicol}
+
+% Define Hebrew as the main language
+\setmainlanguage{hebrew}
+\newfontfamily\hebrewfont[Script=Hebrew]{David CLM}
+
+% Optional: Adjust the space between columns and add a divider line
+\setlength{\columnsep}{0.5cm}
+\setlength{\columnseprule}{0.4pt}
+
+% Document
+\begin{document}
+\begin{multicols*}{3}
+\section{Classical Mechanics - Formula Sheet}
+\subsection{Kinematics}
+Velocity and acceleration: \\
+\[
+v = \frac{dx}{dt}, \quad a = \frac{dv}{dt}
+\]
+
+Constant acceleration: \\
+\[
+x = x_0 + v_0 t + \frac{1}{2}at^2, \quad v^2 = v_0^2 + 2a(x-x_0)
+\]
+
+\subsubsection{Projectile Motion}
+\[
+x(t_1) = x_0 + \frac{v_0^2 \sin 2\theta}{g}
+\]
+\subsection{Newton's Laws}
+Friction forces: \\
+\[
+|\vec{F}_{max}| = \mu_s N, \quad |\vec{F}_k| = \mu_k N, \quad \mu_s > \mu_k
+\]
+
+\subsection{Vectors}
+
+$$|\vec{A}| = \sqrt{A_x^2 + A_y^2 + A_z^2}$$ \\
+
+$$\vec{A} \cdot \vec{B} = |\vec{A}||\vec{B}|\cos\theta$$ \\
+
+$$\vec{A} \times \vec{B} = |\vec{A}||\vec{B}|\sin\theta \,\hat{n}$$ \\
+
+
+\subsection{Work \& Energy}
+
+$$W = \int_A^B \vec{F} \cdot d\vec{r}, \quad E_k = \frac{1}{2}mv^2$$ \\
+
+Work-energy theorem: $\sum W = \Delta E_k$ \\
+
+Mechanical energy: $E_m = E_k + U$ \\
+
+
+
+\subsection{Angular Momentum}
+
+$$\vec{\tau} = \vec{r} \times \vec{F}, \quad \vec{J} = \vec{r} \times \vec{P}$$ \\
+
+$$\sum \vec{\tau}_i = 0 \implies \vec{J} = \text{\const}$$ \\
+
+Moment of inertia: $I = \int r^2 \, dm$, \quad $\vec{J} = I\vec{\omega}$ \\
+
+
+\subsection{Special Relativity}
+
+$$\gamma = \frac{1}{\sqrt{1-v^2/c^2}}, \quad L = \frac{L_0}{\gamma}$$ \\
+
+$$E = \gamma mc^2, \quad E^2 - P^2c^2 = m^2c^4$$ \\
+
+\end{multicols*}
+\end{document}

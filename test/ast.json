@@ -1,0 +1,535 @@
+[
+    {
+        "type": "heading",
+        "attrs": {
+            "level": 1
+        },
+        "style": "atx",
+        "children": [
+            {
+                "type": "text",
+                "raw": "Classical Mechanics - Formula Sheet"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "heading",
+        "attrs": {
+            "level": 2
+        },
+        "style": "atx",
+        "children": [
+            {
+                "type": "text",
+                "raw": "Kinematics"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "text",
+                "raw": "Velocity and acceleration:"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "inline_math",
+                "raw": "$v = \\frac{dx}{dt}, \\quad a = \\frac{dv}{dt}"
+            },
+            {
+                "type": "text",
+                "raw": "$"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "text",
+                "raw": "Constant acceleration:"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "block_math",
+        "raw": "x = x_0 + v_0 t + \\frac{1}{2}at^2, \\quad v^2 = v_0^2 + 2a(x-x_0)"
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "heading",
+        "attrs": {
+            "level": 3
+        },
+        "style": "atx",
+        "children": [
+            {
+                "type": "text",
+                "raw": "Projectile Motion"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "inline_math",
+                "raw": "$x(t_1) = x_0 + \\frac{v_0^2 \\sin 2\\theta}{g}"
+            },
+            {
+                "type": "text",
+                "raw": "$"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "thematic_break"
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "heading",
+        "attrs": {
+            "level": 2
+        },
+        "style": "atx",
+        "children": [
+            {
+                "type": "text",
+                "raw": "Newton's Laws"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "list",
+        "children": [
+            {
+                "type": "list_item",
+                "children": [
+                    {
+                        "type": "block_text",
+                        "children": [
+                            {
+                                "type": "inline_math",
+                                "raw": "\\sum \\vec{F}_i = 0"
+                            },
+                            {
+                                "type": "text",
+                                "raw": " — body remains at rest or uniform motion"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "list_item",
+                "children": [
+                    {
+                        "type": "block_text",
+                        "children": [
+                            {
+                                "type": "inline_math",
+                                "raw": "\\sum \\vec{F}_i = \\frac{d\\vec{P}}{dt}"
+                            },
+                            {
+                                "type": "text",
+                                "raw": " — net force equals rate of momentum change"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "list_item",
+                "children": [
+                    {
+                        "type": "block_text",
+                        "children": [
+                            {
+                                "type": "inline_math",
+                                "raw": "\\vec{F}_{1,2} = -\\vec{F}_{2,1}"
+                            },
+                            {
+                                "type": "text",
+                                "raw": " — action-reaction pairs"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "tight": true,
+        "bullet": "-",
+        "attrs": {
+            "depth": 0,
+            "ordered": false
+        }
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "text",
+                "raw": "Friction forces:"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "inline_math",
+                "raw": "$|\\vec{F}_{max}| = \\mu_s N, \\quad |\\vec{F}_k| = \\mu_k N, \\quad \\mu_s > \\mu_k"
+            },
+            {
+                "type": "text",
+                "raw": "$"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "thematic_break"
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "heading",
+        "attrs": {
+            "level": 2
+        },
+        "style": "atx",
+        "children": [
+            {
+                "type": "text",
+                "raw": "Vectors"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "inline_math",
+                "raw": "$|\\vec{A}| = \\sqrt{A_x^2 + A_y^2 + A_z^2}"
+            },
+            {
+                "type": "text",
+                "raw": "$"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "inline_math",
+                "raw": "$\\vec{A} \\cdot \\vec{B} = |\\vec{A}||\\vec{B}|\\cos\\theta"
+            },
+            {
+                "type": "text",
+                "raw": "$"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "inline_math",
+                "raw": "$\\vec{A} \\times \\vec{B} = |\\vec{A}||\\vec{B}|\\sin\\theta \\,\\hat{n}"
+            },
+            {
+                "type": "text",
+                "raw": "$"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "thematic_break"
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "heading",
+        "attrs": {
+            "level": 2
+        },
+        "style": "atx",
+        "children": [
+            {
+                "type": "text",
+                "raw": "Work & Energy"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "inline_math",
+                "raw": "$W = \\int_A^B \\vec{F} \\cdot d\\vec{r}, \\quad E_k = \\frac{1}{2}mv^2"
+            },
+            {
+                "type": "text",
+                "raw": "$"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "text",
+                "raw": "Work-energy theorem: "
+            },
+            {
+                "type": "inline_math",
+                "raw": "\\sum W = \\Delta E_k"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "text",
+                "raw": "Mechanical energy: "
+            },
+            {
+                "type": "inline_math",
+                "raw": "E_m = E_k + U"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "block_quote",
+        "children": [
+            {
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "A "
+                    },
+                    {
+                        "type": "strong",
+                        "children": [
+                            {
+                                "type": "text",
+                                "raw": "conservative force"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "text",
+                        "raw": " satisfies "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "\\nabla \\times \\vec{F} = 0"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " and its work is path-independent."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "thematic_break"
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "heading",
+        "attrs": {
+            "level": 2
+        },
+        "style": "atx",
+        "children": [
+            {
+                "type": "text",
+                "raw": "Angular Momentum"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "inline_math",
+                "raw": "$\\vec{\\tau} = \\vec{r} \\times \\vec{F}, \\quad \\vec{J} = \\vec{r} \\times \\vec{P}"
+            },
+            {
+                "type": "text",
+                "raw": "$"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "inline_math",
+                "raw": "$\\sum \\vec{\\tau}_i = 0 \\implies \\vec{J} = \\text{const}"
+            },
+            {
+                "type": "text",
+                "raw": "$"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "text",
+                "raw": "Moment of inertia: "
+            },
+            {
+                "type": "inline_math",
+                "raw": "I = \\int r^2 \\, dm"
+            },
+            {
+                "type": "text",
+                "raw": ", \\quad "
+            },
+            {
+                "type": "inline_math",
+                "raw": "\\vec{J} = I\\vec{\\omega}"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "thematic_break"
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "heading",
+        "attrs": {
+            "level": 2
+        },
+        "style": "atx",
+        "children": [
+            {
+                "type": "text",
+                "raw": "Special Relativity"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "inline_math",
+                "raw": "$\\gamma = \\frac{1}{\\sqrt{1-v^2/c^2}}, \\quad L = \\frac{L_0}{\\gamma}"
+            },
+            {
+                "type": "text",
+                "raw": "$"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "inline_math",
+                "raw": "$E = \\gamma mc^2, \\quad E^2 - P^2c^2 = m^2c^4"
+            },
+            {
+                "type": "text",
+                "raw": "$"
+            }
+        ]
+    }
+]
