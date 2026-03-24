@@ -8,12 +8,9 @@
         "children": [
             {
                 "type": "text",
-                "raw": "Classical Mechanics - Formula Sheet"
+                "raw": "מכניקה קלאסית - דף נוסחאות"
             }
         ]
-    },
-    {
-        "type": "blank_line"
     },
     {
         "type": "heading",
@@ -24,56 +21,39 @@
         "children": [
             {
                 "type": "text",
-                "raw": "Kinematics"
+                "raw": "קינמטיקה"
             }
         ]
-    },
-    {
-        "type": "blank_line"
     },
     {
         "type": "paragraph",
         "children": [
             {
                 "type": "text",
-                "raw": "Velocity and acceleration:"
+                "raw": "מהירות ותאוצה:"
             }
         ]
-    },
-    {
-        "type": "blank_line"
-    },
-    {
-        "type": "paragraph",
-        "children": [
-            {
-                "type": "inline_math",
-                "raw": "$v = \\frac{dx}{dt}, \\quad a = \\frac{dv}{dt}"
-            },
-            {
-                "type": "text",
-                "raw": "$"
-            }
-        ]
-    },
-    {
-        "type": "blank_line"
-    },
-    {
-        "type": "paragraph",
-        "children": [
-            {
-                "type": "text",
-                "raw": "Constant acceleration:"
-            }
-        ]
-    },
-    {
-        "type": "blank_line"
     },
     {
         "type": "block_math",
-        "raw": "x = x_0 + v_0 t + \\frac{1}{2}at^2, \\quad v^2 = v_0^2 + 2a(x-x_0)"
+        "raw": "v = \\frac{dx}{dt}, \\quad a = \\frac{dv}{dt}"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "text",
+                "raw": "תנועה באצה קבועה:"
+            }
+        ]
+    },
+    {
+        "type": "block_math",
+        "raw": "x = x_0 + v_0 t + \\frac{1}{2}at^2"
+    },
+    {
+        "type": "block_math",
+        "raw": "v^2 = v_0^2 + 2a(x - x_0)"
     },
     {
         "type": "blank_line"
@@ -87,31 +67,22 @@
         "children": [
             {
                 "type": "text",
-                "raw": "Projectile Motion"
+                "raw": "זריקה אופקית"
             }
         ]
-    },
-    {
-        "type": "blank_line"
     },
     {
         "type": "paragraph",
         "children": [
             {
-                "type": "inline_math",
-                "raw": "$x(t_1) = x_0 + \\frac{v_0^2 \\sin 2\\theta}{g}"
-            },
-            {
                 "type": "text",
-                "raw": "$"
+                "raw": "מרחק נפילה:"
             }
         ]
     },
     {
-        "type": "blank_line"
-    },
-    {
-        "type": "thematic_break"
+        "type": "block_math",
+        "raw": "x(t_1) = x_0 + \\frac{v_0^2 \\sin 2\\theta}{g}"
     },
     {
         "type": "blank_line"
@@ -125,12 +96,18 @@
         "children": [
             {
                 "type": "text",
-                "raw": "Newton's Laws"
+                "raw": "דינמיקה"
             }
         ]
     },
     {
-        "type": "blank_line"
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "text",
+                "raw": "חוקי ניוטון:"
+            }
+        ]
     },
     {
         "type": "list",
@@ -147,7 +124,7 @@
                             },
                             {
                                 "type": "text",
-                                "raw": " — body remains at rest or uniform motion"
+                                "raw": " — הגוף יתמיד בתנועתו"
                             }
                         ]
                     }
@@ -165,7 +142,7 @@
                             },
                             {
                                 "type": "text",
-                                "raw": " — net force equals rate of momentum change"
+                                "raw": " — חוק שני"
                             }
                         ]
                     }
@@ -183,7 +160,7 @@
                             },
                             {
                                 "type": "text",
-                                "raw": " — action-reaction pairs"
+                                "raw": " — חוק שלישי"
                             }
                         ]
                     }
@@ -202,31 +179,13 @@
         "children": [
             {
                 "type": "text",
-                "raw": "Friction forces:"
+                "raw": "כוח חיכוך:"
             }
         ]
     },
     {
-        "type": "blank_line"
-    },
-    {
-        "type": "paragraph",
-        "children": [
-            {
-                "type": "inline_math",
-                "raw": "$|\\vec{F}_{max}| = \\mu_s N, \\quad |\\vec{F}_k| = \\mu_k N, \\quad \\mu_s > \\mu_k"
-            },
-            {
-                "type": "text",
-                "raw": "$"
-            }
-        ]
-    },
-    {
-        "type": "blank_line"
-    },
-    {
-        "type": "thematic_break"
+        "type": "block_math",
+        "raw": "|\\vec{F}_{max}| = \\mu_s \\cdot N, \\quad |\\vec{F}_\\mu| = \\mu_k \\cdot N"
     },
     {
         "type": "blank_line"
@@ -240,9 +199,22 @@
         "children": [
             {
                 "type": "text",
-                "raw": "Vectors"
+                "raw": "וקטורים"
             }
         ]
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "text",
+                "raw": "גודל וקטור:"
+            }
+        ]
+    },
+    {
+        "type": "block_math",
+        "raw": "|\\vec{A}| = \\sqrt{A_x^2 + A_y^2 + A_z^2}"
     },
     {
         "type": "blank_line"
@@ -251,14 +223,14 @@
         "type": "paragraph",
         "children": [
             {
-                "type": "inline_math",
-                "raw": "$|\\vec{A}| = \\sqrt{A_x^2 + A_y^2 + A_z^2}"
-            },
-            {
                 "type": "text",
-                "raw": "$"
+                "raw": "מכפלה סקלרית:"
             }
         ]
+    },
+    {
+        "type": "block_math",
+        "raw": "\\vec{A} \\cdot \\vec{B} = |\\vec{A}||\\vec{B}|\\cos\\theta"
     },
     {
         "type": "blank_line"
@@ -267,36 +239,14 @@
         "type": "paragraph",
         "children": [
             {
-                "type": "inline_math",
-                "raw": "$\\vec{A} \\cdot \\vec{B} = |\\vec{A}||\\vec{B}|\\cos\\theta"
-            },
-            {
                 "type": "text",
-                "raw": "$"
+                "raw": "מכפלה וקטורית:"
             }
         ]
     },
     {
-        "type": "blank_line"
-    },
-    {
-        "type": "paragraph",
-        "children": [
-            {
-                "type": "inline_math",
-                "raw": "$\\vec{A} \\times \\vec{B} = |\\vec{A}||\\vec{B}|\\sin\\theta \\,\\hat{n}"
-            },
-            {
-                "type": "text",
-                "raw": "$"
-            }
-        ]
-    },
-    {
-        "type": "blank_line"
-    },
-    {
-        "type": "thematic_break"
+        "type": "block_math",
+        "raw": "\\vec{A} \\times \\vec{B} = |\\vec{A}||\\vec{B}|\\sin\\theta \\cdot \\hat{n}"
     },
     {
         "type": "blank_line"
@@ -310,41 +260,22 @@
         "children": [
             {
                 "type": "text",
-                "raw": "Work & Energy"
+                "raw": "עבודה ואנרגיה"
             }
         ]
-    },
-    {
-        "type": "blank_line"
-    },
-    {
-        "type": "paragraph",
-        "children": [
-            {
-                "type": "inline_math",
-                "raw": "$W = \\int_A^B \\vec{F} \\cdot d\\vec{r}, \\quad E_k = \\frac{1}{2}mv^2"
-            },
-            {
-                "type": "text",
-                "raw": "$"
-            }
-        ]
-    },
-    {
-        "type": "blank_line"
     },
     {
         "type": "paragraph",
         "children": [
             {
                 "type": "text",
-                "raw": "Work-energy theorem: "
-            },
-            {
-                "type": "inline_math",
-                "raw": "\\sum W = \\Delta E_k"
+                "raw": "אנרגיה קינטית:"
             }
         ]
+    },
+    {
+        "type": "block_math",
+        "raw": "E_k = \\frac{1}{2}mv^2"
     },
     {
         "type": "blank_line"
@@ -354,11 +285,55 @@
         "children": [
             {
                 "type": "text",
-                "raw": "Mechanical energy: "
+                "raw": "משפט עבודה-אנרגיה:"
+            }
+        ]
+    },
+    {
+        "type": "block_math",
+        "raw": "\\sum \\vec{F} \\cdot \\Delta\\vec{r} = \\Delta E_k"
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "text",
+                "raw": "אנרגיה מכנית: "
             },
             {
                 "type": "inline_math",
                 "raw": "E_m = E_k + U"
+            },
+            {
+                "type": "linebreak"
+            },
+            {
+                "type": "text",
+                "raw": "כוח שעבודתו לא תלויה במסלול נקרא "
+            },
+            {
+                "type": "strong",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "משמר"
+                    }
+                ]
+            },
+            {
+                "type": "text",
+                "raw": ". לכל כוח משמר "
+            },
+            {
+                "type": "inline_math",
+                "raw": "\\nabla \\times \\vec{F} = 0"
+            },
+            {
+                "type": "text",
+                "raw": "."
             }
         ]
     },
@@ -366,50 +341,505 @@
         "type": "blank_line"
     },
     {
-        "type": "block_quote",
+        "type": "heading",
+        "attrs": {
+            "level": 2
+        },
+        "style": "atx",
         "children": [
             {
-                "type": "paragraph",
+                "type": "text",
+                "raw": "תנועה מעגלית"
+            }
+        ]
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "text",
+                "raw": "מהירות זוויתית: "
+            },
+            {
+                "type": "inline_math",
+                "raw": "\\omega = \\dot{\\theta}"
+            },
+            {
+                "type": "linebreak"
+            },
+            {
+                "type": "text",
+                "raw": "תאוצה צנטריפטלית:"
+            }
+        ]
+    },
+    {
+        "type": "block_math",
+        "raw": "a_c = \\frac{v^2}{R} = \\omega^2 R"
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "heading",
+        "attrs": {
+            "level": 2
+        },
+        "style": "atx",
+        "children": [
+            {
+                "type": "text",
+                "raw": "תנע זוויתי"
+            }
+        ]
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "text",
+                "raw": "מומנט כוח: "
+            },
+            {
+                "type": "inline_math",
+                "raw": "\\vec{\\tau} = \\vec{r} \\times \\vec{F}"
+            },
+            {
+                "type": "linebreak"
+            },
+            {
+                "type": "text",
+                "raw": "תנע זוויתי: "
+            },
+            {
+                "type": "inline_math",
+                "raw": "\\vec{J} = \\vec{r} \\times \\vec{P}"
+            },
+            {
+                "type": "linebreak"
+            },
+            {
+                "type": "text",
+                "raw": "שימור תנע זוויתי:"
+            }
+        ]
+    },
+    {
+        "type": "block_math",
+        "raw": "\\sum \\vec{\\tau}_i = 0 \\implies \\vec{J} = \\text{const}"
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "text",
+                "raw": "מומנט אינרציה:"
+            }
+        ]
+    },
+    {
+        "type": "block_math",
+        "raw": "I = \\int r^2 \\, dm"
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "heading",
+        "attrs": {
+            "level": 2
+        },
+        "style": "atx",
+        "children": [
+            {
+                "type": "text",
+                "raw": "ניסוי עם טבלה"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "table",
+        "children": [
+            {
+                "type": "table_head",
                 "children": [
                     {
-                        "type": "text",
-                        "raw": "A "
-                    },
-                    {
-                        "type": "strong",
+                        "type": "table_cell",
+                        "attrs": {
+                            "align": "center",
+                            "head": true
+                        },
                         "children": [
                             {
                                 "type": "text",
-                                "raw": "conservative force"
+                                "raw": "פמטו"
                             }
                         ]
                     },
                     {
-                        "type": "text",
-                        "raw": " satisfies "
+                        "type": "table_cell",
+                        "attrs": {
+                            "align": "center",
+                            "head": true
+                        },
+                        "children": [
+                            {
+                                "type": "text",
+                                "raw": "פיקו"
+                            }
+                        ]
                     },
                     {
-                        "type": "inline_math",
-                        "raw": "\\nabla \\times \\vec{F} = 0"
+                        "type": "table_cell",
+                        "attrs": {
+                            "align": "center",
+                            "head": true
+                        },
+                        "children": [
+                            {
+                                "type": "text",
+                                "raw": "ננו"
+                            }
+                        ]
                     },
                     {
-                        "type": "text",
-                        "raw": " and its work is path-independent."
+                        "type": "table_cell",
+                        "attrs": {
+                            "align": "center",
+                            "head": true
+                        },
+                        "children": [
+                            {
+                                "type": "text",
+                                "raw": "מיקרו"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table_cell",
+                        "attrs": {
+                            "align": "center",
+                            "head": true
+                        },
+                        "children": [
+                            {
+                                "type": "text",
+                                "raw": "מילי"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table_cell",
+                        "attrs": {
+                            "align": "center",
+                            "head": true
+                        },
+                        "children": [
+                            {
+                                "type": "text",
+                                "raw": "סנטי"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table_cell",
+                        "attrs": {
+                            "align": "center",
+                            "head": true
+                        },
+                        "children": [
+                            {
+                                "type": "text",
+                                "raw": "קילו"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table_cell",
+                        "attrs": {
+                            "align": "center",
+                            "head": true
+                        },
+                        "children": [
+                            {
+                                "type": "text",
+                                "raw": "מגה"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table_cell",
+                        "attrs": {
+                            "align": "center",
+                            "head": true
+                        },
+                        "children": [
+                            {
+                                "type": "text",
+                                "raw": "גיגה"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "table_body",
+                "children": [
+                    {
+                        "type": "table_row",
+                        "children": [
+                            {
+                                "type": "table_cell",
+                                "attrs": {
+                                    "align": "center",
+                                    "head": false
+                                },
+                                "children": [
+                                    {
+                                        "type": "inline_math",
+                                        "raw": "f"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table_cell",
+                                "attrs": {
+                                    "align": "center",
+                                    "head": false
+                                },
+                                "children": [
+                                    {
+                                        "type": "inline_math",
+                                        "raw": "p"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table_cell",
+                                "attrs": {
+                                    "align": "center",
+                                    "head": false
+                                },
+                                "children": [
+                                    {
+                                        "type": "inline_math",
+                                        "raw": "n"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table_cell",
+                                "attrs": {
+                                    "align": "center",
+                                    "head": false
+                                },
+                                "children": [
+                                    {
+                                        "type": "inline_math",
+                                        "raw": "\\mu"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table_cell",
+                                "attrs": {
+                                    "align": "center",
+                                    "head": false
+                                },
+                                "children": [
+                                    {
+                                        "type": "inline_math",
+                                        "raw": "m"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table_cell",
+                                "attrs": {
+                                    "align": "center",
+                                    "head": false
+                                },
+                                "children": [
+                                    {
+                                        "type": "inline_math",
+                                        "raw": "c"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table_cell",
+                                "attrs": {
+                                    "align": "center",
+                                    "head": false
+                                },
+                                "children": [
+                                    {
+                                        "type": "inline_math",
+                                        "raw": "K"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table_cell",
+                                "attrs": {
+                                    "align": "center",
+                                    "head": false
+                                },
+                                "children": [
+                                    {
+                                        "type": "inline_math",
+                                        "raw": "M"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table_cell",
+                                "attrs": {
+                                    "align": "center",
+                                    "head": false
+                                },
+                                "children": [
+                                    {
+                                        "type": "inline_math",
+                                        "raw": "G"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table_row",
+                        "children": [
+                            {
+                                "type": "table_cell",
+                                "attrs": {
+                                    "align": "center",
+                                    "head": false
+                                },
+                                "children": [
+                                    {
+                                        "type": "inline_math",
+                                        "raw": "10^{-15}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table_cell",
+                                "attrs": {
+                                    "align": "center",
+                                    "head": false
+                                },
+                                "children": [
+                                    {
+                                        "type": "inline_math",
+                                        "raw": "10^{-12}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table_cell",
+                                "attrs": {
+                                    "align": "center",
+                                    "head": false
+                                },
+                                "children": [
+                                    {
+                                        "type": "inline_math",
+                                        "raw": "10^{-9}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table_cell",
+                                "attrs": {
+                                    "align": "center",
+                                    "head": false
+                                },
+                                "children": [
+                                    {
+                                        "type": "inline_math",
+                                        "raw": "10^{-6}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table_cell",
+                                "attrs": {
+                                    "align": "center",
+                                    "head": false
+                                },
+                                "children": [
+                                    {
+                                        "type": "inline_math",
+                                        "raw": "10^{-3}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table_cell",
+                                "attrs": {
+                                    "align": "center",
+                                    "head": false
+                                },
+                                "children": [
+                                    {
+                                        "type": "inline_math",
+                                        "raw": "10^{-2}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table_cell",
+                                "attrs": {
+                                    "align": "center",
+                                    "head": false
+                                },
+                                "children": [
+                                    {
+                                        "type": "inline_math",
+                                        "raw": "10^{3}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table_cell",
+                                "attrs": {
+                                    "align": "center",
+                                    "head": false
+                                },
+                                "children": [
+                                    {
+                                        "type": "inline_math",
+                                        "raw": "10^{6}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table_cell",
+                                "attrs": {
+                                    "align": "center",
+                                    "head": false
+                                },
+                                "children": [
+                                    {
+                                        "type": "inline_math",
+                                        "raw": "10^{9}"
+                                    }
+                                ]
+                            }
+                        ]
                     }
                 ]
             }
         ]
     },
     {
-        "type": "blank_line"
-    },
-    {
-        "type": "thematic_break"
-    },
-    {
-        "type": "blank_line"
-    },
-    {
         "type": "heading",
         "attrs": {
             "level": 2
@@ -418,7 +848,19 @@
         "children": [
             {
                 "type": "text",
-                "raw": "Angular Momentum"
+                "raw": "יחסות פרטית"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "text",
+                "raw": "פרמטר לורנץ:"
             }
         ]
     },
@@ -430,7 +872,7 @@
         "children": [
             {
                 "type": "inline_math",
-                "raw": "$\\vec{\\tau} = \\vec{r} \\times \\vec{F}, \\quad \\vec{J} = \\vec{r} \\times \\vec{P}"
+                "raw": "$\\gamma = \\frac{1}{\\sqrt{1 - v^2/c^2}}"
             },
             {
                 "type": "text",
@@ -445,8 +887,20 @@
         "type": "paragraph",
         "children": [
             {
+                "type": "text",
+                "raw": "התקצרות אורך:"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
                 "type": "inline_math",
-                "raw": "$\\sum \\vec{\\tau}_i = 0 \\implies \\vec{J} = \\text{const}"
+                "raw": "$L = \\frac{L_0}{\\gamma}"
             },
             {
                 "type": "text",
@@ -462,41 +916,7 @@
         "children": [
             {
                 "type": "text",
-                "raw": "Moment of inertia: "
-            },
-            {
-                "type": "inline_math",
-                "raw": "I = \\int r^2 \\, dm"
-            },
-            {
-                "type": "text",
-                "raw": ", \\quad "
-            },
-            {
-                "type": "inline_math",
-                "raw": "\\vec{J} = I\\vec{\\omega}"
-            }
-        ]
-    },
-    {
-        "type": "blank_line"
-    },
-    {
-        "type": "thematic_break"
-    },
-    {
-        "type": "blank_line"
-    },
-    {
-        "type": "heading",
-        "attrs": {
-            "level": 2
-        },
-        "style": "atx",
-        "children": [
-            {
-                "type": "text",
-                "raw": "Special Relativity"
+                "raw": "אנרגיית מנוחה:"
             }
         ]
     },
@@ -508,7 +928,7 @@
         "children": [
             {
                 "type": "inline_math",
-                "raw": "$\\gamma = \\frac{1}{\\sqrt{1-v^2/c^2}}, \\quad L = \\frac{L_0}{\\gamma}"
+                "raw": "$E = mc^2"
             },
             {
                 "type": "text",
@@ -523,8 +943,20 @@
         "type": "paragraph",
         "children": [
             {
+                "type": "text",
+                "raw": "אינווריאנט תנע-אנרגיה:"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
                 "type": "inline_math",
-                "raw": "$E = \\gamma mc^2, \\quad E^2 - P^2c^2 = m^2c^4"
+                "raw": "$E_m^2 - P^2 c^2 = m^2 c^4"
             },
             {
                 "type": "text",

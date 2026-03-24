@@ -1,4 +1,5 @@
 import json
+import os
 
 from rich.console import Console
 import mistune
@@ -8,14 +9,16 @@ from src.logic.latex import BASE_LATEX_DOC_END, BASE_LATEX_DOC_START, generate_l
 console = Console()
 
 # Creates an abstract syntax tree (AST) renderer
-markdown_parser = mistune.create_markdown(renderer=None, plugins=['strikethrough', 'table', 'task_lists', 'footnotes', 'def_list', 'math', "url"])
+markdown_parser = mistune.create_markdown(renderer=None, plugins=['strikethrough', 'table', 'task_lists', 'footnotes', 'def_list', 'math', "url"], hard_wrap=True)
 
 def main():
     ast: list = None
     try:
-        with open(".\\test\\sample_en.md", "r", encoding="utf-8") as f:
+        with open(".\\test\\sample_he.md", "r", encoding="utf-8") as f:
             text = f.read()
             ast = markdown_parser(text)
+            with open(".\\test\\ast.json", "w", encoding="utf-8") as f:
+                json.dump(ast, f, indent=4, ensure_ascii=False)
     except Exception as e:
         console.print(f"[red]Error reading markdown file: {e}[/red]")
         exit(1)
@@ -39,6 +42,13 @@ def main():
     
     with open(".\\test\\output.tex", "w", encoding="utf-8") as f:
         f.write(final_document)
+    
+    # Compile the LaTeX document to PDF
+    try:
+        os.system("xelatex test\\output.tex")
+    except Exception as e:
+        console.print(f"[red]Error compiling LaTeX document: {e}[/red]")
+
 
 if __name__ == "__main__":
     main()

@@ -42,7 +42,7 @@ Work-energy theorem: $\sum W = \Delta E_k$
 
 Mechanical energy: $E_m = E_k + U$
 
-> A **conservative force** satisfies $\nabla \times \vec{F} = 0$ and its work is path-independent.
+A **conservative force** satisfies $\nabla \times \vec{F} = 0$ and its work is path-independent.
 
 ---
 

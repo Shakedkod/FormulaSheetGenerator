@@ -2,6 +2,11 @@
     "cSpell.words": [
         "lamath",
         "latext",
-        "subsubsection"
+        "mathjax",
+        "pdflatex",
+        "subsubsection",
+        "textbf",
+        "textit",
+        "xelatex"
     ]
 }

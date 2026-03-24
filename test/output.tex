@@ -1,74 +1,159 @@
-\documentclass{article}
-\usepackage[margin=0.8cm, top=1cm, bottom=1cm]{geometry}
+\documentclass[10pt]{article}
+\usepackage[margin=0.6cm]{geometry}
 \usepackage{polyglossia}
 \usepackage{multicol}
+\usepackage{amsmath, amssymb}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{adjustbox}
 
-% Define Hebrew as the main language
+\newcolumntype{C}{>{\centering\arraybackslash}m{2cm}} % fixed-width centered
+
 \setmainlanguage{hebrew}
 \newfontfamily\hebrewfont[Script=Hebrew]{David CLM}
 
-% Optional: Adjust the space between columns and add a divider line
-\setlength{\columnsep}{0.5cm}
-\setlength{\columnseprule}{0.4pt}
+% Compact layout
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
 
-% Document
+% Columns
+\setlength{\columnsep}{0.4cm}
+\setlength{\columnseprule}{0.2pt}
+
+% Section styling (compact)
+\titleformat{\section}{\bfseries\large}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\bfseries\normalsize}{}{0em}{}
+\titleformat{\subsubsection}{\bfseries\small}{}{0em}{}
+
+\titlespacing*{\section}{0pt}{2pt}{2pt}
+\titlespacing*{\subsection}{0pt}{2pt}{1pt}
+\titlespacing*{\subsubsection}{0pt}{1pt}{1pt}
+
+% Compact lists + bullet fix
+\setlist[itemize]{itemsep=0pt, topsep=0pt}
+\renewcommand{\labelitemi}{\raisebox{0.2ex}{\tiny$\bullet$}}
+\setlength{\tabcolsep}{2pt}
+
 \begin{document}
+\small
+
 \begin{multicols*}{3}
-\section{Classical Mechanics - Formula Sheet}
-\subsection{Kinematics}
-Velocity and acceleration: \\
+\section{מכניקה קלאסית - דף נוסחאות}
+\subsection{קינמטיקה}
+מהירות ותאוצה:
 \[
 v = \frac{dx}{dt}, \quad a = \frac{dv}{dt}
 \]
-
-Constant acceleration: \\
+תנועה באצה קבועה:
 \[
-x = x_0 + v_0 t + \frac{1}{2}at^2, \quad v^2 = v_0^2 + 2a(x-x_0)
+x = x_0 + v_0 t + \frac{1}{2}at^2
+\]
+\[
+v^2 = v_0^2 + 2a(x - x_0)
 \]
 
-\subsubsection{Projectile Motion}
+\subsubsection{זריקה אופקית}
+מרחק נפילה:
 \[
 x(t_1) = x_0 + \frac{v_0^2 \sin 2\theta}{g}
 \]
-\subsection{Newton's Laws}
-Friction forces: \\
+
+\subsection{דינמיקה}
+חוקי ניוטון:
+\begin{itemize}
+\item $\sum \vec{F}_i = 0$ — הגוף יתמיד בתנועתו
+\item $\sum \vec{F}_i = \frac{d\vec{P}}{dt}$ — חוק שני
+\item $\vec{F}_{1,2} = -\vec{F}_{2,1}$ — חוק שלישי
+\end{itemize}
+כוח חיכוך:
 \[
-|\vec{F}_{max}| = \mu_s N, \quad |\vec{F}_k| = \mu_k N, \quad \mu_s > \mu_k
+|\vec{F}_{max}| = \mu_s \cdot N, \quad |\vec{F}_\mu| = \mu_k \cdot N
 \]
 
-\subsection{Vectors}
+\subsection{וקטורים}
+גודל וקטור:
+\[
+|\vec{A}| = \sqrt{A_x^2 + A_y^2 + A_z^2}
+\]
 
-$$|\vec{A}| = \sqrt{A_x^2 + A_y^2 + A_z^2}$$ \\
+מכפלה סקלרית:
+\[
+\vec{A} \cdot \vec{B} = |\vec{A}||\vec{B}|\cos\theta
+\]
 
-$$\vec{A} \cdot \vec{B} = |\vec{A}||\vec{B}|\cos\theta$$ \\
+מכפלה וקטורית:
+\[
+\vec{A} \times \vec{B} = |\vec{A}||\vec{B}|\sin\theta \cdot \hat{n}
+\]
 
-$$\vec{A} \times \vec{B} = |\vec{A}||\vec{B}|\sin\theta \,\hat{n}$$ \\
+\subsection{עבודה ואנרגיה}
+אנרגיה קינטית:
+\[
+E_k = \frac{1}{2}mv^2
+\]
 
+משפט עבודה-אנרגיה:
+\[
+\sum \vec{F} \cdot \Delta\vec{r} = \Delta E_k
+\]
 
-\subsection{Work \& Energy}
+אנרגיה מכנית: $E_m = E_k + U$ \\ 
+כוח שעבודתו לא תלויה במסלול נקרא \textbf{משמר}. לכל כוח משמר $\nabla \times \vec{F} = 0$.
 
-$$W = \int_A^B \vec{F} \cdot d\vec{r}, \quad E_k = \frac{1}{2}mv^2$$ \\
+\subsection{תנועה מעגלית}
+מהירות זוויתית: $\omega = \dot{\theta}$ \\ 
+תאוצה צנטריפטלית:
+\[
+a_c = \frac{v^2}{R} = \omega^2 R
+\]
 
-Work-energy theorem: $\sum W = \Delta E_k$ \\
+\subsection{תנע זוויתי}
+מומנט כוח: $\vec{\tau} = \vec{r} \times \vec{F}$ \\ 
+תנע זוויתי: $\vec{J} = \vec{r} \times \vec{P}$ \\ 
+שימור תנע זוויתי:
+\[
+\sum \vec{\tau}_i = 0 \implies \vec{J} = \text{const}
+\]
 
-Mechanical energy: $E_m = E_k + U$ \\
+מומנט אינרציה:
+\[
+I = \int r^2 \, dm
+\]
 
+\subsection{ניסוי עם טבלה}
 
+\begin{center}
+\begin{adjustbox}{max width=\columnwidth}
+\begin{tabular}{|C|C|C|C|C|C|C|C|C|}
+\hline
+פמטו & פיקו & ננו & מיקרו & מילי & סנטי & קילו & מגה & גיגה \\ 
+\hline
+$f$ & $p$ & $n$ & $\mu$ & $m$ & $c$ & $K$ & $M$ & $G$ \\ 
+\hline
+$10^{-15}$ & $10^{-12}$ & $10^{-9}$ & $10^{-6}$ & $10^{-3}$ & $10^{-2}$ & $10^{3}$ & $10^{6}$ & $10^{9}$ \\ 
+\hline
+\end{tabular}
+\end{adjustbox}
+\end{center}
+\subsection{יחסות פרטית}
 
-\subsection{Angular Momentum}
+פרמטר לורנץ:
 
-$$\vec{\tau} = \vec{r} \times \vec{F}, \quad \vec{J} = \vec{r} \times \vec{P}$$ \\
+$$\gamma = \frac{1}{\sqrt{1 - v^2/c^2}}$$
 
-$$\sum \vec{\tau}_i = 0 \implies \vec{J} = \text{\const}$$ \\
+התקצרות אורך:
 
-Moment of inertia: $I = \int r^2 \, dm$, \quad $\vec{J} = I\vec{\omega}$ \\
+$$L = \frac{L_0}{\gamma}$$
 
+אנרגיית מנוחה:
 
-\subsection{Special Relativity}
+$$E = mc^2$$
 
-$$\gamma = \frac{1}{\sqrt{1-v^2/c^2}}, \quad L = \frac{L_0}{\gamma}$$ \\
+אינווריאנט תנע-אנרגיה:
 
-$$E = \gamma mc^2, \quad E^2 - P^2c^2 = m^2c^4$$ \\
+$$E_m^2 - P^2 c^2 = m^2 c^4$$
 
 \end{multicols*}
 \end{document}
