@@ -52,9 +52,6 @@ LATEX_SECTION_BREAK = r"""% --- Start single-column horizontal separator ---
 def latext(text: str) -> str:
     return text.replace("&", "\\&").replace("%", "\\%").replace("#", "\\#").replace("_", "\\_").replace("{", "\\{").replace("}", "\\}")
 
-def fix_mathjax_latex_arrays(latex: str) -> str:
-    pass
-
 def generate_latex_line(node: dict) -> str:
     content = ""
     
