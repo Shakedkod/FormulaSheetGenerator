@@ -4,7 +4,7 @@ import os
 from rich.console import Console
 import mistune
 
-from src.logic.latex import BASE_LATEX_DOC_END, BASE_LATEX_DOC_START, generate_latex_from_node
+from logic.latex import BASE_LATEX_DOC_END, BASE_LATEX_DOC_START, generate_latex_from_node
 
 console = Console()
 
