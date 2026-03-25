@@ -10,11 +10,11 @@ BASE_LATEX_DOC_START = r"""\documentclass[10pt]{article}
 \usepackage{adjustbox}
 
 \newcolumntype{C}{>{\centering\arraybackslash}m{2cm}} % fixed-width centered
-
-\setmainlanguage{hebrew}
+"""
+LATEX_HEBREW_MODIFIER = r"""\setmainlanguage{hebrew}
 \newfontfamily\hebrewfont[Script=Hebrew]{David CLM}
-
-% Compact layout
+"""
+BASE_LATEX_DOC_START_DOC = r"""% Compact layout
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
 
@@ -39,7 +39,7 @@ BASE_LATEX_DOC_START = r"""\documentclass[10pt]{article}
 \begin{document}
 \small
 
-\begin{multicols*}{3}"""
+\begin{multicols*}"""
 
 BASE_LATEX_DOC_END = r"""\end{multicols*}
 \end{document}"""

@@ -1,10 +1,9 @@
-import json
-import os
+import os, sys
 
 from rich.console import Console
 import mistune
 
-from logic.latex import BASE_LATEX_DOC_END, BASE_LATEX_DOC_START, generate_latex_from_node
+from logic.latex import BASE_LATEX_DOC_END, BASE_LATEX_DOC_START, BASE_LATEX_DOC_START_DOC, LATEX_HEBREW_MODIFIER, generate_latex_from_node
 
 console = Console()
 
@@ -17,15 +16,27 @@ def main():
         with open(".\\test\\sample_he.md", "r", encoding="utf-8") as f:
             text = f.read()
             ast = markdown_parser(text)
-            with open(".\\test\\ast.json", "w", encoding="utf-8") as f:
-                json.dump(ast, f, indent=4, ensure_ascii=False)
     except Exception as e:
         console.print(f"[red]Error reading markdown file: {e}[/red]")
         exit(1)
 
     # Parsing the AST to a latex document.
     # Start the document
-    final_document: str = BASE_LATEX_DOC_START + "\n"
+    column_num = 3
+    if ("--column-num" in sys.argv):
+        try:
+            column_num_index = sys.argv.index("--column-num") + 1
+            if (column_num_index < len(sys.argv)):
+                column_num = int(sys.argv[column_num_index])
+            else:
+                console.print("[yellow]Warning: --column-num flag provided without a number, using default of 3 columns[/yellow]")
+        except ValueError:
+            console.print("[yellow]Warning: Invalid number provided for --column-num, using default of 3 columns[/yellow]")
+    
+    if (len(sys.argv) > 1 and sys.argv[1] == "--he"):
+        final_document: str = BASE_LATEX_DOC_START + LATEX_HEBREW_MODIFIER + BASE_LATEX_DOC_START_DOC + f"{{{column_num}}}" + "\n"
+    else:
+        final_document: str = BASE_LATEX_DOC_START + BASE_LATEX_DOC_START_DOC + f"{{{column_num}}}" + "\n"
     section_num = 0
     
     # document content
