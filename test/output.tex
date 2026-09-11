@@ -1,157 +1,508 @@
-\documentclass[10pt]{article}
-\usepackage[margin=0.6cm]{geometry}
+\title{Sample Document}
+\author{test}
+\documentclass[12pt]{article}
+% ---------- Fonts & language (Hebrew RTL + English/math LTR) ----------
+\usepackage{hyperref}
+\usepackage{fontspec}
 \usepackage{polyglossia}
-\usepackage{multicol}
-\usepackage{amsmath, amssymb}
-\usepackage{titlesec}
-\usepackage{enumitem}
-\usepackage{array}
-\usepackage{tabularx}
-\usepackage{adjustbox}
+\setdefaultlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\titlefont{Nachlieli CLM}
+\newfontfamily\hebrewfont{David CLM}
+\newfontfamily{\hebrewfonttt}[Script=Hebrew]{David CLM}
+\newfontfamily\englishfont{Latin Modern Roman}
 
-\newcolumntype{C}{>{\centering\arraybackslash}m{2cm}} % fixed-width centered
-\setmainlanguage{hebrew}
-\newfontfamily\hebrewfont[Script=Hebrew]{David CLM}
-% Compact layout
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0pt}
+% ---------- Math ----------
+\usepackage{amsmath, amssymb, amsthm, mathtools, cancel}
+\usepackage{bm}          % \bm for bold math (vectors etc.)
+\usepackage{physics}     % bra-ket, derivatives — optional, remove if unused
+\usepackage{adjustbox}   % fit math in tables
 
-% Columns
-\setlength{\columnsep}{0.4cm}
-\setlength{\columnseprule}{0.2pt}
 
-% Section styling (compact)
-\titleformat{\section}{\bfseries\large}{\thesection.}{0.5em}{}
-\titleformat{\subsection}{\bfseries\normalsize}{}{0em}{}
-\titleformat{\subsubsection}{\bfseries\small}{}{0em}{}
+% ---------- Images & Diagrams ----------
+\usepackage{relsize, graphicx, svg, geometry}
+\usepackage{tikz, circuitikz}
+\usetikzlibrary{quotes, angles, shapes.gates.logic.US}
+\usetikzlibrary{arrows.meta, automata, positioning, calc, shapes.geometric, backgrounds, fit}
+\newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \coordinate (#1);}
+\geometry{margin=2.5cm}
 
-\titlespacing*{\section}{0pt}{2pt}{2pt}
-\titlespacing*{\subsection}{0pt}{2pt}{1pt}
-\titlespacing*{\subsubsection}{0pt}{1pt}{1pt}
+% ---------- Misc quality-of-life ----------
+\usepackage[toc]{appendix}
+\usepackage{listings}
+\PassOptionsToPackage{prologue}{xcolor}
+\usepackage{xcolor, diagbox}
+\usepackage{titling, longtable, booktabs, array}
+\usepackage{parskip, listings}
 
-% Compact lists + bullet fix
-\setlist[itemize]{itemsep=0pt, topsep=0pt}
-\renewcommand{\labelitemi}{\raisebox{0.2ex}{\tiny$\bullet$}}
-\setlength{\tabcolsep}{2pt}
+\definecolor{linkblue}{HTML}{0997E6}
+\renewcommand{\appendixpagename}{נספחים}
+\renewcommand{\appendixtocname}{נספחים}
 
+% ---------- Assembler Codeblock Setup ----------
+% Define colors
+\definecolor{commentgreen}{rgb}{0,0.6,0}
+\definecolor{keywordblue}{rgb}{0,0,0.8}
+\definecolor{registerpurple}{rgb}{0.5,0,0.5}
+\definecolor{stringorange}{rgb}{0.8,0.4,0}
+\definecolor{gold}{HTML}{FFD700}
+\definecolor{myblue}{RGB}{37,97,175}
+
+% Define the RISC-V Language Dialect
+\lstdefinelanguage{Assembler}{
+    alsoletter={.}, % Allow dots in keywords like .text or .global
+    alsodigit={0x}, % Properly identify hex values
+    morekeywords=[1]{ % Core RISC-V Instructions
+        add, addi, sub, lui, auipc, xor, xori, or, ori, and, andi,
+        sll, slli, srl, srli, sra, srai, slt, slti, sltu, sltiu,
+        beq, bne, blt, bge, bltu, bgeu, jal, jalr, lw, lh, lb,
+        lbu, lhu, sw, sh, sb, ECALL, ecall, EBREAK, ebreak,
+        % Common Pseudoinstructions
+        li, la, mv, not, neg, seqz, snez, sltz, sgtz,
+        j, jr, jal, ret, call, tail, nop
+    },
+    morekeywords=[2]{ % RISC-V Registers (ABI and Symbolic names)
+        x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15,
+        x16, x17, x18, x19, x20, x21, x22, x23, x24, x25, x26, x27, x28, x29, x30, x31,
+        zero, ra, sp, gp, tp, t0, t1, t2, s0, fp, s1, a0, a1, a2, a3, a4, a5, a6, a7,
+        s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, t3, t4, t5, t6
+    },
+    morekeywords=[3]{ % Assembler Directives
+        .text, .data, .rodata, .bss, .globl, .global, .align, .word, .half, .byte, .asciiz, .string, .section
+    },
+    allowspaces=false,
+    morecomment=[l]{\#},      % Standard RISC-V comments start with #
+    morecomment=[l]{;},       % Fallback comment style
+    morestring=[b]",          % Double quotes strings
+    morestring=[b]'           % Single quotes strings
+}[keywords,comments,strings]
+
+% Apply Styles globally to the document
+\lstset{
+    basicstyle={\small\ttfamily},
+    keywordstyle=[1]\color{keywordblue}\bfseries,
+    keywordstyle=[2]\color{registerpurple},
+    keywordstyle=[3]\color{gray}\bfseries,
+    commentstyle=\color{commentgreen}\itshape,
+    stringstyle=\color{stringorange},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    tabsize=4,
+    breaklines=true
+}
+
+% ============================================================
+%  Theorem-style environments
+% ============================================================
+\theoremstyle{plain}
+\newtheorem{theorem}{משפט}[section]      % thm
+\newtheorem{lemma}[theorem]{למה}          % lem
+\newtheorem{proposition}[theorem]{טענה}   % prp
+\newtheorem{corollary}[theorem]{מסקנה}    % cor
+\newtheorem{claim}[theorem]{טענה עזר}     % clm
+\newtheorem{conjecture}[theorem]{השערה}   % cnj
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{הגדרה}   % def
+\newtheorem{axiom}[theorem]{אקסיומה}      % axm
+\newtheorem{assumption}[theorem]{הנחה}    % asm
+\newtheorem{example}[theorem]{דוגמה}      % exm
+\newtheorem{exercise}[theorem]{תרגיל}     % exr
+\newtheorem{hypothesis}[theorem]{השערת עבודה} % hyp
+
+\theoremstyle{remark}
+\newtheorem*{remark}{הערה}                % rmk
+
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{\par
+  \pushQED{\qed}%
+  \normalfont \topsep6\p@\@plus6\p@\relax
+  \trivlist
+  \item[\hskip\labelsep\itshape #1\@addpunct{.}]\par\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+\renewcommand{\qed}{\par\nobreak\hfill\qedsymbol\par}
+\makeatother
+\renewcommand{\proofname}{הוכחה}          % הוכחה
+
+\newenvironment{circuit}[1][]
+  {\beginL\begin{circuitikz}[#1]}
+  {\end{circuitikz}\endL}
+\usetikzlibrary{arrows.meta}
+
+\renewcommand\labelitemi{\(\bullet\)}
+\renewcommand\labelitemii{\(\circ\)}
+\renewcommand\labelitemiii{\(\ast\)}
+\renewcommand\labelitemiv{\(\cdot\)}
+
+% section numbering depth & making sure the paragraph and subparagraph levels are numbered and appear correctly
+\setcounter{secnumdepth}{5} 
+\setcounter{tocdepth}{5}
+
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}%
+  {\normalfont\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}%
+  {\normalfont\normalsize\bfseries}}
+\makeatletter
+
+
+% integrals
+\let\oldint\int
+\let\oldiint\iint
+\let\oldiiint\iiint
+\let\oldoint\oint
+\renewcommand{\int}{\oldint\limits}
+\renewcommand{\iint}{\oldiint\limits}
+\renewcommand{\iiint}{\oldiiint\limits}
+\renewcommand{\oint}{\oldoint\limits}
+\newcommand{\oiint}{\mathop{\oint\!\!\!\!\!\oint}\limits}
+\newcommand{\oiiint}{\mathop{\oint\!\!\!\!\!\oint\!\!\!\!\!\oint}\limits}
+
+% multi-dimensional derivatives
+\newcommand{\parder}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\nparder}[3]{\frac{\partial^{#1}{#2}}{\partial{#3}^{#1}}}
+
+% arrows with limits (better than \underset{x\to\infty}{\longrightarrow})
+\newcommand{\rarrowlim}[1]{\xrightarrow[\;\; {#1} \;\;]{}}
+\newcommand{\larrowlim}[1]{\xleftarrow[\;\; {#1} \;\;]{}}
+
+% graph edges (graph theory)
+\newcommand{\edge}[1]{\frac{#1}{\quad}}
+\newcommand{\arrowedge}[1]{\xrightarrow{\; {#1} \;}}
+
+% matrix norm(3 line norm)
+\newcommand{\lVvert}{{\large \lVert}\;\!\! \lvert}
+\newcommand{\blVvert}{\left\lVert\;\!\! \left\lvert}
+\newcommand{\rVvert}{\rvert \;\!\!{\large \rVert}}
+\newcommand{\brVvert}{\right\rvert \;\!\! \right\rVert}
+
+% epsilon curly variant
+\renewcommand{\epsilon}{\varepsilon}
+
+% set theory
+\newcommand{\smid}{\;\middle|\;}
+
+% harppons
+\let\smallrightleftharpoons\rightleftharpoons
+\let\smallxrightleftharpoons\xrightleftharpoons
+\renewcommand{\rightleftharpoons}{{\Large \smallrightleftharpoons}}
+\renewcommand{\xrightleftharpoons}[2][]{{\Large \smallxrightleftharpoons[{#1}]{#2}}}
+
+% ============================================================
+% THE START OF THE DOCUMENT CONTENT
+% ============================================================
 \begin{document}
-\small
+\maketitle
+\tableofcontents
+\newpage
 
-\begin{multicols*}{2}
-\section{מכניקה קלאסית - דף נוסחאות}
-\subsection{קינמטיקה}
-מהירות ותאוצה:
-\[
-v = \frac{dx}{dt}, \quad a = \frac{dv}{dt}
+\begin{definition}[פונקציה קדומה]
+\label{85a11d}
+\(F(x)\) נקראת \textbf{פונקציה קדומה} של \(f(x)\) בקטע \(I\) אם \(F'(x)=f(x)\).
+\end{definition}
+כלומר, פונקציה קדומה היא הפעולה ההפוכה לנגזרת שלפעמים קוראים לה אנטי-נגזרת.\newline{}
+נגזרת של פונקציה היא יחידה. היא הגבול כפי שראינו ב\href{https://uni-folder.vercel.app/4 - פונקציות#3a733f}{אינפי 1}
+. אך הפעולה ההפוכה היא לא יחידה. נניח ויש לנו גרף עם שיפוע מסויים, הזזה של אותו הגרף למעלה תהיה בדיוק עם אותו השיפוע ולכן יהיו להן בדיוק אותה נגזרת.\begin{theorem}
+תהי \(F\) פונקציה קדומה של \(f\) בקטע \(I\).\newline{}
+אזי, אוסף כל הפונקציות הקדומות של \(f\) בקטע \(I\) הוא \({\Big\{} F(x)+c|c \in \mathbb{R} \Big\}\)
+\end{theorem}
+המשפט אומר שני דברים:\begin{enumerate}
+\item כל פונקציה כזו היא פונקציה קדומה של \(f\).
+\item אלו כל הפונקציות הקדומות
+\end{enumerate}
+כעת, נדרש להוכיח את שניהם.\begin{proof}
+לכל \(c \in \mathbb{R}\) מתקיים \((F(x)+c)'=f(x)\). (לפי כללי גזירה)\newline{}
+בנוסף, תהי \(G(x)\) פונקציה קדומה אחרת של \(f\).\newline{}
+נסמן: \(H=G-F\). אזי,\[
+H'=G'-F'=f-f=0
 \]
-תנועה באצה קבועה:
-\[
-x = x_0 + v_0 t + \frac{1}{2}at^2
-\]
-\[
-v^2 = v_0^2 + 2a(x - x_0)
-\]
-
-\subsubsection{זריקה אופקית}
-מרחק נפילה:
-\[
-x(t_1) = x_0 + \frac{v_0^2 \sin 2\theta}{g}
-\]
-
-\subsection{דינמיקה}
-חוקי ניוטון:
-\begin{itemize}
-\item $\sum \vec{F}_i = 0$ — הגוף יתמיד בתנועתו
-\item $\sum \vec{F}_i = \frac{d\vec{P}}{dt}$ — חוק שני
-\item $\vec{F}_{1,2} = -\vec{F}_{2,1}$ — חוק שלישי
-\end{itemize}
-כוח חיכוך:
-\[
-|\vec{F}_{max}| = \mu_s \cdot N, \quad |\vec{F}_\mu| = \mu_k \cdot N
+לכן, לפי מסקנה מלגרנז', \(H=c\) עבור איזשהו \(c \in \mathbb{R}\). לכן, \(G-F=c\). כלומר, \(G=F+c\)
+\end{proof}
+כלומר, אם לפונקציה יש פונקציה קדומה(ולא לכל הפונקציות יש) אז יש לה \(\infty\) פונקציות קדומות.\begin{definition}[סימון]
+אוסף הפונקציות הקדומות של \(f\) מסומנן על ידי\[
+\int f(x)dx
 \]
 
-\subsection{וקטורים}
-גודל וקטור:
+\end{definition}
+צריך לזכור שכאשר רואים את הסימון הזה, לא מדובר בפונקציה אחת אלא במשפחה של פונקציות.\begin{example}
 \[
-|\vec{A}| = \sqrt{A_x^2 + A_y^2 + A_z^2}
+\int \cos xdx=\sin x+c \qquad \int \sin xdx=-\cos x+c
+\]
+\[
+\int e^xdx=e^x+c \qquad \int xdx=\frac{x^2}{2}+c \qquad n\neq-1, \int x^ndx=\frac{x^{n+1}}{n+1}+c
+\]
+\[
+\int \frac{1}{1+x^2}dx=\arctan x+c \qquad -1<x<1, \int \frac{dx}{\sqrt{ 1-x^2 }}=\arcsin x+c \qquad x\neq0,\int \frac{1}{x}dx=\ln |x|+c
+\]
+\textbf{בדיקה על ידי גזירה:} (תמיד כדאי לעשות)\[
+\ln |x|=\begin{cases}
+\ln x  & x> 0 \\
+\ln(-x) & x<0
+\end{cases} \implies (\ln |x|)'=\begin{cases}
+\frac{1}{x} & x> 0 \\
+ \frac{1}{-x}\cdot (-1) & x<0
+\end{cases}=\frac{1}{x}
+\]
+\begin{remark}
+האינטגרלים הנ"ל נקראים \textbf{אינטגרלים מידיים} ונראה אותם הרבה בהמשך הקורס וגם נוכיח את חלקם.
+\end{remark}
+
+\end{example}
+\begin{theorem}[ליניאריות]
+יהיו \(f,g:\mathbb{R}\to \mathbb{R}\) בעלות פונקציות קדומות. אזי:\[
+\begin{aligned}
+1.\; & \int (f(x)+g(x))dx=\int f(x)dx+\int g(x)dx \\
+2.\; & \forall \alpha \in \mathbb{R}:\; \int \alpha f(x)dx=\alpha\int f(x)dx
+\end{aligned}
 \]
 
-מכפלה סקלרית:
+\end{theorem}
+\begin{proof}
+נתון כי ל-\(f,g\) פונקציות קדומות. נסמנם \(F,G\) בהתאמה.\newline{}
+נסמן \(H(x)=F(x)+G(x)\) ואז:\[
+H'(x) \underset{\begin{matrix}
+\downarrow \\
+{\text{כללי גזירה}}
+\end{matrix}}{=}F'(x)+G'(x)=f(x)+g(x)
+\]
 \[
-\vec{A} \cdot \vec{B} = |\vec{A}||\vec{B}|\cos\theta
+\int f(x)dx+\int g(x)dx \underset{\begin{matrix}
+\downarrow \\
+{\text{הגדרת אינטגרל}}
+\end{matrix}}{=} F(x)+G(x)=H(x) \underset{\begin{matrix}
+\downarrow \\
+{\text{הגדרת אינטגרל}}
+\end{matrix}}{=}\int H'(x)dx=\int (f(x)+g(x))dx
+\]
+יהי \(\alpha \in \mathbb{R}\). נגדיר \(K(x)=\displaystyle \alpha F(x)\). אזי:\[
+K'(x)=(\alpha F(x))' \underset{\begin{matrix}
+\downarrow \\
+{\text{כללי גזירה}}
+\end{matrix}}{=}\alpha F'(x)=\alpha f(x)
+\]
+\[
+\alpha \int f(x)dx \underset{\begin{matrix}
+\downarrow \\
+{\text{הגדרת אינטגרל}}
+\end{matrix}}{=}\alpha F(x)=K(x) \underset{\begin{matrix}
+\downarrow \\
+{\text{הגדרת אינטגרל}}
+\end{matrix}}{=} \int K'(x)dx=\int\alpha f(x)dx
 \]
 
-מכפלה וקטורית:
+\end{proof}
+\begin{example}[אינטגרל כמעט מיידי]
 \[
-\vec{A} \times \vec{B} = |\vec{A}||\vec{B}|\sin\theta \cdot \hat{n}
+\int \frac{x^4}{1+x^2}dx=\int \frac{x^4-1+1}{1+x^2}dx=\int \frac{(x^2-1)(x^2+1)}{x^2+1}+\frac{1}{x^2+1}dx=
+\]
+\[
+\int\frac{(x^2-1)\cancel{ (x^2+1) }}{\cancel{ x^2+1 }}dx+\int \frac{1}{x^2+1}dx=\int x^2dx-\int1dx+\int \frac{1}{1+x^2}dx=\frac{x^3}{3}-x+\arctan x {\; \color{red}+\; c}
 \]
 
-\subsection{עבודה ואנרגיה}
-אנרגיה קינטית:
-\[
-E_k = \frac{1}{2}mv^2
+\end{example}
+\begin{theorem}
+תהי \(f(x):\mathbb{R}\to \mathbb{R}\) כך ש-\(f(x)\neq 0\). אזי:\[
+\int \frac{f'(x)}{f(x)}dx=\ln |f(x)|+c
 \]
 
-משפט עבודה-אנרגיה:
+\end{theorem}
+נבדוק זאת ע"י גזירה:\[
+(\ln|f(x)|+c)'=\begin{cases}
+\frac{f'(x)}{f(x)} & x>0 \\
+\frac{-f'(x)}{-f(x)} & x<0
+\end{cases}=\frac{f'(x)}{f(x)}
+\]
+\begin{proof}
+גזירה לפי כלל השרשרת.\[
+(\ln |f(x)|+c)'=\frac{|f'(x)|}{|f(x)|}=\frac{f'(x)}{f(x)}
+\]
+נסמן \(\displaystyle F^*(x)=\int \frac{f'(x)}{f(x)}dx\) ואז:\[
+(F^*(x))'=\frac{f'(x)}{f(x)}=(\ln |f(x)|+c)'
+\]
 \[
-\sum \vec{F} \cdot \Delta\vec{r} = \Delta E_k
+\int \frac{f'(x)}{f(x)}dx=F^*(x)=\int (F^*(x))'dx=\int (\ln |f(x)|+c)'dx=\ln |f(x)|+c
 \]
 
-אנרגיה מכנית: $E_m = E_k + U$ \\ 
-כוח שעבודתו לא תלויה במסלול נקרא \textbf{משמר}. לכל כוח משמר $\nabla \times \vec{F} = 0$.
-
-\subsection{תנועה מעגלית}
-מהירות זוויתית: $\omega = \dot{\theta}$ \\ 
-תאוצה צנטריפטלית:
+\end{proof}
+\begin{example}[עוד דוגמה של אינטגרל כמעט מיידי]
 \[
-a_c = \frac{v^2}{R} = \omega^2 R
+\int \tan xdx=\int \frac{\sin x}{\cos x}dx \underset{\begin{matrix}
+\downarrow \\
+{\text{המשפט הנ"ל}}
+\end{matrix}}{=}-\ln |\cos x|+c
 \]
 
-\subsection{תנע זוויתי}
-מומנט כוח: $\vec{\tau} = \vec{r} \times \vec{F}$ \\ 
-תנע זוויתי: $\vec{J} = \vec{r} \times \vec{P}$ \\ 
-שימור תנע זוויתי:
+\end{example}
+\begin{remark}
+לא לכל \(f\) יש פונקציה קדומה. לדוגמה:\begin{LTR}\begin{lstlisting}
+width=200; height=200;
+bottom=-1; top=2
+---
+f(x)=0 |x<0
+g(x)=1 |x>1
+
+\end{lstlisting}\end{LTR}לפי משפט דרבו, הפונקציה הנ"ל לא יכולה להיות נגזרת ולכן אין לה פונקציה קדומה.\newline{}
+הפונקציה הקדומה אינה יכולה להיות הפונקציה הבאה שכן היא(הפונקציה הבאה) לא גזירה ב-\(0\).\begin{LTR}\begin{lstlisting}
+width=200;height=200;
+bottom=-1;top=10
+---
+f(x)=x |x>0
+g(x)=0 |x<0
+
+\end{lstlisting}\end{LTR}
+\end{remark}
+\section{אינטגרציה בחלקים}
+יהיו שתי פונקציות \(u,v\). אזי לפי נגזרת של מכפלה:\[
+(uv)'=(u(x)\cdot v(x))'=u'v+uv'
+\]
+נפעיל על שני האגפים אינטגרל(לפי ליניאריות נוכל להגיע לצורה הבאה):\[
+uv+c=\int u'v+\int uv'
+\]
 \[
-\sum \vec{\tau}_i = 0 \implies \vec{J} = \text{const}
+\qquad \qquad \qquad \Downarrow - {\text{העברת אגפים}}
+\]
+\[
+\int uv'=uv-\int u'v
+\]
+\begin{theorem}[שהוכחנו הרגע]
+יהיו \(u,v:\mathbb{R}\to \mathbb{R}\) בעלות פונקציה קדומה וגזירות. אזי:\[
+\int uv'=uv-\int u'v
 \]
 
-מומנט אינרציה:
+\end{theorem}
+\begin{example}
 \[
-I = \int r^2 \, dm
+\int xe^xdx \implies \begin{matrix}
+u=x & v'=e^x \\
+u'=1 & v=e^x
+\end{matrix} \implies \int xe^xdx=xe^x-\int e^xdx=xe^x-e^x+c
+\]
+\textbf{מומלץ תמיד לרשום מי זה \(u\) ומי זה \(v\) גם כשכבר סופר מיומנים באינטגרציה בחלקים}.\newline{}
+נבדוק באמצעות נגזרת:\[
+(xe^x-e^x+c)'=e^x+xe^x-e^x=xe^x
+\]
+כנדרש.
+\end{example}
+\begin{example}
+\[
+\int e^x\cos xdx\implies \begin{matrix}
+v'=e^x & u=\cos x \\
+v=e^x & u'=-\sin x
+\end{matrix}\implies \int e^x\cos xdx=e^x\cos x+\int e^x\sin xdx
+\]
+עכשיו יש רגע של התלבטות - קיבלנו משהו שנראה באותה רמת קושי כמו שהתחלנו איתו. בואו ננסה עוד פעם(רק צריך להיזהר מהמלכודת של לעשות את אותו הדבר שוב ושוב כמו בלופיטל)\[
+\begin{matrix}
+u=\sin x & v'=e^x \\
+u'=\cos x & v=e^x
+\end{matrix}\implies e^x\cos x+\int e^x\sin xdx=e^x\cos x+e^x\sin x-\int e^x\cos xdx
+\]
+נשים לב כי הגענו לאינטגרל שהתחלנו ממנו. נשים לב בנוסף כי אנחנו יכולים להעביר אגף ולכן:\[
+2\int e^x\cos xdx=e^x\cos x+e^x\sin x+c \implies \int e^x\cos xdx=\frac{e^x\cos x+e^x\sin x}{2}+c
 \]
 
-\subsection{ניסוי עם טבלה}
+\end{example}
+\begin{example}
+\[
+\int \arctan xdx=\int 1\cdot \arctan xdx\implies \begin{matrix}
+v'=1 & u=\arctan x \\
+v=x & u'=\frac{1}{1+x^2}
+\end{matrix}
+\]
+\[
+\int 1\cdot \arctan xdx=x \arctan x-\int \frac{x}{1+x^2}dx=x\arctan x-\frac{1}{2}\ln |1+x^2|+c
+\]
+נבדוק באמצעות גזירה:\[
+\left( x \arctan x-\frac{1}{2}\ln |1+x^2|+c \right)'= HW
+\]
 
-\begin{center}
-\begin{adjustbox}{max width=\columnwidth}
-\begin{tabular}{|C|C|C|C|C|C|C|C|C|}
-\hline
-פמטו & פיקו & ננו & מיקרו & מילי & סנטי & קילו & מגה & גיגה \\ 
-\hline
-$f$ & $p$ & $n$ & $\mu$ & $m$ & $c$ & $K$ & $M$ & $G$ \\ 
-\hline
-$10^{-15}$ & $10^{-12}$ & $10^{-9}$ & $10^{-6}$ & $10^{-3}$ & $10^{-2}$ & $10^{3}$ & $10^{6}$ & $10^{9}$ \\ 
-\hline
-\end{tabular}
-\end{adjustbox}
-\end{center}
-\subsection{יחסות פרטית}
+\end{example}
+\section{אינטגרל של פונקציה רציונלית}
+\begin{remark}
+בתרגול: אינטגרל של פונקציה רציונלית.\newline{}
+אני אוסיף את המשפטים מהתרגול פה למטה:
+\end{remark}
+\section{שיטת ההצבה}
+\begin{example}
+\[
+\int \sin^2x\cos xdx \underset{\begin{pmatrix}
+t=\sin x \\
+\frac{dt}{dx}=\cos x \\
+\Downarrow - {\text{ההצדקה במשפט שיבוא}} \\
+dt=\cos xdx
+\end{pmatrix}}{=} \int t^2dt=\frac{t^3}{3}+c=\frac{\sin^3x}{3}+c
+\]
+בואו נשתכנע שזה נכון באמצעות גזירה:\[
+\left( \frac{\sin^3x}{3}+c \right)'=\frac{3\sin^2x\cos x}{3}=\sin^2x\cos x
+\]
 
-פרמטר לורנץ:
+\end{example}
+\begin{example}
+\[
+\int 2xe^{x^2}dx \underset{\begin{pmatrix}
+t=x^2 \\
+dt=2xdx
+\end{pmatrix}}{=}\int e^tdt=e^t+c=e^{x^2}+c
+\]
 
-$$\gamma = \frac{1}{\sqrt{1 - v^2/c^2}}$$
+\end{example}
+המשפט שנראה, שנקרא שיטת ההצבה, הוא הדואלי של כלל השרשרת(כמו שאינטגרציה בחלקים זה הדואלי של נגזרת של מכפלה)\begin{theorem}[שיטת ההצבה]
+תהי \(f:I\to \mathbb{R}\) בעלת פונקציה קדומה ב-\(I\) ותהי \(x=\varphi(t),\;\varphi:J\to I\) גזירה והפיכה. אזי:\[
+\int f(x)dx=\int f(\varphi(t))\varphi'(t)dt
+\]
 
-התקצרות אורך:
+\end{theorem}
+\begin{proof}
+נסמן ב-\(F\) פונקציה קדומה של \(f\).\[
+{\Big(}F(\varphi(t)){\Big)}'=F'(\varphi(t))\cdot \varphi'(t)=f(\varphi(t))\varphi'(t)
+\]
+נפעיל אינטגרל על שני האגפים:\[
+\int f(\varphi(t))\varphi'(t)dt=F(\varphi(t))+c=F(x)+c=\int f(x)dx
+\]
 
-$$L = \frac{L_0}{\gamma}$$
+\end{proof}
+\begin{remark}
+אנו דורשים ש-\(\varphi\) תהיה הפיכה על מנת שנוכל להשתמש גם בכיוון של \(t=\varphi^{-1}(x)\) כפי שעשינו בדוגמות ממקודם.
+\end{remark}
+\begin{example}
+\[
+x>0, \int \frac{\sqrt{ x }}{x+1}dx \underset{\begin{matrix}
+\downarrow \\
+{\text{שיטת ההצבה}} \\
+\begin{pmatrix}
+t=\sqrt{ x } \\
+x=t^2\; \leftarrow\; \varphi(t) \\
+dx=2tdt
+\end{pmatrix}
+\end{matrix}}{=}\int \frac{t}{t^2+1}2tdt=2\int \frac{t^2}{t^2+1}dt=2\int \frac{t^2-1+1}{t^2+1}dt=
+\]
+זה אותו פעלול שראינו קודם.\[
+\int \frac{t^2+1}{t^2+1}dt-\int \frac{1}{t^2+1}dt=t-\arctan t+c
+=2t-2\arctan t+c=2\sqrt{ x }-2\arctan \sqrt{ x }+c
+\]
 
-אנרגיית מנוחה:
+\end{example}
+\begin{exercise}
+תעשו את \(\int e^{-|x|}dx\). יהיה משהו מאוד דומה בגליון בית.
+\end{exercise}
+\begin{example}
+\[
+\int \tan xdx=\int \frac{\sin x}{\cos x}dx \underset{\begin{matrix}
+\downarrow \\
+{\text{אינטגרציה בחלקים}} \\
+\begin{pmatrix}
+v'=\sin x & u=\frac{1}{\cos x} \\
+v=-\cos x & u'=-\frac{1}{\cos^2x}(-\sin x)
+\end{pmatrix}
+\end{matrix}}{=}-1+\int \frac{\sin x}{\cos x}dx=-1+\int \tan xdx
+\]
+אם ננסה לצמצם כמו ממקודם נקבל ש-\(0=-1\) והכל נשבר. רק שבעצם זה בכלל \(0+c=-1+c\) שזה נכון כי זו אותה משפחה של פונקציות.
+\end{example}
 
-$$E = mc^2$$
-
-אינווריאנט תנע-אנרגיה:
-
-$$E_m^2 - P^2 c^2 = m^2 c^4$$
-
-\end{multicols*}
 \end{document}

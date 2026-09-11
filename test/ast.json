@@ -1,111 +1,183 @@
 [
     {
-        "type": "heading",
+        "type": "callout",
+        "children": [
+            {
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "inline_math",
+                        "raw": "F(x)"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " נקראת "
+                    },
+                    {
+                        "type": "strong",
+                        "children": [
+                            {
+                                "type": "text",
+                                "raw": "פונקציה קדומה"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "text",
+                        "raw": " של "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "f(x)"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " בקטע "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "I"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " אם "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "F'(x)=f(x)"
+                    },
+                    {
+                        "type": "text",
+                        "raw": "."
+                    }
+                ]
+            }
+        ],
         "attrs": {
-            "level": 1
-        },
-        "style": "atx",
-        "children": [
-            {
-                "type": "text",
-                "raw": "מכניקה קלאסית - דף נוסחאות"
-            }
-        ]
-    },
-    {
-        "type": "heading",
-        "attrs": {
-            "level": 2
-        },
-        "style": "atx",
-        "children": [
-            {
-                "type": "text",
-                "raw": "קינמטיקה"
-            }
-        ]
-    },
-    {
-        "type": "paragraph",
-        "children": [
-            {
-                "type": "text",
-                "raw": "מהירות ותאוצה:"
-            }
-        ]
-    },
-    {
-        "type": "block_math",
-        "raw": "v = \\frac{dx}{dt}, \\quad a = \\frac{dv}{dt}"
-    },
-    {
-        "type": "paragraph",
-        "children": [
-            {
-                "type": "text",
-                "raw": "תנועה באצה קבועה:"
-            }
-        ]
-    },
-    {
-        "type": "block_math",
-        "raw": "x = x_0 + v_0 t + \\frac{1}{2}at^2"
-    },
-    {
-        "type": "block_math",
-        "raw": "v^2 = v_0^2 + 2a(x - x_0)"
+            "callout_type": "definition",
+            "numbered": true,
+            "title": "פונקציה קדומה",
+            "block_id": "85a11d"
+        }
     },
     {
         "type": "blank_line"
     },
     {
-        "type": "heading",
-        "attrs": {
-            "level": 3
-        },
-        "style": "atx",
-        "children": [
-            {
-                "type": "text",
-                "raw": "זריקה אופקית"
-            }
-        ]
+        "type": "blank_line"
     },
     {
         "type": "paragraph",
         "children": [
             {
                 "type": "text",
-                "raw": "מרחק נפילה:"
+                "raw": "כלומר, פונקציה קדומה היא הפעולה ההפוכה לנגזרת שלפעמים קוראים לה אנטי-נגזרת."
+            },
+            {
+                "type": "linebreak"
+            },
+            {
+                "type": "text",
+                "raw": "נגזרת של פונקציה היא יחידה. היא הגבול כפי שראינו ב"
+            },
+            {
+                "type": "wiki_link",
+                "raw": "אינפי 1",
+                "attrs": {
+                    "link": "4 - פונקציות",
+                    "heading": "",
+                    "block_ref": "3a733f",
+                    "alias": "אינפי 1"
+                }
+            },
+            {
+                "type": "text",
+                "raw": ". אך הפעולה ההפוכה היא לא יחידה. נניח ויש לנו גרף עם שיפוע מסויים, הזזה של אותו הגרף למעלה תהיה בדיוק עם אותו השיפוע ולכן יהיו להן בדיוק אותה נגזרת."
             }
         ]
-    },
-    {
-        "type": "block_math",
-        "raw": "x(t_1) = x_0 + \\frac{v_0^2 \\sin 2\\theta}{g}"
     },
     {
         "type": "blank_line"
     },
     {
-        "type": "heading",
-        "attrs": {
-            "level": 2
-        },
-        "style": "atx",
+        "type": "callout",
         "children": [
             {
-                "type": "text",
-                "raw": "דינמיקה"
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "תהי "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "F"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " פונקציה קדומה של "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "f"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " בקטע "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "I"
+                    },
+                    {
+                        "type": "text",
+                        "raw": "."
+                    },
+                    {
+                        "type": "linebreak"
+                    },
+                    {
+                        "type": "text",
+                        "raw": "אזי, אוסף כל הפונקציות הקדומות של "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "f"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " בקטע "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "I"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " הוא "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "{\\Large\\{} F(x)+c|c \\in \\mathbb{R} \\Large\\}"
+                    }
+                ]
             }
-        ]
+        ],
+        "attrs": {
+            "callout_type": "theorem",
+            "numbered": false,
+            "title": ""
+        }
+    },
+    {
+        "type": "blank_line"
     },
     {
         "type": "paragraph",
         "children": [
             {
                 "type": "text",
-                "raw": "חוקי ניוטון:"
+                "raw": "המשפט אומר שני דברים:"
             }
         ]
     },
@@ -119,12 +191,16 @@
                         "type": "block_text",
                         "children": [
                             {
+                                "type": "text",
+                                "raw": "כל פונקציה כזו היא פונקציה קדומה של "
+                            },
+                            {
                                 "type": "inline_math",
-                                "raw": "\\sum \\vec{F}_i = 0"
+                                "raw": "f"
                             },
                             {
                                 "type": "text",
-                                "raw": " — הגוף יתמיד בתנועתו"
+                                "raw": "."
                             }
                         ]
                     }
@@ -137,30 +213,8 @@
                         "type": "block_text",
                         "children": [
                             {
-                                "type": "inline_math",
-                                "raw": "\\sum \\vec{F}_i = \\frac{d\\vec{P}}{dt}"
-                            },
-                            {
                                 "type": "text",
-                                "raw": " — חוק שני"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "type": "list_item",
-                "children": [
-                    {
-                        "type": "block_text",
-                        "children": [
-                            {
-                                "type": "inline_math",
-                                "raw": "\\vec{F}_{1,2} = -\\vec{F}_{2,1}"
-                            },
-                            {
-                                "type": "text",
-                                "raw": " — חוק שלישי"
+                                "raw": "אלו כל הפונקציות הקדומות"
                             }
                         ]
                     }
@@ -168,10 +222,10 @@
             }
         ],
         "tight": true,
-        "bullet": "-",
+        "bullet": ".",
         "attrs": {
             "depth": 0,
-            "ordered": false
+            "ordered": true
         }
     },
     {
@@ -179,665 +233,618 @@
         "children": [
             {
                 "type": "text",
-                "raw": "כוח חיכוך:"
+                "raw": "כעת, נדרש להוכיח את שניהם."
             }
         ]
-    },
-    {
-        "type": "block_math",
-        "raw": "|\\vec{F}_{max}| = \\mu_s \\cdot N, \\quad |\\vec{F}_\\mu| = \\mu_k \\cdot N"
     },
     {
         "type": "blank_line"
     },
     {
-        "type": "heading",
-        "attrs": {
-            "level": 2
-        },
-        "style": "atx",
+        "type": "proof",
         "children": [
             {
-                "type": "text",
-                "raw": "וקטורים"
-            }
-        ]
-    },
-    {
-        "type": "paragraph",
-        "children": [
-            {
-                "type": "text",
-                "raw": "גודל וקטור:"
-            }
-        ]
-    },
-    {
-        "type": "block_math",
-        "raw": "|\\vec{A}| = \\sqrt{A_x^2 + A_y^2 + A_z^2}"
-    },
-    {
-        "type": "blank_line"
-    },
-    {
-        "type": "paragraph",
-        "children": [
-            {
-                "type": "text",
-                "raw": "מכפלה סקלרית:"
-            }
-        ]
-    },
-    {
-        "type": "block_math",
-        "raw": "\\vec{A} \\cdot \\vec{B} = |\\vec{A}||\\vec{B}|\\cos\\theta"
-    },
-    {
-        "type": "blank_line"
-    },
-    {
-        "type": "paragraph",
-        "children": [
-            {
-                "type": "text",
-                "raw": "מכפלה וקטורית:"
-            }
-        ]
-    },
-    {
-        "type": "block_math",
-        "raw": "\\vec{A} \\times \\vec{B} = |\\vec{A}||\\vec{B}|\\sin\\theta \\cdot \\hat{n}"
-    },
-    {
-        "type": "blank_line"
-    },
-    {
-        "type": "heading",
-        "attrs": {
-            "level": 2
-        },
-        "style": "atx",
-        "children": [
-            {
-                "type": "text",
-                "raw": "עבודה ואנרגיה"
-            }
-        ]
-    },
-    {
-        "type": "paragraph",
-        "children": [
-            {
-                "type": "text",
-                "raw": "אנרגיה קינטית:"
-            }
-        ]
-    },
-    {
-        "type": "block_math",
-        "raw": "E_k = \\frac{1}{2}mv^2"
-    },
-    {
-        "type": "blank_line"
-    },
-    {
-        "type": "paragraph",
-        "children": [
-            {
-                "type": "text",
-                "raw": "משפט עבודה-אנרגיה:"
-            }
-        ]
-    },
-    {
-        "type": "block_math",
-        "raw": "\\sum \\vec{F} \\cdot \\Delta\\vec{r} = \\Delta E_k"
-    },
-    {
-        "type": "blank_line"
-    },
-    {
-        "type": "paragraph",
-        "children": [
-            {
-                "type": "text",
-                "raw": "אנרגיה מכנית: "
+                "type": "blank_line"
             },
             {
-                "type": "inline_math",
-                "raw": "E_m = E_k + U"
-            },
-            {
-                "type": "linebreak"
-            },
-            {
-                "type": "text",
-                "raw": "כוח שעבודתו לא תלויה במסלול נקרא "
-            },
-            {
-                "type": "strong",
+                "type": "paragraph",
                 "children": [
                     {
                         "type": "text",
-                        "raw": "משמר"
+                        "raw": "לכל "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "c \\in \\mathbb{R}"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " מתקיים "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "(F(x)+c)'=f(x)"
+                    },
+                    {
+                        "type": "text",
+                        "raw": ". (לפי כללי גזירה)"
+                    },
+                    {
+                        "type": "linebreak"
+                    },
+                    {
+                        "type": "text",
+                        "raw": "בנוסף, תהי "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "G(x)"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " פונקציה קדומה אחרת של "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "f"
+                    },
+                    {
+                        "type": "text",
+                        "raw": "."
+                    },
+                    {
+                        "type": "linebreak"
+                    },
+                    {
+                        "type": "text",
+                        "raw": "נסמן: "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "H=G-F"
+                    },
+                    {
+                        "type": "text",
+                        "raw": ". אזי,"
                     }
                 ]
             },
             {
-                "type": "text",
-                "raw": ". לכל כוח משמר "
+                "type": "block_math",
+                "raw": "H'=G'-F'=f-f=0"
             },
             {
-                "type": "inline_math",
-                "raw": "\\nabla \\times \\vec{F} = 0"
-            },
-            {
-                "type": "text",
-                "raw": "."
-            }
-        ]
-    },
-    {
-        "type": "blank_line"
-    },
-    {
-        "type": "heading",
-        "attrs": {
-            "level": 2
-        },
-        "style": "atx",
-        "children": [
-            {
-                "type": "text",
-                "raw": "תנועה מעגלית"
-            }
-        ]
-    },
-    {
-        "type": "paragraph",
-        "children": [
-            {
-                "type": "text",
-                "raw": "מהירות זוויתית: "
-            },
-            {
-                "type": "inline_math",
-                "raw": "\\omega = \\dot{\\theta}"
-            },
-            {
-                "type": "linebreak"
-            },
-            {
-                "type": "text",
-                "raw": "תאוצה צנטריפטלית:"
-            }
-        ]
-    },
-    {
-        "type": "block_math",
-        "raw": "a_c = \\frac{v^2}{R} = \\omega^2 R"
-    },
-    {
-        "type": "blank_line"
-    },
-    {
-        "type": "heading",
-        "attrs": {
-            "level": 2
-        },
-        "style": "atx",
-        "children": [
-            {
-                "type": "text",
-                "raw": "תנע זוויתי"
-            }
-        ]
-    },
-    {
-        "type": "paragraph",
-        "children": [
-            {
-                "type": "text",
-                "raw": "מומנט כוח: "
-            },
-            {
-                "type": "inline_math",
-                "raw": "\\vec{\\tau} = \\vec{r} \\times \\vec{F}"
-            },
-            {
-                "type": "linebreak"
-            },
-            {
-                "type": "text",
-                "raw": "תנע זוויתי: "
-            },
-            {
-                "type": "inline_math",
-                "raw": "\\vec{J} = \\vec{r} \\times \\vec{P}"
-            },
-            {
-                "type": "linebreak"
-            },
-            {
-                "type": "text",
-                "raw": "שימור תנע זוויתי:"
-            }
-        ]
-    },
-    {
-        "type": "block_math",
-        "raw": "\\sum \\vec{\\tau}_i = 0 \\implies \\vec{J} = \\text{const}"
-    },
-    {
-        "type": "blank_line"
-    },
-    {
-        "type": "paragraph",
-        "children": [
-            {
-                "type": "text",
-                "raw": "מומנט אינרציה:"
-            }
-        ]
-    },
-    {
-        "type": "block_math",
-        "raw": "I = \\int r^2 \\, dm"
-    },
-    {
-        "type": "blank_line"
-    },
-    {
-        "type": "heading",
-        "attrs": {
-            "level": 2
-        },
-        "style": "atx",
-        "children": [
-            {
-                "type": "text",
-                "raw": "ניסוי עם טבלה"
-            }
-        ]
-    },
-    {
-        "type": "blank_line"
-    },
-    {
-        "type": "table",
-        "children": [
-            {
-                "type": "table_head",
+                "type": "paragraph",
                 "children": [
                     {
-                        "type": "table_cell",
-                        "attrs": {
-                            "align": "center",
-                            "head": true
-                        },
-                        "children": [
-                            {
-                                "type": "text",
-                                "raw": "פמטו"
-                            }
-                        ]
+                        "type": "text",
+                        "raw": "לכן, לפי מסקנה מלגרנז', "
                     },
                     {
-                        "type": "table_cell",
-                        "attrs": {
-                            "align": "center",
-                            "head": true
-                        },
-                        "children": [
-                            {
-                                "type": "text",
-                                "raw": "פיקו"
-                            }
-                        ]
+                        "type": "inline_math",
+                        "raw": "H=c"
                     },
                     {
-                        "type": "table_cell",
-                        "attrs": {
-                            "align": "center",
-                            "head": true
-                        },
-                        "children": [
-                            {
-                                "type": "text",
-                                "raw": "ננו"
-                            }
-                        ]
+                        "type": "text",
+                        "raw": " עבור איזשהו "
                     },
                     {
-                        "type": "table_cell",
-                        "attrs": {
-                            "align": "center",
-                            "head": true
-                        },
-                        "children": [
-                            {
-                                "type": "text",
-                                "raw": "מיקרו"
-                            }
-                        ]
+                        "type": "inline_math",
+                        "raw": "c \\in \\mathbb{R}"
                     },
                     {
-                        "type": "table_cell",
-                        "attrs": {
-                            "align": "center",
-                            "head": true
-                        },
-                        "children": [
-                            {
-                                "type": "text",
-                                "raw": "מילי"
-                            }
-                        ]
+                        "type": "text",
+                        "raw": ". לכן, "
                     },
                     {
-                        "type": "table_cell",
-                        "attrs": {
-                            "align": "center",
-                            "head": true
-                        },
-                        "children": [
-                            {
-                                "type": "text",
-                                "raw": "סנטי"
-                            }
-                        ]
+                        "type": "inline_math",
+                        "raw": "G-F=c"
                     },
                     {
-                        "type": "table_cell",
-                        "attrs": {
-                            "align": "center",
-                            "head": true
-                        },
-                        "children": [
-                            {
-                                "type": "text",
-                                "raw": "קילו"
-                            }
-                        ]
+                        "type": "text",
+                        "raw": ". כלומר, "
                     },
                     {
-                        "type": "table_cell",
-                        "attrs": {
-                            "align": "center",
-                            "head": true
-                        },
-                        "children": [
-                            {
-                                "type": "text",
-                                "raw": "מגה"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "table_cell",
-                        "attrs": {
-                            "align": "center",
-                            "head": true
-                        },
-                        "children": [
-                            {
-                                "type": "text",
-                                "raw": "גיגה"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "type": "table_body",
-                "children": [
-                    {
-                        "type": "table_row",
-                        "children": [
-                            {
-                                "type": "table_cell",
-                                "attrs": {
-                                    "align": "center",
-                                    "head": false
-                                },
-                                "children": [
-                                    {
-                                        "type": "inline_math",
-                                        "raw": "f"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "table_cell",
-                                "attrs": {
-                                    "align": "center",
-                                    "head": false
-                                },
-                                "children": [
-                                    {
-                                        "type": "inline_math",
-                                        "raw": "p"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "table_cell",
-                                "attrs": {
-                                    "align": "center",
-                                    "head": false
-                                },
-                                "children": [
-                                    {
-                                        "type": "inline_math",
-                                        "raw": "n"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "table_cell",
-                                "attrs": {
-                                    "align": "center",
-                                    "head": false
-                                },
-                                "children": [
-                                    {
-                                        "type": "inline_math",
-                                        "raw": "\\mu"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "table_cell",
-                                "attrs": {
-                                    "align": "center",
-                                    "head": false
-                                },
-                                "children": [
-                                    {
-                                        "type": "inline_math",
-                                        "raw": "m"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "table_cell",
-                                "attrs": {
-                                    "align": "center",
-                                    "head": false
-                                },
-                                "children": [
-                                    {
-                                        "type": "inline_math",
-                                        "raw": "c"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "table_cell",
-                                "attrs": {
-                                    "align": "center",
-                                    "head": false
-                                },
-                                "children": [
-                                    {
-                                        "type": "inline_math",
-                                        "raw": "K"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "table_cell",
-                                "attrs": {
-                                    "align": "center",
-                                    "head": false
-                                },
-                                "children": [
-                                    {
-                                        "type": "inline_math",
-                                        "raw": "M"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "table_cell",
-                                "attrs": {
-                                    "align": "center",
-                                    "head": false
-                                },
-                                "children": [
-                                    {
-                                        "type": "inline_math",
-                                        "raw": "G"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "type": "table_row",
-                        "children": [
-                            {
-                                "type": "table_cell",
-                                "attrs": {
-                                    "align": "center",
-                                    "head": false
-                                },
-                                "children": [
-                                    {
-                                        "type": "inline_math",
-                                        "raw": "10^{-15}"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "table_cell",
-                                "attrs": {
-                                    "align": "center",
-                                    "head": false
-                                },
-                                "children": [
-                                    {
-                                        "type": "inline_math",
-                                        "raw": "10^{-12}"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "table_cell",
-                                "attrs": {
-                                    "align": "center",
-                                    "head": false
-                                },
-                                "children": [
-                                    {
-                                        "type": "inline_math",
-                                        "raw": "10^{-9}"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "table_cell",
-                                "attrs": {
-                                    "align": "center",
-                                    "head": false
-                                },
-                                "children": [
-                                    {
-                                        "type": "inline_math",
-                                        "raw": "10^{-6}"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "table_cell",
-                                "attrs": {
-                                    "align": "center",
-                                    "head": false
-                                },
-                                "children": [
-                                    {
-                                        "type": "inline_math",
-                                        "raw": "10^{-3}"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "table_cell",
-                                "attrs": {
-                                    "align": "center",
-                                    "head": false
-                                },
-                                "children": [
-                                    {
-                                        "type": "inline_math",
-                                        "raw": "10^{-2}"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "table_cell",
-                                "attrs": {
-                                    "align": "center",
-                                    "head": false
-                                },
-                                "children": [
-                                    {
-                                        "type": "inline_math",
-                                        "raw": "10^{3}"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "table_cell",
-                                "attrs": {
-                                    "align": "center",
-                                    "head": false
-                                },
-                                "children": [
-                                    {
-                                        "type": "inline_math",
-                                        "raw": "10^{6}"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "table_cell",
-                                "attrs": {
-                                    "align": "center",
-                                    "head": false
-                                },
-                                "children": [
-                                    {
-                                        "type": "inline_math",
-                                        "raw": "10^{9}"
-                                    }
-                                ]
-                            }
-                        ]
+                        "type": "inline_math",
+                        "raw": "G=F+c"
                     }
                 ]
             }
         ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "text",
+                "raw": "כלומר, אם לפונקציה יש פונקציה קדומה(ולא לכל הפונקציות יש) אז יש לה "
+            },
+            {
+                "type": "inline_math",
+                "raw": "\\infty"
+            },
+            {
+                "type": "text",
+                "raw": " פונקציות קדומות."
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "callout",
+        "children": [
+            {
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "אוסף הפונקציות הקדומות של "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "f"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " מסומנן על ידי"
+                    }
+                ]
+            },
+            {
+                "type": "block_math",
+                "raw": "\\int f(x)dx"
+            }
+        ],
+        "attrs": {
+            "callout_type": "definition",
+            "numbered": false,
+            "title": "סימון"
+        }
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "text",
+                "raw": "צריך לזכור שכאשר רואים את הסימון הזה, לא מדובר בפונקציה אחת אלא במשפחה של פונקציות."
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "callout",
+        "children": [
+            {
+                "type": "block_math",
+                "raw": "\\int \\cos xdx=\\sin x+c \\qquad \\int \\sin xdx=-\\cos x+c"
+            },
+            {
+                "type": "block_math",
+                "raw": "\\int e^xdx=e^x+c \\qquad \\int xdx=\\frac{x^2}{2}+c \\qquad n\\neq-1, \\int x^ndx=\\frac{x^{n+1}}{n+1}+c"
+            },
+            {
+                "type": "block_math",
+                "raw": "\\int \\frac{1}{1+x^2}dx=\\arctan x+c \\qquad -1<x<1, \\int \\frac{dx}{\\sqrt{ 1-x^2 }}=\\arcsin x+c \\qquad x\\neq0,\\int \\frac{1}{x}dx=\\ln |x|+c"
+            },
+            {
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "strong",
+                        "children": [
+                            {
+                                "type": "text",
+                                "raw": "בדיקה על ידי גזירה:"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "text",
+                        "raw": " (תמיד כדאי לעשות)"
+                    }
+                ]
+            },
+            {
+                "type": "block_math",
+                "raw": "\\ln |x|=\\begin{cases}\n\\ln x  & x> 0 \\\\\n\\ln(-x) & x<0\n\\end{cases} \\implies (\\ln |x|)'=\\begin{cases}\n\\frac{1}{x} & x> 0 \\\\\n \\frac{1}{-x}\\cdot (-1) & x<0\n\\end{cases}=\\frac{1}{x}"
+            },
+            {
+                "type": "callout",
+                "children": [
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "type": "text",
+                                "raw": "האינטגרלים הנ\"ל נקראים "
+                            },
+                            {
+                                "type": "strong",
+                                "children": [
+                                    {
+                                        "type": "text",
+                                        "raw": "אינטגרלים מידיים"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "text",
+                                "raw": " ונראה אותם הרבה בהמשך הקורס וגם נוכיח את חלקם."
+                            }
+                        ]
+                    }
+                ],
+                "attrs": {
+                    "callout_type": "remark",
+                    "numbered": false,
+                    "title": ""
+                }
+            }
+        ],
+        "attrs": {
+            "callout_type": "example",
+            "numbered": false,
+            "title": ""
+        }
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "callout",
+        "children": [
+            {
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "יהיו "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "f,g:\\mathbb{R}\\to \\mathbb{R}"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " בעלות פונקציות קדומות. אזי:"
+                    }
+                ]
+            },
+            {
+                "type": "block_math",
+                "raw": "\\begin{align}\n1.\\; & \\int (f(x)+g(x))dx=\\int f(x)dx+\\int g(x)dx \\\\\n2.\\; & \\forall \\alpha \\in \\mathbb{R}:\\; \\int \\alpha f(x)dx=\\alpha\\int f(x)dx\n\\end{align}"
+            }
+        ],
+        "attrs": {
+            "callout_type": "theorem",
+            "numbered": false,
+            "title": "ליניאריות"
+        }
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "proof",
+        "children": [
+            {
+                "type": "blank_line"
+            },
+            {
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "נתון כי ל-"
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "f,g"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " פונקציות קדומות. נסמנם "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "F,G"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " בהתאמה."
+                    },
+                    {
+                        "type": "linebreak"
+                    },
+                    {
+                        "type": "text",
+                        "raw": "נסמן "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "H(x)=F(x)+G(x)"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " ואז:"
+                    }
+                ]
+            },
+            {
+                "type": "block_math",
+                "raw": "H'(x) \\underset{\\begin{matrix}\n\\downarrow \\\\\n\\R{\\text{כללי גזירה}}\n\\end{matrix}}{=}F'(x)+G'(x)=f(x)+g(x)"
+            },
+            {
+                "type": "block_math",
+                "raw": "\\int f(x)dx+\\int g(x)dx \\underset{\\begin{matrix}\n\\downarrow \\\\\n\\R{\\text{הגדרת אינטגרל}}\n\\end{matrix}}{=} F(x)+G(x)=H(x) \\underset{\\begin{matrix}\n\\downarrow \\\\\n\\R{\\text{הגדרת אינטגרל}}\n\\end{matrix}}{=}\\int H'(x)dx=\\int (f(x)+g(x))dx"
+            },
+            {
+                "type": "blank_line"
+            },
+            {
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "יהי "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "\\alpha \\in \\mathbb{R}"
+                    },
+                    {
+                        "type": "text",
+                        "raw": ". נגדיר "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "K(x)=\\displaystyle \\alpha F(x)"
+                    },
+                    {
+                        "type": "text",
+                        "raw": ". אזי:"
+                    }
+                ]
+            },
+            {
+                "type": "block_math",
+                "raw": "K'(x)=(\\alpha F(x))' \\underset{\\begin{matrix}\n\\downarrow \\\\\n\\R{\\text{כללי גזירה}}\n\\end{matrix}}{=}\\alpha F'(x)=\\alpha f(x)"
+            },
+            {
+                "type": "block_math",
+                "raw": "\\alpha \\int f(x)dx \\underset{\\begin{matrix}\n\\downarrow \\\\\n\\R{\\text{הגדרת אינטגרל}}\n\\end{matrix}}{=}\\alpha F(x)=K(x) \\underset{\\begin{matrix}\n\\downarrow \\\\\n\\R{\\text{הגדרת אינטגרל}}\n\\end{matrix}}{=} \\int K'(x)dx=\\int\\alpha f(x)dx"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "callout",
+        "children": [
+            {
+                "type": "block_math",
+                "raw": "\\int \\frac{x^4}{1+x^2}dx=\\int \\frac{x^4-1+1}{1+x^2}dx=\\int \\frac{(x^2-1)(x^2+1)}{x^2+1}+\\frac{1}{x^2+1}dx="
+            },
+            {
+                "type": "block_math",
+                "raw": "\\int\\frac{(x^2-1)\\cancel{ (x^2+1) }}{\\cancel{ x^2+1 }}dx+\\int \\frac{1}{x^2+1}dx=\\int x^2dx-\\int1dx+\\int \\frac{1}{1+x^2}dx=\\frac{x^3}{3}-x+\\arctan x {\\; \\color{red}+\\; c}"
+            }
+        ],
+        "attrs": {
+            "callout_type": "example",
+            "numbered": false,
+            "title": "אינטגרל כמעט מיידי"
+        }
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "callout",
+        "children": [
+            {
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "תהי "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "f(x):\\mathbb{R}\\to \\mathbb{R}"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " כך ש-"
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "f(x)\\neq 0"
+                    },
+                    {
+                        "type": "text",
+                        "raw": ". אזי:"
+                    }
+                ]
+            },
+            {
+                "type": "block_math",
+                "raw": "\\int \\frac{f'(x)}{f(x)}dx=\\ln |f(x)|+c"
+            }
+        ],
+        "attrs": {
+            "callout_type": "theorem",
+            "numbered": false,
+            "title": ""
+        }
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "text",
+                "raw": "נבדוק זאת ע\"י גזירה:"
+            }
+        ]
+    },
+    {
+        "type": "block_math",
+        "raw": "(\\ln|f(x)|+c)'=\\begin{cases}\n\\frac{f'(x)}{f(x)} & x>0 \\\\\n\\frac{-f'(x)}{-f(x)} & x<0\n\\end{cases}=\\frac{f'(x)}{f(x)}"
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "proof",
+        "children": [
+            {
+                "type": "blank_line"
+            },
+            {
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "גזירה לפי כלל השרשרת."
+                    }
+                ]
+            },
+            {
+                "type": "block_math",
+                "raw": "(\\ln |f(x)|+c)'=\\frac{|f'(x)|}{|f(x)|}=\\frac{f'(x)}{f(x)}"
+            },
+            {
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "נסמן "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "\\displaystyle F^*(x)=\\int \\frac{f'(x)}{f(x)}dx"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " ואז:"
+                    }
+                ]
+            },
+            {
+                "type": "block_math",
+                "raw": "(F^*(x))'=\\frac{f'(x)}{f(x)}=(\\ln |f(x)|+c)'"
+            },
+            {
+                "type": "block_math",
+                "raw": "\\int \\frac{f'(x)}{f(x)}dx=F^*(x)=\\int (F^*(x))'dx=\\int (\\ln |f(x)|+c)'dx=\\ln |f(x)|+c"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "callout",
+        "children": [
+            {
+                "type": "block_math",
+                "raw": "\\int \\tan xdx=\\int \\frac{\\sin x}{\\cos x}dx \\underset{\\begin{matrix}\n\\downarrow \\\\\n\\R{\\text{המשפט הנ\"ל}}\n\\end{matrix}}{=}-\\ln |\\cos x|+c"
+            }
+        ],
+        "attrs": {
+            "callout_type": "example",
+            "numbered": false,
+            "title": "עוד דוגמה של אינטגרל כמעט מיידי"
+        }
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "callout",
+        "children": [
+            {
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "לא לכל "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "f"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " יש פונקציה קדומה. לדוגמה:"
+                    }
+                ]
+            },
+            {
+                "type": "block_code",
+                "raw": "width=200; height=200;\nbottom=-1; top=2\n---\nf(x)=0 |x<0\ng(x)=1 |x>1\n",
+                "style": "fenced",
+                "marker": "```",
+                "attrs": {
+                    "info": "desmos-graph"
+                }
+            },
+            {
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "לפי משפט דרבו, הפונקציה הנ\"ל לא יכולה להיות נגזרת ולכן אין לה פונקציה קדומה."
+                    },
+                    {
+                        "type": "linebreak"
+                    },
+                    {
+                        "type": "text",
+                        "raw": "הפונקציה הקדומה אינה יכולה להיות הפונקציה הבאה שכן היא(הפונקציה הבאה) לא גזירה ב-"
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "0"
+                    },
+                    {
+                        "type": "text",
+                        "raw": "."
+                    }
+                ]
+            },
+            {
+                "type": "block_code",
+                "raw": "width=200;height=200;\nbottom=-1;top=10\n---\nf(x)=x |x>0\ng(x)=0 |x<0\n",
+                "style": "fenced",
+                "marker": "```",
+                "attrs": {
+                    "info": "desmos-graph"
+                }
+            }
+        ],
+        "attrs": {
+            "callout_type": "remark",
+            "numbered": false,
+            "title": ""
+        }
+    },
+    {
+        "type": "blank_line"
     },
     {
         "type": "heading",
@@ -848,120 +855,586 @@
         "children": [
             {
                 "type": "text",
-                "raw": "יחסות פרטית"
+                "raw": "אינטגרציה בחלקים"
             }
         ]
-    },
-    {
-        "type": "blank_line"
     },
     {
         "type": "paragraph",
         "children": [
             {
                 "type": "text",
-                "raw": "פרמטר לורנץ:"
-            }
-        ]
-    },
-    {
-        "type": "blank_line"
-    },
-    {
-        "type": "paragraph",
-        "children": [
+                "raw": "יהיו שתי פונקציות "
+            },
             {
                 "type": "inline_math",
-                "raw": "$\\gamma = \\frac{1}{\\sqrt{1 - v^2/c^2}}"
+                "raw": "u,v"
             },
             {
                 "type": "text",
-                "raw": "$"
+                "raw": ". אזי לפי נגזרת של מכפלה:"
             }
         ]
     },
     {
-        "type": "blank_line"
+        "type": "block_math",
+        "raw": "(uv)'=(u(x)\\cdot v(x))'=u'v+uv'"
     },
     {
         "type": "paragraph",
         "children": [
             {
                 "type": "text",
-                "raw": "התקצרות אורך:"
+                "raw": "נפעיל על שני האגפים אינטגרל(לפי ליניאריות נוכל להגיע לצורה הבאה):"
             }
         ]
     },
     {
-        "type": "blank_line"
+        "type": "block_math",
+        "raw": "uv+c=\\int u'v+\\int uv'"
     },
     {
-        "type": "paragraph",
+        "type": "block_math",
+        "raw": "\\qquad \\qquad \\qquad \\Downarrow - \\R{\\text{העברת אגפים}}"
+    },
+    {
+        "type": "block_math",
+        "raw": "\\int uv'=uv-\\int u'v"
+    },
+    {
+        "type": "callout",
         "children": [
             {
-                "type": "inline_math",
-                "raw": "$L = \\frac{L_0}{\\gamma}"
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "יהיו "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "u,v:\\mathbb{R}\\to \\mathbb{R}"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " בעלות פונקציה קדומה וגזירות. אזי:"
+                    }
+                ]
             },
             {
-                "type": "text",
-                "raw": "$"
+                "type": "block_math",
+                "raw": "\\int uv'=uv-\\int u'v"
             }
-        ]
+        ],
+        "attrs": {
+            "callout_type": "theorem",
+            "numbered": false,
+            "title": "שהוכחנו הרגע"
+        }
     },
     {
         "type": "blank_line"
     },
     {
-        "type": "paragraph",
+        "type": "callout",
         "children": [
             {
-                "type": "text",
-                "raw": "אנרגיית מנוחה:"
-            }
-        ]
-    },
-    {
-        "type": "blank_line"
-    },
-    {
-        "type": "paragraph",
-        "children": [
-            {
-                "type": "inline_math",
-                "raw": "$E = mc^2"
+                "type": "block_math",
+                "raw": "\\int xe^xdx \\implies \\begin{matrix}\nu=x & v'=e^x \\\\\nu'=1 & v=e^x\n\\end{matrix} \\implies \\int xe^xdx=xe^x-\\int e^xdx=xe^x-e^x+c"
             },
             {
-                "type": "text",
-                "raw": "$"
-            }
-        ]
-    },
-    {
-        "type": "blank_line"
-    },
-    {
-        "type": "paragraph",
-        "children": [
-            {
-                "type": "text",
-                "raw": "אינווריאנט תנע-אנרגיה:"
-            }
-        ]
-    },
-    {
-        "type": "blank_line"
-    },
-    {
-        "type": "paragraph",
-        "children": [
-            {
-                "type": "inline_math",
-                "raw": "$E_m^2 - P^2 c^2 = m^2 c^4"
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "strong",
+                        "children": [
+                            {
+                                "type": "text",
+                                "raw": "מומלץ תמיד לרשום מי זה "
+                            },
+                            {
+                                "type": "inline_math",
+                                "raw": "u"
+                            },
+                            {
+                                "type": "text",
+                                "raw": " ומי זה "
+                            },
+                            {
+                                "type": "inline_math",
+                                "raw": "v"
+                            },
+                            {
+                                "type": "text",
+                                "raw": " גם כשכבר סופר מיומנים באינטגרציה בחלקים"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "text",
+                        "raw": "."
+                    },
+                    {
+                        "type": "linebreak"
+                    },
+                    {
+                        "type": "text",
+                        "raw": "נבדוק באמצעות נגזרת:"
+                    }
+                ]
             },
             {
+                "type": "block_math",
+                "raw": "(xe^x-e^x+c)'=e^x+xe^x-e^x=xe^x"
+            },
+            {
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "כנדרש."
+                    }
+                ]
+            }
+        ],
+        "attrs": {
+            "callout_type": "example",
+            "numbered": false,
+            "title": ""
+        }
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "callout",
+        "children": [
+            {
+                "type": "block_math",
+                "raw": "\\int e^x\\cos xdx\\implies \\begin{matrix}\nv'=e^x & u=\\cos x \\\\\nv=e^x & u'=-\\sin x\n\\end{matrix}\\implies \\int e^x\\cos xdx=e^x\\cos x+\\int e^x\\sin xdx"
+            },
+            {
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "עכשיו יש רגע של התלבטות - קיבלנו משהו שנראה באותה רמת קושי כמו שהתחלנו איתו. בואו ננסה עוד פעם(רק צריך להיזהר מהמלכודת של לעשות את אותו הדבר שוב ושוב כמו בלופיטל)"
+                    }
+                ]
+            },
+            {
+                "type": "block_math",
+                "raw": "\\begin{matrix}\nu=\\sin x & v'=e^x \\\\\nu'=\\cos x & v=e^x\n\\end{matrix}\\implies e^x\\cos x+\\int e^x\\sin xdx=e^x\\cos x+e^x\\sin x-\\int e^x\\cos xdx"
+            },
+            {
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "נשים לב כי הגענו לאינטגרל שהתחלנו ממנו. נשים לב בנוסף כי אנחנו יכולים להעביר אגף ולכן:"
+                    }
+                ]
+            },
+            {
+                "type": "block_math",
+                "raw": "2\\int e^x\\cos xdx=e^x\\cos x+e^x\\sin x+c \\implies \\int e^x\\cos xdx=\\frac{e^x\\cos x+e^x\\sin x}{2}+c"
+            }
+        ],
+        "attrs": {
+            "callout_type": "example",
+            "numbered": false,
+            "title": ""
+        }
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "callout",
+        "children": [
+            {
+                "type": "block_math",
+                "raw": "\\int \\arctan xdx=\\int 1\\cdot \\arctan xdx\\implies \\begin{matrix}\nv'=1 & u=\\arctan x \\\\\nv=x & u'=\\frac{1}{1+x^2}\n\\end{matrix}"
+            },
+            {
+                "type": "block_math",
+                "raw": "\\int 1\\cdot \\arctan xdx=x \\arctan x-\\int \\frac{x}{1+x^2}dx=x\\arctan x-\\frac{1}{2}\\ln |1+x^2|+c"
+            },
+            {
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "נבדוק באמצעות גזירה:"
+                    }
+                ]
+            },
+            {
+                "type": "block_math",
+                "raw": "\\left( x \\arctan x-\\frac{1}{2}\\ln |1+x^2|+c \\right)'= HW"
+            }
+        ],
+        "attrs": {
+            "callout_type": "example",
+            "numbered": false,
+            "title": ""
+        }
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "heading",
+        "attrs": {
+            "level": 2
+        },
+        "style": "atx",
+        "children": [
+            {
                 "type": "text",
-                "raw": "$"
+                "raw": "אינטגרל של פונקציה רציונלית"
             }
         ]
+    },
+    {
+        "type": "callout",
+        "children": [
+            {
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "בתרגול: אינטגרל של פונקציה רציונלית."
+                    },
+                    {
+                        "type": "linebreak"
+                    },
+                    {
+                        "type": "text",
+                        "raw": "אני אוסיף את המשפטים מהתרגול פה למטה:"
+                    }
+                ]
+            }
+        ],
+        "attrs": {
+            "callout_type": "remark",
+            "numbered": false,
+            "title": ""
+        }
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "heading",
+        "attrs": {
+            "level": 2
+        },
+        "style": "atx",
+        "children": [
+            {
+                "type": "text",
+                "raw": "שיטת ההצבה"
+            }
+        ]
+    },
+    {
+        "type": "callout",
+        "children": [
+            {
+                "type": "block_math",
+                "raw": "\\int \\sin^2x\\cos xdx \\underset{\\begin{pmatrix}\nt=\\sin x \\\\\n\\frac{dt}{dx}=\\cos x \\\\\n\\Downarrow - \\R{\\text{ההצדקה במשפט שיבוא}} \\\\\ndt=\\cos xdx\n\\end{pmatrix}}{=} \\int t^2dt=\\frac{t^3}{3}+c=\\frac{\\sin^3x}{3}+c"
+            },
+            {
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "בואו נשתכנע שזה נכון באמצעות גזירה:"
+                    }
+                ]
+            },
+            {
+                "type": "block_math",
+                "raw": "\\left( \\frac{\\sin^3x}{3}+c \\right)'=\\frac{3\\sin^2x\\cos x}{3}=\\sin^2x\\cos x"
+            }
+        ],
+        "attrs": {
+            "callout_type": "example",
+            "numbered": false,
+            "title": ""
+        }
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "callout",
+        "children": [
+            {
+                "type": "block_math",
+                "raw": "\\int 2xe^{x^2}dx \\underset{\\begin{pmatrix}\nt=x^2 \\\\\ndt=2xdx\n\\end{pmatrix}}{=}\\int e^tdt=e^t+c=e^{x^2}+c"
+            }
+        ],
+        "attrs": {
+            "callout_type": "example",
+            "numbered": false,
+            "title": ""
+        }
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "type": "text",
+                "raw": "המשפט שנראה, שנקרא שיטת ההצבה, הוא הדואלי של כלל השרשרת(כמו שאינטגרציה בחלקים זה הדואלי של נגזרת של מכפלה)"
+            }
+        ]
+    },
+    {
+        "type": "callout",
+        "children": [
+            {
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "תהי "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "f:I\\to \\mathbb{R}"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " בעלת פונקציה קדומה ב-"
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "I"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " ותהי "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "x=\\varphi(t),\\;\\varphi:J\\to I"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " גזירה והפיכה. אזי:"
+                    }
+                ]
+            },
+            {
+                "type": "block_math",
+                "raw": "\\int f(x)dx=\\int f(\\varphi(t))\\varphi'(t)dt"
+            }
+        ],
+        "attrs": {
+            "callout_type": "theorem",
+            "numbered": false,
+            "title": "שיטת ההצבה"
+        }
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "proof",
+        "children": [
+            {
+                "type": "blank_line"
+            },
+            {
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "נסמן ב-"
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "F"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " פונקציה קדומה של "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "f"
+                    },
+                    {
+                        "type": "text",
+                        "raw": "."
+                    }
+                ]
+            },
+            {
+                "type": "block_math",
+                "raw": "{\\Large(}F(\\varphi(t)){\\Large)}'=F'(\\varphi(t))\\cdot \\varphi'(t)=f(\\varphi(t))\\varphi'(t)"
+            },
+            {
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "נפעיל אינטגרל על שני האגפים:"
+                    }
+                ]
+            },
+            {
+                "type": "block_math",
+                "raw": "\\int f(\\varphi(t))\\varphi'(t)dt=F(\\varphi(t))+c=F(x)+c=\\int f(x)dx"
+            }
+        ]
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "callout",
+        "children": [
+            {
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "אנו דורשים ש-"
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "\\varphi"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " תהיה הפיכה על מנת שנוכל להשתמש גם בכיוון של "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "t=\\varphi^{-1}(x)"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " כפי שעשינו בדוגמות ממקודם."
+                    }
+                ]
+            }
+        ],
+        "attrs": {
+            "callout_type": "remark",
+            "numbered": false,
+            "title": ""
+        }
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "callout",
+        "children": [
+            {
+                "type": "block_math",
+                "raw": "x>0, \\int \\frac{\\sqrt{ x }}{x+1}dx \\underset{\\begin{matrix}\n\\downarrow \\\\\n\\R{\\text{שיטת ההצבה}} \\\\\n\\begin{pmatrix}\nt=\\sqrt{ x } \\\\\nx=t^2\\; \\leftarrow\\; \\varphi(t) \\\\\ndx=2tdt\n\\end{pmatrix}\n\\end{matrix}}{=}\\int \\frac{t}{t^2+1}2tdt=2\\int \\frac{t^2}{t^2+1}dt=2\\int \\frac{t^2-1+1}{t^2+1}dt="
+            },
+            {
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "זה אותו פעלול שראינו קודם."
+                    }
+                ]
+            },
+            {
+                "type": "block_math",
+                "raw": "\\int \\frac{t^2+1}{t^2+1}dt-\\int \\frac{1}{t^2+1}dt=t-\\arctan t+c\n=2t-2\\arctan t+c=2\\sqrt{ x }-2\\arctan \\sqrt{ x }+c"
+            }
+        ],
+        "attrs": {
+            "callout_type": "example",
+            "numbered": false,
+            "title": ""
+        }
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "callout",
+        "children": [
+            {
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "תעשו את "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "\\int e^{-|x|}dx"
+                    },
+                    {
+                        "type": "text",
+                        "raw": ". יהיה משהו מאוד דומה בגליון בית."
+                    }
+                ]
+            }
+        ],
+        "attrs": {
+            "callout_type": "exercise",
+            "numbered": false,
+            "title": ""
+        }
+    },
+    {
+        "type": "blank_line"
+    },
+    {
+        "type": "callout",
+        "children": [
+            {
+                "type": "block_math",
+                "raw": "\\int \\tan xdx=\\int \\frac{\\sin x}{\\cos x}dx \\underset{\\begin{matrix}\n\\downarrow \\\\\n\\R{\\text{אינטגרציה בחלקים}} \\\\\n\\begin{pmatrix}\nv'=\\sin x & u=\\frac{1}{\\cos x} \\\\\nv=-\\cos x & u'=-\\frac{1}{\\cos^2x}(-\\sin x)\n\\end{pmatrix}\n\\end{matrix}}{=}-1+\\int \\frac{\\sin x}{\\cos x}dx=-1+\\int \\tan xdx"
+            },
+            {
+                "type": "paragraph",
+                "children": [
+                    {
+                        "type": "text",
+                        "raw": "אם ננסה לצמצם כמו ממקודם נקבל ש-"
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "0=-1"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " והכל נשבר. רק שבעצם זה בכלל "
+                    },
+                    {
+                        "type": "inline_math",
+                        "raw": "0+c=-1+c"
+                    },
+                    {
+                        "type": "text",
+                        "raw": " שזה נכון כי זו אותה משפחה של פונקציות."
+                    }
+                ]
+            }
+        ],
+        "attrs": {
+            "callout_type": "example",
+            "numbered": false,
+            "title": ""
+        }
+    },
+    {
+        "type": "blank_line"
     }
 ]

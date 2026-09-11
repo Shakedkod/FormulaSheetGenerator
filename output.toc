@@ -1,0 +1,4 @@
+\xpg@aux {}{hebrew}
+\contentsline {section}{\numberline {1}אינטגרציה בחלקים}{4}{section.1}%
+\contentsline {section}{\numberline {2}אינטגרל של פונקציה רציונלית}{5}{section.2}%
+\contentsline {section}{\numberline {3}שיטת ההצבה}{6}{section.3}%

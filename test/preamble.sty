@@ -1,0 +1,41 @@
+% integrals
+\let\oldint\int
+\let\oldiint\iint
+\let\oldiiint\iiint
+\let\oldoint\oint
+\renewcommand{\int}{\oldint\limits}
+\renewcommand{\iint}{\oldiint\limits}
+\renewcommand{\iiint}{\oldiiint\limits}
+\renewcommand{\oint}{\oldoint\limits}
+\newcommand{\oiint}{\mathop{\oint\!\!\!\!\!\oint}\limits}
+\newcommand{\oiiint}{\mathop{\oint\!\!\!\!\!\oint\!\!\!\!\!\oint}\limits}
+
+% multi-dimensional derivatives
+\newcommand{\parder}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\nparder}[3]{\frac{\partial^{#1}{#2}}{\partial{#3}^{#1}}}
+
+% arrows with limits (better than \underset{x\to\infty}{\longrightarrow})
+\newcommand{\rarrowlim}[1]{\xrightarrow[\;\; {#1} \;\;]{}}
+\newcommand{\larrowlim}[1]{\xleftarrow[\;\; {#1} \;\;]{}}
+
+% graph edges (graph theory)
+\newcommand{\edge}[1]{\frac{#1}{\quad}}
+\newcommand{\arrowedge}[1]{\xrightarrow{\; {#1} \;}}
+
+% matrix norm(3 line norm)
+\newcommand{\lVvert}{{\large \lVert}\;\!\! \lvert}
+\newcommand{\blVvert}{\left\lVert\;\!\! \left\lvert}
+\newcommand{\rVvert}{\rvert \;\!\!{\large \rVert}}
+\newcommand{\brVvert}{\right\rvert \;\!\! \right\rVert}
+
+% epsilon curly variant
+\renewcommand{\epsilon}{\varepsilon}
+
+% set theory
+\newcommand{\smid}{\;\middle|\;}
+
+% harppons
+\let\smallrightleftharpoons\rightleftharpoons
+\let\smallxrightleftharpoons\xrightleftharpoons
+\renewcommand{\rightleftharpoons}{{\Large \smallrightleftharpoons}}
+\renewcommand{\xrightleftharpoons}[2][]{{\Large \smallxrightleftharpoons[{#1}]{#2}}}
