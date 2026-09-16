@@ -47,6 +47,34 @@ BASE_LATEX_DOC_START = r"""\documentclass[12pt]{article}
 \definecolor{myblue}{RGB}{37,97,175}
 
 % Define the RISC-V Language Dialect
+\lstdefinelanguage{assembly}{
+    alsoletter={.}, % Allow dots in keywords like .text or .global
+    alsodigit={0x}, % Properly identify hex values
+    morekeywords=[1]{ % Core RISC-V Instructions
+        add, addi, sub, lui, auipc, xor, xori, or, ori, and, andi,
+        sll, slli, srl, srli, sra, srai, slt, slti, sltu, sltiu,
+        beq, bne, blt, bge, bltu, bgeu, jal, jalr, lw, lh, lb,
+        lbu, lhu, sw, sh, sb, ECALL, ecall, EBREAK, ebreak,
+        % Common Pseudoinstructions
+        li, la, mv, not, neg, seqz, snez, sltz, sgtz,
+        j, jr, jal, ret, call, tail, nop
+    },
+    morekeywords=[2]{ % RISC-V Registers (ABI and Symbolic names)
+        x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15,
+        x16, x17, x18, x19, x20, x21, x22, x23, x24, x25, x26, x27, x28, x29, x30, x31,
+        zero, ra, sp, gp, tp, t0, t1, t2, s0, fp, s1, a0, a1, a2, a3, a4, a5, a6, a7,
+        s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, t3, t4, t5, t6
+    },
+    morekeywords=[3]{ % Assembler Directives
+        .text, .data, .rodata, .bss, .globl, .global, .align, .word, .half, .byte, .asciiz, .string, .section
+    },
+    showstringspaces=false,
+    morecomment=[l]{\#},      % Standard RISC-V comments start with #
+    morecomment=[l]{;},       % Fallback comment style
+    morestring=[b]",          % Double quotes strings
+    morestring=[b]'           % Single quotes strings
+}[keywords,comments,strings]
+
 \lstdefinelanguage{Assembler}{
     alsoletter={.}, % Allow dots in keywords like .text or .global
     alsodigit={0x}, % Properly identify hex values
@@ -68,7 +96,63 @@ BASE_LATEX_DOC_START = r"""\documentclass[12pt]{article}
     morekeywords=[3]{ % Assembler Directives
         .text, .data, .rodata, .bss, .globl, .global, .align, .word, .half, .byte, .asciiz, .string, .section
     },
-    allowspaces=false,
+    showstringspaces=false,
+    morecomment=[l]{\#},      % Standard RISC-V comments start with #
+    morecomment=[l]{;},       % Fallback comment style
+    morestring=[b]",          % Double quotes strings
+    morestring=[b]'           % Single quotes strings
+}[keywords,comments,strings]
+
+\lstdefinelanguage{asm}{
+    alsoletter={.}, % Allow dots in keywords like .text or .global
+    alsodigit={0x}, % Properly identify hex values
+    morekeywords=[1]{ % Core RISC-V Instructions
+        add, addi, sub, lui, auipc, xor, xori, or, ori, and, andi,
+        sll, slli, srl, srli, sra, srai, slt, slti, sltu, sltiu,
+        beq, bne, blt, bge, bltu, bgeu, jal, jalr, lw, lh, lb,
+        lbu, lhu, sw, sh, sb, ECALL, ecall, EBREAK, ebreak,
+        % Common Pseudoinstructions
+        li, la, mv, not, neg, seqz, snez, sltz, sgtz,
+        j, jr, jal, ret, call, tail, nop
+    },
+    morekeywords=[2]{ % RISC-V Registers (ABI and Symbolic names)
+        x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15,
+        x16, x17, x18, x19, x20, x21, x22, x23, x24, x25, x26, x27, x28, x29, x30, x31,
+        zero, ra, sp, gp, tp, t0, t1, t2, s0, fp, s1, a0, a1, a2, a3, a4, a5, a6, a7,
+        s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, t3, t4, t5, t6
+    },
+    morekeywords=[3]{ % Assembler Directives
+        .text, .data, .rodata, .bss, .globl, .global, .align, .word, .half, .byte, .asciiz, .string, .section
+    },
+    showstringspaces=false,
+    morecomment=[l]{\#},      % Standard RISC-V comments start with #
+    morecomment=[l]{;},       % Fallback comment style
+    morestring=[b]",          % Double quotes strings
+    morestring=[b]'           % Single quotes strings
+}[keywords,comments,strings]
+
+\lstdefinelanguage{riscv}{
+    alsoletter={.}, % Allow dots in keywords like .text or .global
+    alsodigit={0x}, % Properly identify hex values
+    morekeywords=[1]{ % Core RISC-V Instructions
+        add, addi, sub, lui, auipc, xor, xori, or, ori, and, andi,
+        sll, slli, srl, srli, sra, srai, slt, slti, sltu, sltiu,
+        beq, bne, blt, bge, bltu, bgeu, jal, jalr, lw, lh, lb,
+        lbu, lhu, sw, sh, sb, ECALL, ecall, EBREAK, ebreak,
+        % Common Pseudoinstructions
+        li, la, mv, not, neg, seqz, snez, sltz, sgtz,
+        j, jr, jal, ret, call, tail, nop
+    },
+    morekeywords=[2]{ % RISC-V Registers (ABI and Symbolic names)
+        x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15,
+        x16, x17, x18, x19, x20, x21, x22, x23, x24, x25, x26, x27, x28, x29, x30, x31,
+        zero, ra, sp, gp, tp, t0, t1, t2, s0, fp, s1, a0, a1, a2, a3, a4, a5, a6, a7,
+        s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, t3, t4, t5, t6
+    },
+    morekeywords=[3]{ % Assembler Directives
+        .text, .data, .rodata, .bss, .globl, .global, .align, .word, .half, .byte, .asciiz, .string, .section
+    },
+    showstringspaces=false,
     morecomment=[l]{\#},      % Standard RISC-V comments start with #
     morecomment=[l]{;},       % Fallback comment style
     morestring=[b]",          % Double quotes strings

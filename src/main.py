@@ -21,7 +21,7 @@ def main():
     isPreamble = False
     preamble = ""
     try:
-        with open(".\\test\\UniTest3.md", "r", encoding="utf-8") as f:
+        with open(".\\test\\UniTest4.md", "r", encoding="utf-8") as f:
             text = f.read()
             ast = markdown_parser(text)
     except Exception as e:

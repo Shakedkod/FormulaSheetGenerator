@@ -122,10 +122,10 @@ def mathText(text: str) -> str:
     return text.replace("\\R", "").replace("\\begin{align}", "\\begin{aligned}").replace("\\end{align}", "\\end{aligned}").replace("\\begin{align*}", "\\begin{aligned}").replace("\\end{align*}", "\\end{aligned}").replace("\\Large", "\\Big")
 
 def math_inline(text: str) -> str:
-    return f"\\({mathText(text)}\\)"
+    return f"\\({{{mathText(text)}}}\\)"
 
 def math_block(text: str) -> str:
-    return f"\\[\n{mathText(text)}\n\\]\n"
+    return f"\\[\n{{{mathText(text)}}}\n\\]\n"
 
 def newline() -> str:
     return "\\newline{}\n"
