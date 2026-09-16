@@ -20,7 +20,8 @@ def get_text(children: list) -> str:
         elif child["type"] == "underline":
             underline_text = get_text(child.get("children", []))
             text += underline(underline_text)
-        
+        elif child["type"] == "thematic_break":
+            text += thematic_break()
         # math
         elif child["type"] == "inline_math":
             text += math_inline(child["raw"])
@@ -138,6 +139,9 @@ def image(path: str, width: str = "0.8\\textwidth") -> str:
 
 def svg(path: str, width: str = "0.8\\textwidth") -> str:
     return f"\\begin{{figure}}[h!]\n\\centering\n\\includesvg[width={width}]{{{path}}}\n\\end{{figure}}\n"
+
+def thematic_break() -> str:
+    return "\\hrulefill\n"
 
 def table(table_content: dict) -> str:
     """

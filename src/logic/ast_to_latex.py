@@ -1,12 +1,12 @@
 from rich.console import Console
 from logic.latex_constants import BASE_LATEX_DOC_START, BASE_LATEX_DOC_END, START_OF_DOCUMENT_CONTENT
-from logic.latex_parts import get_text, get_header, blank_line, math_block, parse_list, table
+from logic.latex_parts import get_text, get_header, blank_line, math_block, parse_list, table, thematic_break
 from logic.obsidian_special_blocks import quote, callout
 from logic.codeblock_logic import codeblock
 
 console = Console()
 
-def parse_ast_to_latex(ast: dict, preamble: str = "") -> str:
+def parse_ast_to_latex(ast: dict, preamble: str = "") -> (str, dict):
     """
     Parses the abstract syntax tree (AST) to a LaTeX document.
     """
@@ -23,7 +23,7 @@ def parse_ast_to_latex(ast: dict, preamble: str = "") -> str:
     # End the document
     final_document += BASE_LATEX_DOC_END
 
-    return final_document
+    return (final_document, {})
 
 def ast_to_latex(ast: dict) -> str:
     """
@@ -44,6 +44,8 @@ def ast_to_latex(ast: dict) -> str:
             result += parse_list(node) + blank_line()
         elif node["type"] == "blank_line":
             result += blank_line()
+        elif node["type"] == "thematic_break":
+            result += thematic_break()
         elif node["type"] == "block_code":
             result += codeblock(node)
         elif node["type"] == "block_quote":

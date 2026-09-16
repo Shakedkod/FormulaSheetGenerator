@@ -1,8 +1,9 @@
-BASE_LATEX_DOC_START = r"""\documentclass[12pt]{article}
-% ---------- Fonts & language (Hebrew RTL + English/math LTR) ----------
+BASE_LATEX_TEXT = r"""% ---------- Fonts & language ----------
 \usepackage{hyperref}
 \usepackage{fontspec}
-\usepackage{polyglossia}
+"""
+
+LATEX_HEBREW_TEXT = r"""\usepackage{polyglossia}
 \setdefaultlanguage{hebrew}
 \setotherlanguage{english}
 \newfontfamily\titlefont{Nachlieli CLM}
@@ -10,33 +11,133 @@ BASE_LATEX_DOC_START = r"""\documentclass[12pt]{article}
 \newfontfamily{\hebrewfonttt}[Script=Hebrew]{David CLM}
 \newfontfamily\englishfont{Latin Modern Roman}
 
-% ---------- Math ----------
+\renewcommand\labelitemi{$\bullet$}
+\renewcommand\labelitemii{$\circ$}
+\renewcommand\labelitemiii{$\ast$}
+\renewcommand\labelitemiv{$\cdot$}
+"""
+
+BASE_LATEX_MATH = r"""% ---------- Math ----------
 \usepackage{amsmath, amssymb, amsthm, mathtools, cancel}
 \usepackage{bm}          % \bm for bold math (vectors etc.)
 \usepackage{physics}     % bra-ket, derivatives — optional, remove if unused
-\usepackage{adjustbox}   % fit math in tables
+\usepackage{adjustbox}   % fit math in tables"""
 
+BASE_LATEX_PAGE_LAYOUT = r"""% ---------- Page Layout ----------
+\usepackage{fancyhdr, fancy}
+\usepackage{lastpage}
 
-% ---------- Images & Diagrams ----------
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+"""
+
+LATEX_IMAGES_AND_DIAGRAMS = r"""% ---------- Images & Diagrams ----------
 \usepackage{relsize, graphicx, svg, geometry}
-\usepackage{tikz, circuitikz}
+"""
+
+LATEX_TIKZ = r"""\usepackage{tikz, circuitikz}
 \usetikzlibrary{quotes, angles, shapes.gates.logic.US}
 \usetikzlibrary{arrows.meta, automata, positioning, calc, shapes.geometric, backgrounds, fit}
 \newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \coordinate (#1);}
 \geometry{margin=2.5cm}
+"""
 
-% ---------- Misc quality-of-life ----------
+BASIC_LATEX_MISC = r"""% ---------- Misc quality-of-life ----------
 \usepackage[toc]{appendix}
-\usepackage{listings}
 \PassOptionsToPackage{prologue}{xcolor}
 \usepackage{xcolor, diagbox}
 \usepackage{titling, longtable, booktabs, array}
-\usepackage{parskip, listings}
+\usepackage{parskip}
 
 \definecolor{linkblue}{HTML}{0997E6}
 \renewcommand{\appendixpagename}{נספחים}
 \renewcommand{\appendixtocname}{נספחים}
 
+% section numbering depth & making sure the paragraph and subparagraph levels are numbered and appear correctly
+\setcounter{secnumdepth}{5} 
+\setcounter{tocdepth}{5}
+
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}%
+  {\normalfont\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}%
+  {\normalfont\normalsize\bfseries}}
+\makeatletter
+"""
+
+LATEX_THEME_REGULAR = r"""% ---------- Regular Theme ----------
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]      % thm
+\newtheorem{lemma}[theorem]{Lemma}          % lem
+\newtheorem{proposition}[theorem]{Proposition}   % prp
+\newtheorem{corollary}[theorem]{Corollary}    % cor
+\newtheorem{claim}[theorem]{Claim}     % clm
+\newtheorem{conjecture}[theorem]{Conjecture}   % cnj
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}   % def
+\newtheorem{axiom}[theorem]{Axiom}      % axm
+\newtheorem{assumption}[theorem]{Assumption}    % asm
+\newtheorem{example}[theorem]{Example}      % exm
+\newtheorem{exercise}[theorem]{Exercise}     % exr
+\newtheorem{hypothesis}[theorem]{Hypothesis} % hyp
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}                % rmk
+
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{\par
+  \pushQED{\qed}%
+  \normalfont \topsep6\p@\@plus6\p@\relax
+  \trivlist
+  \item[\hskip\labelsep\itshape #1\@addpunct{.}]\par\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+\renewcommand{\qed}{\par\nobreak\hfill\qedsymbol\par}
+\makeatother
+\renewcommand{\proofname}{Proof}          % Proof
+"""
+
+LATEX_THEME_REGULAR_HEBREW = r"""% ---------- Regular Theme ----------
+\theoremstyle{plain}
+\newtheorem{theorem}{משפט}[section]      % thm
+\newtheorem{lemma}[theorem]{למה}          % lem
+\newtheorem{proposition}[theorem]{טענה}   % prp
+\newtheorem{corollary}[theorem]{מסקנה}    % cor
+\newtheorem{claim}[theorem]{טענה עזר}     % clm
+\newtheorem{conjecture}[theorem]{השערה}   % cnj
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{הגדרה}   % def
+\newtheorem{axiom}[theorem]{אקסיומה}      % axm
+\newtheorem{assumption}[theorem]{הנחה}    % asm
+\newtheorem{example}[theorem]{דוגמה}      % exm
+\newtheorem{exercise}[theorem]{תרגיל}     % exr
+\newtheorem{hypothesis}[theorem]{השערת עבודה} % hyp
+
+\theoremstyle{remark}
+\newtheorem*{remark}{הערה}                % rmk
+
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{\par
+  \pushQED{\qed}%
+  \normalfont \topsep6\p@\@plus6\p@\relax
+  \trivlist
+  \item[\hskip\labelsep\itshape #1\@addpunct{.}]\par\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+\renewcommand{\qed}{\par\nobreak\hfill\qedsymbol\par}
+\makeatother
+\renewcommand{\proofname}{הוכחה}          % הוכחה
+"""
+
+LATEX_CODEBLOCK_SETUP = r"""\usepackage{listings}
 % ---------- Assembler Codeblock Setup ----------
 % Define colors
 \definecolor{commentgreen}{rgb}{0,0.6,0}
@@ -173,77 +274,20 @@ BASE_LATEX_DOC_START = r"""\documentclass[12pt]{article}
     tabsize=4,
     breaklines=true
 }
-
-% ============================================================
-%  Theorem-style environments
-% ============================================================
-\theoremstyle{plain}
-\newtheorem{theorem}{משפט}[section]      % thm
-\newtheorem{lemma}[theorem]{למה}          % lem
-\newtheorem{proposition}[theorem]{טענה}   % prp
-\newtheorem{corollary}[theorem]{מסקנה}    % cor
-\newtheorem{claim}[theorem]{טענה עזר}     % clm
-\newtheorem{conjecture}[theorem]{השערה}   % cnj
-
-\theoremstyle{definition}
-\newtheorem{definition}[theorem]{הגדרה}   % def
-\newtheorem{axiom}[theorem]{אקסיומה}      % axm
-\newtheorem{assumption}[theorem]{הנחה}    % asm
-\newtheorem{example}[theorem]{דוגמה}      % exm
-\newtheorem{exercise}[theorem]{תרגיל}     % exr
-\newtheorem{hypothesis}[theorem]{השערת עבודה} % hyp
-
-\theoremstyle{remark}
-\newtheorem*{remark}{הערה}                % rmk
-
-\makeatletter
-\renewenvironment{proof}[1][\proofname]{\par
-  \pushQED{\qed}%
-  \normalfont \topsep6\p@\@plus6\p@\relax
-  \trivlist
-  \item[\hskip\labelsep\itshape #1\@addpunct{.}]\par\ignorespaces
-}{%
-  \popQED\endtrivlist\@endpefalse
-}
-\renewcommand{\qed}{\par\nobreak\hfill\qedsymbol\par}
-\makeatother
-\renewcommand{\proofname}{הוכחה}          % הוכחה
-
-\newenvironment{circuit}[1][]
-  {\beginL\begin{circuitikz}[#1]}
-  {\end{circuitikz}\endL}
-\usetikzlibrary{arrows.meta}
-
-\renewcommand\labelitemi{$\bullet$}
-\renewcommand\labelitemii{$\circ$}
-\renewcommand\labelitemiii{$\ast$}
-\renewcommand\labelitemiv{$\cdot$}
-
-% section numbering depth & making sure the paragraph and subparagraph levels are numbered and appear correctly
-\setcounter{secnumdepth}{5} 
-\setcounter{tocdepth}{5}
-
-\makeatletter
-\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
-  {-3.25ex\@plus -1ex \@minus -.2ex}%
-  {1.5ex \@plus .2ex}%
-  {\normalfont\normalsize\bfseries}}
-\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\z@}%
-  {-3.25ex\@plus -1ex \@minus -.2ex}%
-  {1.5ex \@plus .2ex}%
-  {\normalfont\normalsize\bfseries}}
-\makeatletter
-
 """
+
 START_OF_DOCUMENT_CONTENT = r"""
 % ============================================================
 % THE START OF THE DOCUMENT CONTENT
 % ============================================================
 \begin{document}
 \maketitle
-\tableofcontents
+"""
+
+LATEX_TABLE_OF_CONTENTS = r"""\tableofcontents
 \newpage
 """
+
 CREDIT_BOX = r"""\vspace{2cm}
 \begin{center}
 \fbox{
@@ -264,6 +308,3 @@ CREDIT_BOX = r"""\vspace{2cm}
 """
 
 BASE_LATEX_DOC_END = r"""\end{document}"""
-
-def latext(text: str) -> str:
-    return text.replace("&", "\\&").replace("%", "\\%").replace("#", "\\#").replace("_", "\\_").replace("{", "\\{").replace("}", "\\}")

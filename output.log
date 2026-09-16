@@ -1573,16 +1573,17 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
  [1
 
-] [2]
-(C:\Users\ShakedKod\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.s
-ty
-File: lstlang1.sty 2025/11/14 1.11b listings language file
-)
-(C:\Users\ShakedKod\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.st
-y
-File: lstmisc.sty 2025/11/14 1.11b (Carsten Heinz)
-) [3] [4] [5] [6] [7]
-Missing character: There is no ⟸ in font David CLM Medium/OT:language=dflt;!
+]
+
+! Package xkeyval Error: `allowspaces' undefined in families `lst'.
+
+See the xkeyval package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.324 ...in{LTR}\begin{lstlisting}[language=riscv]
+                                                  
+? guage=dflt;!
 [8] [9] (output.aux)
  ***********
 LaTeX2e <2025-11-01>
