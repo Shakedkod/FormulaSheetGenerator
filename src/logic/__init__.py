@@ -1,7 +1,7 @@
 from logic.latex_constants import BASE_LATEX_DOC_END, BASE_LATEX_DOC_START, BASE_LATEX_MATH, BASE_LATEX_PAGE_LAYOUT, BASE_LATEX_TEXT, BASIC_LATEX_MISC, EXTRA_LATEX_PACKAGES_HEADER, LATEX_CODEBLOCK_SETUP, LATEX_HEBREW_TEXT, LATEX_IMAGES_AND_DIAGRAMS, LATEX_TABLE_OF_CONTENTS, LATEX_THEME_REGULAR, LATEX_THEME_REGULAR_HEBREW, LATEX_TIKZ, START_OF_DOCUMENT_CONTENT
 from datetime import date, datetime
 from pyluach import dates
-from pyluach.gematria import gematria
+from hebrew_numbers import int_to_gematria
 
 from logic.ast_to_latex import second_pass_parse, parse_ast_to_latex
 
@@ -43,10 +43,10 @@ class LatexFile:
             today = date.today()
             if language == "hebrew":
                 standard_hebrew_date = f"{hebrew_months[today.month]} {today.day}, {today.year}"
-                heb_date = dates.HebrewDate.from_gregorian(today)
-                day_in_letters = gematria(heb_date.day)
+                heb_date = dates.HebrewDate.from_pydate(today)
+                day_in_letters = int_to_gematria(heb_date.day)
                 month_name = heb_date.month_name(hebrew=True)
-                year_in_letters = gematria(heb_date.year - 5000)
+                year_in_letters = int_to_gematria(heb_date.year - 5000)
                 traditional_hebrew_date = f"{day_in_letters} ב{month_name} ה'{year_in_letters}"
                 self.date = f"{standard_hebrew_date} ({traditional_hebrew_date})"
             else:
@@ -67,16 +67,16 @@ class LatexFile:
         self.head["packages"].extend(packages)
     
     def md_to_latex(self, ast: dict):
-        body, self.head = parse_ast_to_latex(ast, self.preamble, self.head)
+        body, self.head = parse_ast_to_latex(ast, self.head)
         body = second_pass_parse(body)
         self.body += body
     
     def add_hebrew_date_to_date(self, date_pattern: str = "%B %d, %Y"):
         today = datetime.strptime(self.date, date_pattern).date()
-        heb_date = dates.HebrewDate.from_gregorian(today)
-        day_in_letters = gematria(heb_date.day)
+        heb_date = dates.HebrewDate.from_pydate(today)
+        day_in_letters = int_to_gematria(heb_date.day)
         month_name = heb_date.month_name(hebrew=True)
-        year_in_letters = gematria(heb_date.year - 5000)
+        year_in_letters = int_to_gematria(heb_date.year - 5000)
         traditional_hebrew_date = f"{day_in_letters} ב{month_name} ה'{year_in_letters}"
         self.date += f" ({traditional_hebrew_date})"
     
@@ -119,7 +119,7 @@ class LatexFile:
         head_text += extra_packages()
         
         if self.preamble:
-            head_text += "---------- Custom Preamble ----------" + "\n"
+            head_text += "% ---------- Custom Preamble ----------" + "\n"
             head_text += self.preamble + "\n"
         
         if self.theme == "fancy-academic":
@@ -134,7 +134,7 @@ class LatexFile:
             head_text += LATEX_CODEBLOCK_SETUP
         
         head_text += self.head["other"]
-        head_text += "---------- Metadata ----------" + "\n"
+        head_text += "% ---------- Metadata ----------" + "\n"
         head_text += f"\\title{{{self.title}}}\n"
         head_text += f"\\author{{{self.author}}}\n"
         if self.head["has-date"]:

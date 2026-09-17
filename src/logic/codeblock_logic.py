@@ -33,6 +33,6 @@ def codeblock(block: dict, head: dict) -> tuple[str, dict]:
         case "desmos-graph":
             head["tikz"] = True
             # return desmos_graph(block.get("raw", ""))
-            return generic_codeblock(block.get("raw", ""), "text")
+            return (generic_codeblock(block.get("raw", ""), "text"), head)
         case _:
-            return generic_codeblock(block.get("raw", ""), block_type)
+            return (generic_codeblock(block.get("raw", ""), block_type), head)

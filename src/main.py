@@ -1,9 +1,11 @@
 import os, sys
+import questionary
+from questionary import Style
 
 from rich.console import Console
 
 from logic.obs_markdown_extras import markdown_parser
-from logic.ast_to_latex import parse_ast_to_latex, second_pass_parse
+from logic import LatexFile
 
 console = Console()
 
@@ -16,71 +18,101 @@ def remove_metadata(ast):
         ast = ast[ast.index(next(x for x in ast if x["type"] == "thematic_break")) + 1:]
     return ast
 
-PREAMBLE_FLAGS = ("--preamble", "-p")
-STYLE_FLAGS = ("--style", "-s")
-STYLES = ("regular", "fancy-academic")
+# Custom style to match that create-next-app teal/purple look
+custom_style = Style([
+    ("qmark", "fg:#00d7af bold"),        # the ? at the start
+    ("question", "bold"),
+    ("answer", "fg:#00d7af bold"),       # the answer once selected
+    ("pointer", "fg:#00d7af bold"),      # the arrow pointer
+    ("highlighted", "fg:#00d7af bold"),  # highlighted choice
+    ("selected", "fg:#00d7af"),
+    ("separator", "fg:#6C6C6C"),
+    ("instruction", "fg:#6C6C6C italic"),
+])
 
-def check_flag(location: int, argv: list[str], flags: tuple, command: callable) -> bool:
-    if argv[location] in flags:
-        if len(argv) < location + 2:
-            console.print(f"[red]Error: No argument specified for flag '{argv[location]}'.[/red]")
-            return False
-        if not command(argv[location + 1]):
-            console.print(f"[red]Error: Invalid argument '{argv[location + 1]}' for flag '{argv[location]}'.[/red]")
-            return False
-    return True
 
-def test_args(argv: list[str]) -> bool:
-    """
-    Tests the command line arguments.
-    """
-    if len(argv) < 2:
-        console.print("[red]Error: No input file specified.[/red]")
-        return False
-    if not os.path.isfile(argv[1]):
-        console.print(f"[red]Error: Input file '{argv[1]}' does not exist.[/red]")
-        return False
-    if len(argv) > 2:
-        preamble_flag_count = sum(1 for arg in argv[2:] if arg in PREAMBLE_FLAGS)
-        style_flag_count = sum(1 for arg in argv[2:] if arg in STYLE_FLAGS)
-        if preamble_flag_count > 1:
-            console.print("[red]Error: Multiple preamble flags specified.[/red]")
-            return False
-        if style_flag_count > 1:
-            console.print("[red]Error: Multiple style flags specified.[/red]")
-            return False
-        
-        if not (check_flag(2, argv, PREAMBLE_FLAGS, os.path.isfile) and check_flag(2, argv, STYLE_FLAGS, lambda x: x in STYLES) and check_flag(2, argv, ("--no-toc", "-nt"), lambda x: True)):
-            return False
-        
-        if len(argv) > 4:
-            if not (check_flag(4, argv, PREAMBLE_FLAGS, os.path.isfile) and check_flag(4, argv, STYLE_FLAGS, lambda x: x in STYLES) and check_flag(4, argv, ("--no-toc", "-nt"), lambda x: True)):
-                return False
-            
-            if len(argv) > 6:
-                if not (check_flag(6, argv, PREAMBLE_FLAGS, os.path.isfile) and check_flag(6, argv, STYLE_FLAGS, lambda x: x in STYLES) and check_flag(6, argv, ("--no-toc", "-nt"), lambda x: True)):
-                    return False
-                
-                if len(argv) > 8:
-                    console.print("[red]Error: Too many arguments specified.[/red]")
-                    return False
-    return True
+def run_wizard():
+    print()  # spacing like create-next-app's initial banner
+    questionary.print("📄  Markdown To LaTeX", style="bold fg:#00d7af")
+    print()
 
-def get_argument_value(argv: list[str], flags: tuple, default: str) -> str:
-    """
-    Gets the value of the argument specified by the flags.
-    """
-    for i in range(2, len(argv), 2):
-        if argv[i] in flags:
-            return argv[i + 1]
-    return default
+    input_file = questionary.path(
+        "What input file would you like to use?",
+        style=custom_style,
+    ).ask()
+    if input_file is None:
+        sys.exit(0)  # Ctrl+C
 
-def main(input: str, preamble: str = None, style: str = "regular"):
+    style = questionary.select(
+        "Which style would you like to use?",
+        choices=["regular", "fancy-academic"],
+        style=custom_style,
+    ).ask()
+
+    use_preamble = questionary.confirm(
+        "Include a custom preamble file?", default=False, style=custom_style
+    ).ask()
+    preamble = None
+    if use_preamble:
+        preamble = questionary.path("Path to preamble file:", style=custom_style).ask()
+
+    toc = questionary.confirm(
+        "Include a table of contents?", default=True, style=custom_style
+    ).ask()
+
+    title = questionary.text("Document title:", style=custom_style).ask()
+    author = questionary.text("Author name:", style=custom_style).ask()
+
+    hide_date = questionary.confirm(
+        "Hide the date?", default=False, style=custom_style
+    ).ask()
+    date = None
+    if not hide_date:
+        date = questionary.text(
+            "Date (leave blank for today):", style=custom_style
+        ).ask()
+
+    header = questionary.text(
+        "Header text (leave blank for none):", style=custom_style
+    ).ask()
+    footer = questionary.text(
+        "Footer text (leave blank for page number):", style=custom_style
+    ).ask()
+
+    language = questionary.select(
+        "Document language?",
+        choices=["english", "hebrew", "other"],
+        style=custom_style,
+    ).ask()
+    if language == "other":
+        language = questionary.text("Enter language code:", style=custom_style).ask()
+
+    print()
+    questionary.print("✔ ", style="bold fg:#00d7af", end="")
+    questionary.print("Configuration complete!\n", style="bold")
+
+    return {
+        "input_file": input_file,
+        "preamble": preamble,
+        "style": style,
+        "toc": toc,
+        "title": title or None,
+        "author": author or None,
+        "date": date or None,
+        "footer": footer or None,
+        "header": header or None,
+        "language": language,
+        "hide_date": hide_date,
+    }
+
+def main():
     ast = None
     isPreamble = False
     preamble_text = ""
+    args = run_wizard()
+    
     try:
-        with open(input, "r", encoding="utf-8") as f:
+        with open(args["input_file"], "r", encoding="utf-8") as f:
             text = f.read()
             ast = markdown_parser(text)
     except Exception as e:
@@ -88,7 +120,7 @@ def main(input: str, preamble: str = None, style: str = "regular"):
         sys.exit(1)
     
     try:
-        with open(preamble, "r", encoding="utf-8") as f:
+        with open(args["preamble"], "r", encoding="utf-8") as f:
             preamble_text = f.read()
             isPreamble = True
     except Exception as e:
@@ -97,33 +129,26 @@ def main(input: str, preamble: str = None, style: str = "regular"):
 
     # Parsing the AST to a latex document.
     ast = remove_metadata(ast)
-    latex_content = "\\title{Sample Document}\n\\author{test}\n" + parse_ast_to_latex(ast, preamble_text if isPreamble else "")
-    latex_content = second_pass_parse(latex_content)
+    latex_file = LatexFile(
+        preamble=preamble_text,
+        theme=args["style"],
+        language=args["language"],
+        author=args["author"] or "",
+        title=args["title"] or "",
+        doc_date=args["date"] or "",
+        toc=args["toc"]
+    )
+    latex_file.md_to_latex(ast)
 
-    with open(".\\test\\ast.json", "w", encoding="utf-8") as f:
-        import json
-        json.dump(ast, f, ensure_ascii=False, indent=4)
-    with open(".\\test\\output.tex", "w", encoding="utf-8") as f:
-        f.write(latex_content)
+    with open(args["input_file"].replace(".md", ".tex"), "w", encoding="utf-8") as f:
+        f.write(latex_file.build())
 
     # Compile the LaTeX document to PDF
     try:
-        os.system("xelatex test\\output.tex")
+        os.system("xelatex " + args["input_file"].replace(".md", ".tex"))
     except Exception as e:
         console.print(f"[red]Error compiling LaTeX document: {e}[/red]")
 
 
 if __name__ == "__main__":
-    if test_args(sys.argv):
-        input_file = sys.argv[1]
-        preamble_file = None
-        style = "regular"
-
-        if len(sys.argv) > 2:
-            preamble_file = get_argument_value(sys.argv, PREAMBLE_FLAGS, None)
-            style = get_argument_value(sys.argv, STYLE_FLAGS, "regular")
-        
-        main(input_file, preamble_file, style)
-    else:
-        console.print("[blue]Usage: python main.py <input_file> [--preamble|-p <preamble_file>] [--style|-s <regular|fancy-academic>] [--no-toc|-nt] [--title|-t <title>] [--author|-a <author>] [--date|-d <date>] [--footer|-f <footer>] [--header|-h <header>] [--language|-l <language>] [-hide-date] [/blue]")
-        sys.exit(1)
+    main()

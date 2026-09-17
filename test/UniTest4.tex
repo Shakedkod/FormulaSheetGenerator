@@ -1,0 +1,571 @@
+% ============================================================
+% === Created by MDtoLatex - A Markdown to LaTeX Converter ===
+% ====== ShakedKod, 2026 - https://github.com/ShakedKod ======
+% ============================================================
+\documentclass[12pt]{article}
+% ---------- Fonts & language ----------
+\usepackage{hyperref}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setdefaultlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\titlefont{Nachlieli CLM}
+\newfontfamily\hebrewfont{David CLM}
+\newfontfamily{\hebrewfonttt}[Script=Hebrew]{David CLM}
+\newfontfamily\englishfont{Latin Modern Roman}
+
+\renewcommand\labelitemi{$\bullet$}
+\renewcommand\labelitemii{$\circ$}
+\renewcommand\labelitemiii{$\ast$}
+\renewcommand\labelitemiv{$\cdot$}
+% ---------- Math ----------
+\usepackage{amsmath, amssymb, amsthm, mathtools, cancel}
+\usepackage{bm}          % \bm for bold math (vectors etc.)
+\usepackage{physics}     % bra-ket, derivatives — optional, remove if unused
+\usepackage{adjustbox}   % fit math in tables% ---------- Misc quality-of-life ----------
+\usepackage[toc]{appendix}
+\PassOptionsToPackage{prologue}{xcolor}
+\usepackage{xcolor, diagbox}
+\usepackage{titling, longtable, booktabs, array}
+\usepackage{parskip}
+
+\definecolor{linkblue}{HTML}{0997E6}
+\renewcommand{\appendixpagename}{נספחים}
+\renewcommand{\appendixtocname}{נספחים}
+
+% section numbering depth & making sure the paragraph and subparagraph levels are numbered and appear correctly
+\setcounter{secnumdepth}{5} 
+\setcounter{tocdepth}{5}
+
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}%
+  {\normalfont\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}%
+  {\normalfont\normalsize\bfseries}}
+\makeatletter
+% ---------- Extra LaTeX Packages ----------
+% ---------- Custom Preamble ----------
+% integrals
+\let\oldint\int
+\let\oldiint\iint
+\let\oldiiint\iiint
+\let\oldoint\oint
+\renewcommand{\int}{\oldint\limits}
+\renewcommand{\iint}{\oldiint\limits}
+\renewcommand{\iiint}{\oldiiint\limits}
+\renewcommand{\oint}{\oldoint\limits}
+\newcommand{\oiint}{\mathop{\oint\!\!\!\!\!\oint}\limits}
+\newcommand{\oiiint}{\mathop{\oint\!\!\!\!\!\oint\!\!\!\!\!\oint}\limits}
+
+% multi-dimensional derivatives
+\newcommand{\parder}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\nparder}[3]{\frac{\partial^{#1}{#2}}{\partial{#3}^{#1}}}
+
+% arrows with limits (better than \underset{x\to\infty}{\longrightarrow})
+\newcommand{\rarrowlim}[1]{\xrightarrow[\;\; {#1} \;\;]{}}
+\newcommand{\larrowlim}[1]{\xleftarrow[\;\; {#1} \;\;]{}}
+
+% graph edges (graph theory)
+\newcommand{\edge}[1]{\frac{#1}{\quad}}
+\newcommand{\arrowedge}[1]{\xrightarrow{\; {#1} \;}}
+
+% matrix norm(3 line norm)
+\newcommand{\lVvert}{{\large \lVert}\;\!\! \lvert}
+\newcommand{\blVvert}{\left\lVert\;\!\! \left\lvert}
+\newcommand{\rVvert}{\rvert \;\!\!{\large \rVert}}
+\newcommand{\brVvert}{\right\rvert \;\!\! \right\rVert}
+
+% epsilon curly variant
+\renewcommand{\epsilon}{\varepsilon}
+
+% set theory
+\newcommand{\smid}{\;\middle|\;}
+
+% harppons
+\let\smallrightleftharpoons\rightleftharpoons
+\let\smallxrightleftharpoons\xrightleftharpoons
+\renewcommand{\rightleftharpoons}{{\Large \smallrightleftharpoons}}
+\renewcommand{\xrightleftharpoons}[2][]{{\Large \smallxrightleftharpoons[{#1}]{#2}}}
+% ---------- Regular Theme ----------
+\theoremstyle{plain}
+\newtheorem{theorem}{משפט}[section]      % thm
+\newtheorem{lemma}[theorem]{למה}          % lem
+\newtheorem{proposition}[theorem]{טענה}   % prp
+\newtheorem{corollary}[theorem]{מסקנה}    % cor
+\newtheorem{claim}[theorem]{טענה עזר}     % clm
+\newtheorem{conjecture}[theorem]{השערה}   % cnj
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{הגדרה}   % def
+\newtheorem{axiom}[theorem]{אקסיומה}      % axm
+\newtheorem{assumption}[theorem]{הנחה}    % asm
+\newtheorem{example}[theorem]{דוגמה}      % exm
+\newtheorem{exercise}[theorem]{תרגיל}     % exr
+\newtheorem{hypothesis}[theorem]{השערת עבודה} % hyp
+
+\theoremstyle{remark}
+\newtheorem*{remark}{הערה}                % rmk
+
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{\par
+  \pushQED{\qed}%
+  \normalfont \topsep6\p@\@plus6\p@\relax
+  \trivlist
+  \item[\hskip\labelsep\itshape #1\@addpunct{.}]\par\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+\renewcommand{\qed}{\par\nobreak\hfill\qedsymbol\par}
+\makeatother
+\renewcommand{\proofname}{הוכחה}          % הוכחה
+\usepackage{listings}
+% ---------- Assembler Codeblock Setup ----------
+% Define colors
+\definecolor{commentgreen}{rgb}{0,0.6,0}
+\definecolor{keywordblue}{rgb}{0,0,0.8}
+\definecolor{registerpurple}{rgb}{0.5,0,0.5}
+\definecolor{stringorange}{rgb}{0.8,0.4,0}
+\definecolor{gold}{HTML}{FFD700}
+\definecolor{myblue}{RGB}{37,97,175}
+
+% Define the RISC-V Language Dialect
+\lstdefinelanguage{assembly}{
+    alsoletter={.}, % Allow dots in keywords like .text or .global
+    alsodigit={0x}, % Properly identify hex values
+    morekeywords=[1]{ % Core RISC-V Instructions
+        add, addi, sub, lui, auipc, xor, xori, or, ori, and, andi,
+        sll, slli, srl, srli, sra, srai, slt, slti, sltu, sltiu,
+        beq, bne, blt, bge, bltu, bgeu, jal, jalr, lw, lh, lb,
+        lbu, lhu, sw, sh, sb, ECALL, ecall, EBREAK, ebreak,
+        % Common Pseudoinstructions
+        li, la, mv, not, neg, seqz, snez, sltz, sgtz,
+        j, jr, jal, ret, call, tail, nop
+    },
+    morekeywords=[2]{ % RISC-V Registers (ABI and Symbolic names)
+        x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15,
+        x16, x17, x18, x19, x20, x21, x22, x23, x24, x25, x26, x27, x28, x29, x30, x31,
+        zero, ra, sp, gp, tp, t0, t1, t2, s0, fp, s1, a0, a1, a2, a3, a4, a5, a6, a7,
+        s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, t3, t4, t5, t6
+    },
+    morekeywords=[3]{ % Assembler Directives
+        .text, .data, .rodata, .bss, .globl, .global, .align, .word, .half, .byte, .asciiz, .string, .section
+    },
+    showstringspaces=false,
+    morecomment=[l]{\#},      % Standard RISC-V comments start with #
+    morecomment=[l]{;},       % Fallback comment style
+    morestring=[b]",          % Double quotes strings
+    morestring=[b]'           % Single quotes strings
+}[keywords,comments,strings]
+
+\lstdefinelanguage{Assembler}{
+    alsoletter={.}, % Allow dots in keywords like .text or .global
+    alsodigit={0x}, % Properly identify hex values
+    morekeywords=[1]{ % Core RISC-V Instructions
+        add, addi, sub, lui, auipc, xor, xori, or, ori, and, andi,
+        sll, slli, srl, srli, sra, srai, slt, slti, sltu, sltiu,
+        beq, bne, blt, bge, bltu, bgeu, jal, jalr, lw, lh, lb,
+        lbu, lhu, sw, sh, sb, ECALL, ecall, EBREAK, ebreak,
+        % Common Pseudoinstructions
+        li, la, mv, not, neg, seqz, snez, sltz, sgtz,
+        j, jr, jal, ret, call, tail, nop
+    },
+    morekeywords=[2]{ % RISC-V Registers (ABI and Symbolic names)
+        x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15,
+        x16, x17, x18, x19, x20, x21, x22, x23, x24, x25, x26, x27, x28, x29, x30, x31,
+        zero, ra, sp, gp, tp, t0, t1, t2, s0, fp, s1, a0, a1, a2, a3, a4, a5, a6, a7,
+        s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, t3, t4, t5, t6
+    },
+    morekeywords=[3]{ % Assembler Directives
+        .text, .data, .rodata, .bss, .globl, .global, .align, .word, .half, .byte, .asciiz, .string, .section
+    },
+    showstringspaces=false,
+    morecomment=[l]{\#},      % Standard RISC-V comments start with #
+    morecomment=[l]{;},       % Fallback comment style
+    morestring=[b]",          % Double quotes strings
+    morestring=[b]'           % Single quotes strings
+}[keywords,comments,strings]
+
+\lstdefinelanguage{asm}{
+    alsoletter={.}, % Allow dots in keywords like .text or .global
+    alsodigit={0x}, % Properly identify hex values
+    morekeywords=[1]{ % Core RISC-V Instructions
+        add, addi, sub, lui, auipc, xor, xori, or, ori, and, andi,
+        sll, slli, srl, srli, sra, srai, slt, slti, sltu, sltiu,
+        beq, bne, blt, bge, bltu, bgeu, jal, jalr, lw, lh, lb,
+        lbu, lhu, sw, sh, sb, ECALL, ecall, EBREAK, ebreak,
+        % Common Pseudoinstructions
+        li, la, mv, not, neg, seqz, snez, sltz, sgtz,
+        j, jr, jal, ret, call, tail, nop
+    },
+    morekeywords=[2]{ % RISC-V Registers (ABI and Symbolic names)
+        x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15,
+        x16, x17, x18, x19, x20, x21, x22, x23, x24, x25, x26, x27, x28, x29, x30, x31,
+        zero, ra, sp, gp, tp, t0, t1, t2, s0, fp, s1, a0, a1, a2, a3, a4, a5, a6, a7,
+        s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, t3, t4, t5, t6
+    },
+    morekeywords=[3]{ % Assembler Directives
+        .text, .data, .rodata, .bss, .globl, .global, .align, .word, .half, .byte, .asciiz, .string, .section
+    },
+    showstringspaces=false,
+    morecomment=[l]{\#},      % Standard RISC-V comments start with #
+    morecomment=[l]{;},       % Fallback comment style
+    morestring=[b]",          % Double quotes strings
+    morestring=[b]'           % Single quotes strings
+}[keywords,comments,strings]
+
+\lstdefinelanguage{riscv}{
+    alsoletter={.}, % Allow dots in keywords like .text or .global
+    alsodigit={0x}, % Properly identify hex values
+    morekeywords=[1]{ % Core RISC-V Instructions
+        add, addi, sub, lui, auipc, xor, xori, or, ori, and, andi,
+        sll, slli, srl, srli, sra, srai, slt, slti, sltu, sltiu,
+        beq, bne, blt, bge, bltu, bgeu, jal, jalr, lw, lh, lb,
+        lbu, lhu, sw, sh, sb, ECALL, ecall, EBREAK, ebreak,
+        % Common Pseudoinstructions
+        li, la, mv, not, neg, seqz, snez, sltz, sgtz,
+        j, jr, jal, ret, call, tail, nop
+    },
+    morekeywords=[2]{ % RISC-V Registers (ABI and Symbolic names)
+        x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15,
+        x16, x17, x18, x19, x20, x21, x22, x23, x24, x25, x26, x27, x28, x29, x30, x31,
+        zero, ra, sp, gp, tp, t0, t1, t2, s0, fp, s1, a0, a1, a2, a3, a4, a5, a6, a7,
+        s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, t3, t4, t5, t6
+    },
+    morekeywords=[3]{ % Assembler Directives
+        .text, .data, .rodata, .bss, .globl, .global, .align, .word, .half, .byte, .asciiz, .string, .section
+    },
+    showstringspaces=false,
+    morecomment=[l]{\#},      % Standard RISC-V comments start with #
+    morecomment=[l]{;},       % Fallback comment style
+    morestring=[b]",          % Double quotes strings
+    morestring=[b]'           % Single quotes strings
+}[keywords,comments,strings]
+
+% Apply Styles globally to the document
+\lstset{
+    basicstyle={\small\ttfamily},
+    keywordstyle=[1]\color{keywordblue}\bfseries,
+    keywordstyle=[2]\color{registerpurple},
+    keywordstyle=[3]\color{gray}\bfseries,
+    commentstyle=\color{commentgreen}\itshape,
+    stringstyle=\color{stringorange},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    tabsize=4,
+    breaklines=true
+}
+% ---------- Metadata ----------
+\title{העולם הגמניב}
+\author{שקד}
+\date{ספטמבר 17, 2026 (ו׳ בתשרי ה'תשפ״ז)}
+
+
+% ============================================================
+% THE START OF THE DOCUMENT CONTENT
+% ============================================================
+\begin{document}
+\maketitle
+
+\tableofcontents
+\newpage
+
+שפת אסמבלי, בניגוד ל-\({C}\), ייחודית לכל מעבד. אנחנו נלמד סט פקודות המתאימות למעבד מסויים. לרוב, למעבדים של אותה חברה יהיו את אותן פקודות. כל מעבד מגיע עם אסמבלר מובנה מראש שמתרגם את שפת האסמבלי שהוא קורא(עם הפקודות הייחודיות לו) לשפת מכונה.\newline{}
+מעבד שתומך ברשימת פקודות בעצם מיישם סטנדרט שנקרא \({ISA}\) שזה .בתחילת עולם המחשוב השתמשו במשהו שנקרא \({CISC}\) שאומר שככל שמתקדמים נוסיף עוד ועוד פקודות כדי שהמעבד יוכל לעשות דברים יותר מורכבים.\newline{}
+כיום משתמשים לרוב ב-\({RISC}\) (שאיתו גם אנחנו נעבוד) שהוא נותן סט פקודות קטן אשר מאפשרות לך לבצע כל דבר ו\textbf{אתה} הוא שתתכנת את התוכניות המסובכות באמצעות מעט הפקודות הפשוטות. כל הפקודות נמצאות על יצור בשם \({\color{green}{\text{הכרטיס הירוק}}}\) (התמונה במצגת לא באיכות טובה ולא הצלחתי למצוא אותה באינטרנט - לטענת המצגת יש אותה במודל אבל לא הצלחתי למצוא אותה במודל).\section{('הרגיסטרים', {})}
+בניגוד לשפות תכנות עיליות כמו \({Java}\) או \({C}\), באסמבלי אין לנו משתנים כפי שהכרנו אותם. יש לנו \textbf{רגיסטרים} שהם מספר סופי ומוגבל של מקומות מיוחדים שמחזיקים ערך יחיד. הם בנויים ישירות לתוך החומרה. פעולות יכולות להתבצע רק על מידע המאוחסן ברגיסטרים ולכן הם מאוד חשובים לנו, גם בתור מדמחיסטים וגם בתור חשמליסטים.\newline{}
+הייתרון של הרגיסטרים הוא שהם ממש קרובים למעבד ולכן \textbf{מאוד} מהירים.בריסק-5 יש \({32}\) רגיסטרים הנקראים \({x0-x31}\) אך לנו יש רק 31 רגיסטרים לעבוד איתם שכן רגיסטר \({x0}\) הוא מיוחד. לכן, נדרש להיות \textbf{מאוד} יעילים עם המידע שלנו כדי שלא נעבור את מספר הרגיסטרים הקיים שכן פשוטו של עניין - אין עוד רגיסטרים.\begin{definition}[מילה]
+קבוצה של 32 ביטים נקראת \textbf{מילה} בריסק-5.
+\end{definition}
+\begin{remark}
+זו לא כמו \href{https://uni-folder.vercel.app/2 - אוטומטים#dc95e7}{מילה}
+ של מתקא :(
+\end{remark}
+\begin{remark}[אמיתית הפעם]
+ניתן לקרוא רק \({4GB}\) (4 גיגה בית) עם מילה של ריסק-5 מכיוון שכדי להגיע לשם צריך לכתוב את הערך שאנחנו צריכים ברגיסטר וגם אם נמלא את כל הסיביות באחדים נקבל \({2^{32}}\) שזה \({4}\) גיגה.
+\end{remark}
+בניגוד לשפות תכנות עיליות, אין סוגי משתנים ברגיסטרים וכל רגיסטר יכול להכיל כל דבר ואנו צריכים לזכור מה שמנו בכל רגיסטר.\[
+{\begin{array}{|c|c|c|c|}
+\hline \text{Register} & \text{ABI Name} & \text{Description} & \text{Saver} \\
+\hline x0 & zero & \text{Hard-wired zero} & - \\
+x1 & ra & \text{Return address} & \text{Caller} \\
+x2 & sp & \text{Stack pointer} & \text{Callee} \\
+x3 & gp & \text{Global pointer} & - \\
+x4 & tp & \text{Thread pointer} & - \\
+x5 & t_{0} & \text{Temporary/alternative link register} & \text{Caller} \\
+x6-7 & t_{1-2} & \text{Temporaries} & \text{Caller} \\
+x8 & s_{0}/fp & \text{Saved register/frame pointer} & \text{Callee} \\
+x9 & s1 & \text{Saved register} & \text{Callee} \\
+x10-11 & a_{0-1} & \text{Function arguments/return values} & \text{Caller} \\
+x12-17 & a_{2-7} & \text{Function arguments} & \text{Caller} \\
+x18-27 & s_{2-11} & \text{Saved registers} & \text{Callee} \\
+x28-31 & t_{3-6} & \text{Temporaries} & \text{Caller} \\
+\hline
+\end{array}}
+\]
+\section{('פקודות ריסק-5', {})}
+לכל פקודה יש \({opcode}\) שהוא המזהה של הפקודה ו-\({operands}\) שהם מה שהפקודה מקבלת(כמו פונקציה ב-\({C}\))\begin{LTR}\begin{lstlisting}[language=riscv]
+add x1, x2, x3 # x1 = <x2> + <x3>
+
+\end{lstlisting}\end{LTR}בואו ננתח את השורה הזו:\begin{itemize}
+\item ('מתחילים עם שם הפקודה, ה-\({opcode}\) שבמקרה הזה הוא . זוהי פקודה שמוסיפה.', {})
+\item ('אחרי זה מופיע רגיסטר היעד שאליו נכנס הערך המחושב (כמעט תמיד רגיסטר היעד הוא האופרנד הראשון שנכתוב)', {})
+\item ('לאחריו יש את שני האופרנדים החשובים: המחובר הראשון והמחובר השני.', {})
+\item ('לאחר מכן יש \({\#}\) שהוא הערה ומה שנכתב לאחריו לא מחושב (כמו \({//}\) ב-\({C}\))', {})
+\end{itemize}
+והנה רשימת הפקודות:\subsection{('פקודות בסיסיות', {})}
+\begin{itemize}
+\item ('מוסיפה את \\({x2}\\) ו-\\({x3}\\) ושמה את הערך ב-\\({x1}\\).', {})
+\item ('מחסרת את \\({x5}\\) מ-\\({x4}\\) ומציבה את הערך ב-\\({x3}\\).', {})
+\end{itemize}
+\begin{example}
+עבור קוד ה-\({C}\):\begin{LTR}\begin{lstlisting}[language=c]
+a=b+c+d-e;
+
+\end{lstlisting}\end{LTR}נכתוב באסמבלי של ריסק-5:\begin{LTR}\begin{lstlisting}[language=riscv]
+add x10, x1, x2 # temp = b + c
+add x10, x10, x3 # temp = temp + d
+sub x10, x10, x4 # a = temp - e
+
+\end{lstlisting}\end{LTR}
+\end{example}
+\begin{remark}
+אם נרצה לשים ערך של רגיסטר אחד ברגיסטר אחר נשתמש ברגיסטר \({x0}\) שהוא תמיד אפס כך:\begin{LTR}\begin{lstlisting}[language=assembly]
+add x1,x3,x0
+
+\end{lstlisting}\end{LTR}ואז זה ישים את הערך של \({x3}\) ברגיסטר \({x1}\) (כמובן שהערך ב-\({x3}\) לא משתנה)
+\end{remark}
+\begin{itemize}
+\item ('הפקודה הזו מחברת את הערך ב-\\({x4}\\) לקבוע \\({-10}\\) ושמה את הערך ב-\\({x3}\\).\\newline{}\nהפקודה תמיד תפעל עם רגיסטר יעד שלאחריו רגיסטר מקור ולאחריו ערך קבוע.', {})
+\end{itemize}
+\subsection{('פקודות זיכרון', {})}
+כעת אנו יכולים לבצע פעולות בין רגיסטרים, אך יש לנו רק מעט מהם ונדרש לשמור בזיכרון רחוק יותר ואיטי יותר ערכים שנרצה לשמור לאורך זמן. פקודות הפנייה לזיכרון הן איטיות ונביט בהן כעת.\newline{}
+אנחנו מתייחסים לכתובות של הזיכרון בקבוצות של 8 ביטים (שזה בית(\({byte}\)) אחד) - ניתן לדמיין את הזיכרון כווקטור חד מימדי ארוך של מטריצות של \({1\times 8}\).\[
+{\begin{array}{|ccc|}
+\hline Bit\; (b) & {\text{ביט}} & {\text{סיבית 1}} \\
+Byte\; (B) & {\text{בית}} & {\text{8 סיביות}} \\
+Half\; word  & {\text{חצי-מילה}} & {\text{ סיביות}}16 \\
+Word & {\text{מילה}} & {\text{ סיביות}}32 \\
+\hline
+\end{array}}
+\]
+כדי לכתוב לזיכרון משהו באורך של יותר מביט, נכתוב תמיד לביט הכי פחות חשוב(\({LSB}\)) - הימני ביותר.\newline{}
+\textbf{תמיד} מידע עובר מהזיכרון לרגיסטר או מהרגיסטר לזיכרון\newline{}
+\textbf{אנו לא יכולים לעביר מידע ישר למעבד או ישר לזיכרון מהמעבד}\begin{itemize}
+\item ('מה זה \\({12(x13)}\\) המוזר הזה? \\({x13}\\) מייצג את הרגיסטר הבסיסי שמצביע ל-\\({A[0]}\\) ו-\\({12}\\) זה מספר הבתים שאנחנו זזים כדי לקחת את \\({A[3]}\\).\\newline{}\nאזי, בעצם אנחנו לוקחים את הערך הנמצא ב-\\({A[3]}\\) ושמים אותו ברגיסטר \\({x10}\\).', {})
+\item ('מכיוון שכל איבר במערך הוא 4 בתים, נכפיל 4 ב-10 כדי להגיע מ-\\({x13}\\) שמאחסן פויינטר לתחילת המערך, למיקום במערך שאנחנו רוצים.', {})
+\item ('כשמעתיקים בית מהזיכרון אל 32 בתים של רגיסטר, מתבצע תהליך של הרחבת הסימן על מנת שהסימן ישאר זהה, נניח אם הסימן הוא \\({0}\\) למספר חיובי, כל שאר הסיביות של הרגיסטר יהיו אפסים ואז בסוף יופיע המספר.', {})
+\item ('פקודה לשמירה של בית יחיד בזיכרון \\({sb}\\) עובדת גם היא באותו האופן שעבדה \\({sw}\\) כך:', {})
+\item ('יש בנוסף פקודה לטעינת בית \\({unsigned}\\) - כלומר, ללא סימן. הפקודה היא \\({lbu}\\) והיא מתנהגת באופן זהה ל-\\({lw}\\) רק שאז הסימן לא ישנה.', {})
+\item ('\\textbf{אין פקודה לשמירת בית \\({unsigned}\\) שכן אין לזה משמעות}.', {})
+\end{itemize}
+\begin{example}
+מה יקרה כשנבצע את הקוד הזה:\begin{LTR}\begin{lstlisting}[language=assembly]
+addi x11,x0,0x3f5
+sw x11,0(x5)
+lb x12,1(x5)
+
+\end{lstlisting}\end{LTR}תחילה, אנחנו שמים ברגיסטר \({x11}\) את הערך ההקסה \({3f5}\) ששווה ל-\({0011,1111,0101}\) בבינארי.\newline{}
+כעת, אנחנו שומרים את הערך שיש ב-\({x11}\) (כלומר את \({3f5}\) בהקסה) במיקום \({x5}\) בזיכרון.\newline{}
+כעת, אנו טוענים לרגיסטר \({x12}\) את הערך שיש בבית השני של \({x5}\) - כלומר, אנחנו טוענים את \({0000,0011}\) שהוא המספר \({3}\) בבסיס עשרוני ובבסיס הקסה.
+\end{example}
+\begin{remark}
+אם נרצה לתאר מספר בבסיס עשרוני נכתוב \({0d}\) לפניו.\newline{}
+אם נרצה לתאר מספר בבסיס הקסה נכתוב \({0x}\) לפניו.\newline{}
+אם נרצה לתאר מספר בבסיס בינארי נכתוב \({0b}\) לפניו.
+\end{remark}
+\subsection{('פקודות לוגיות', {})}
+\[
+{\begin{array}{|ccc|}
+\hline \text{Logical operations} & \text{C operators} & \text{RISC-V operations} \\
+\hline \text{Bit-by-bit AND} & \& & and \\
+\text{Bit-by-bit OR} & | & or \\
+\text{Bit-by-bit XOR} & \hat{} & xor \\
+\text{Shift left logical} & << & sll \\
+\text{Shift right logical} & >> & srl \\
+\hline
+\end{array}}
+\]
+ניתן להשתמש בהן כך:\begin{LTR}\begin{lstlisting}[language=assembly]
+opcode <result>,<compare1>,<compare2>
+
+\end{lstlisting}\end{LTR}הפעולה הלוגית נעשית על שני האופרנדנים ומושמת לרגיסטר הנמצא ב-\({result}\).\newline{}
+לפקודות ההזזה, כמובן שהערך מגיע מרגיסטר אחר להזזה ומושם אחרי ההזזה ברגיסטר התוצאה.בנוסף, פקודות נוספות הינן:\begin{itemize}
+\item ('פקודת ההזזה שמאלה עם קבוע כך: (מכפילה ב-\\({2^k}\\))', {})
+\item ('פקודת הזזה ימינה עם קבוע כך: (מחלקת ב-\\({2^k}\\))', {})
+\item ('פקודת הזזה ימינה של המספר עם תיקון למען שמירת הסימן:', {})
+\end{itemize}
+\begin{remark}
+הפקודה \({srai}\) היא לא חלוקה ב-\({2^{k}}\).\newline{}
+זה עובד לרוב, אך לא עובד עם מספרים שליליים אי-זוגיים.
+\end{remark}
+\begin{remark}
+הפקודות \({srai}\) ו-\({srli}\) זהות במספרים חיוביים.
+\end{remark}
+\subsection{('בקרת זרימה', {})}
+כעת, נרצה משהו הדומה ל-\({if}\) אחרת לא נוכל לכתוב תוכניות טובות. בנוסף, נרצה דרך לעבור ממקום למקום בשביל שנוכל לעשות לולאות בנוסף לדברים אחרים.הפקודה הראשונה שאנו נראה היא \({beq}\) שמשווה בין שני רגיסטרים ואם הם שווים קופצת להצהרה בשם שכתבנו כך:\begin{LTR}\begin{lstlisting}[language=assembly]
+beq register1,register2,L1
+
+\end{lstlisting}\end{LTR}ישנן עוד פקודות שעובדות כך והן:\begin{itemize}
+\item ('הפקודה \\({beq}\\)(שראינו הרגע) משווה בין שני רגיסטרים ואם הם שווים קופצת להצהרה הרשומה.', {})
+\item ('הפקודה \\({bne}\\) משווה בין שני רגיסטרים ואם הם \\textbf{לא שווים} קופצת להצהרה הרשומה.', {})
+\item ('הפקודה \\({Blt}\\) משווה בין שני רגיסטרים ואם הרגיסטר הראשון \\textbf{קטן מ}הרגיסטר השני אז היא קופצת להצהרה הרשומה.', {})
+\item ('הפקודה \\({bge}\\) משווה בין שני רגיסטרים ואם הרגיסטר הראשון \\textbf{גדול או שווה} לרגיסטר השני אזי היא קופצת להצהרה הרשומה.', {})
+\item ('הפקודה \\({J}\\) קופצת תמיד להצהרה הרשומה (היא מקבלת רק הצהרה)', {})
+\end{itemize}
+בואו נראה דוגמות:\begin{example}[תוכנית \(if\) פשוטה]
+נניח התוכנית:\begin{LTR}\begin{lstlisting}[language=c]
+if (i == j)
+  f = g + h;
+
+\end{lstlisting}\end{LTR}ב-\({C}\) תראה כך באסמבלי:\begin{LTR}\begin{lstlisting}[language=assembly]
+bne x13,x14,Exit
+add x10,x11,x12
+
+Exit:
+
+\end{lstlisting}\end{LTR}
+\end{example}
+\begin{example}[תוכנית \(if-else\) פשוטה]
+התוכנית:\begin{LTR}\begin{lstlisting}[language=c]
+if (i == j)
+  f = g + h;
+else 
+  f = g - h;
+
+\end{lstlisting}\end{LTR}ב-\({C}\) תראה כך באסמבלי:\begin{LTR}\begin{lstlisting}[language=assembly]
+bne x13,x14, Else
+add x10,x11,x12
+j Exit
+
+Else: sub x10,x11,x12
+Exit:
+
+\end{lstlisting}\end{LTR}
+\end{example}
+\begin{example}[לולאה]
+נניח קוד ה-\({C}\) הבא שמכיל לולאה:\begin{LTR}\begin{lstlisting}[language=c]
+int A[20];
+int sum = 0;
+for (int i = 0; i < 20; i++)
+  sum += A[i];
+
+\end{lstlisting}\end{LTR}תראה כך באסמבלי כאשר \({x8}\) הוא הרגיסטר שמצביע על תחילת המערך:\begin{LTR}\begin{lstlisting}[language=assembly]
+add x9,x8,x0   # x9=&[0]
+add x10,x0,x0  # sum=0
+add x11,x0,x0  # i=0
+addi x13,x0,20 # x13=20
+Loop:
+  lw x12,0(x9)    # x12=A[i]
+  add x10,x10,x12 # sum+=A[i]
+  addi x9,x9,4    # &A[++i]
+  addi x11,x11,1  # i++
+  blt x11,x13,Loop
+
+\end{lstlisting}\end{LTR}
+\end{example}
+\part{('קריאות לפונקציות', {})}
+עוד לפני שנדבר על איך אנו יוצרים פונקציות, נדבר על איך משתמשים בהן.\newline{}
+יש לנו שישה שלבים בקריאה לפונקציה:\begin{enumerate}
+\item ('נשים את הארגומנטים במקום שהפונקציה יכולה לגשת אליו.', {})
+\item ('נעביר שליטה לפונקציה', {})
+\item ('נאסוף את כל הזכרון שנדרש עבור הפונקציה', {})
+\item ('נבצע את הפעולה של הפונקציה', {})
+\item ('נשים את התוצאה איפה שהקוד שקרא יכול לגשת אליה ושחזור הרגיסטרים שהשתמשנו בהם בפונקציה.', {})
+\item ('החזרת שליטה למקור.', {})
+\end{enumerate}
+כדי לשמור את המיקום אליו צריך לחזור לאחר הפונקציה, נשתמש ברגיסטר \({ra}\) אשר הינו קיצור ל-\emph{return address}.\newline{}
+בסוף פונקציה תמיד נבצע  (הפקודה \emph{jr} היא פסודו פקודה אשר מאפשרת קפיצה למיקום המאוחסן ברגיסטר המסויים שנקרא, במקרה הזה \({ra}\))\begin{example}
+נממש את הפונקציה:\begin{LTR}\begin{lstlisting}[language=c]
+int sum(int x, int y)
+{
+  return (x + y);
+}
+
+\end{lstlisting}\end{LTR}וקריאה אליה כך:\begin{LTR}\begin{lstlisting}[language=assembly]
+1000 mv a0, s0
+1004 mv a1, s1
+1008 addi ra, zero, 1016
+1012 j sum
+1016 ...
+...
+2000 sum: add a0, a0, a1
+2004 jr ra
+
+\end{lstlisting}\end{LTR}
+\end{example}
+יש לנו פקודה שימושית על מנת לשמור את ה-\({ra}\) ולקרוא לפונקציה באותו הזמן והיא \textbf{jal}. היא שומרת ב-\({ra}\) את הכתובת הבאה מהשורה שהיא נרשמה בה וקוראת לפונקציה הרשומה.\begin{example}
+בדוגמה שראינו קודם נוכל לכתוב:\begin{LTR}\begin{lstlisting}[language=assembly]
+1000 mv a0, s0
+1004 mv a1, s1
+1008 jal sum
+....
+
+\end{lstlisting}\end{LTR}
+\end{example}
+ישנו בנוסף, קיצור עבור \({jr\;\; ra}\) עם הרגיסטר \({ra}\) ספציפית והוא:  שהוא זהה בדיוק.\begin{example}
+נראה בדוגמה ממקודם:\begin{LTR}\begin{lstlisting}[language=assembly]
+2000 sum: add a0, a0, a1
+2004 ret
+
+\end{lstlisting}\end{LTR}
+\end{example}
+\section{('המחסנית', {})}
+לפעמים נרצה לאחסן דברים נוספים אשר לא יתאימו ברגיסטרים.\newline{}
+לשם כך, נוכל להשתמש במחסנית, אשר פועלת בתצורת \({LIFO}\). על מנת להשתמש במחסנית, נדרש מצביע אליה כדי לגשת אליה. לכן, יש לנו את הרגיסטר בשם \({sp}\) אשר \textbf{תמיד} מצביע לנקודה הכי נמוכה במחסנית (כאשר המחסנית גדלה למטה ⟸ כאשר מכניסים איבר מכניסים אותו ללמטה\begin{example}
+נרצה לממש את הפונקציה הבאה באסמבלי.\begin{LTR}\begin{lstlisting}[language=c]
+int leaf(int g, int h, int i, int j)
+{
+  int f;
+  f = (g + h) - (i + j);
+  return f;
+}
+
+\end{lstlisting}\end{LTR}נניח ואנו משום מה חייבים להשתמש ב-\({s_{0},s_{1}}\) שכפי שאנו יודעים הם רגיסטרים שחייבים לשמור על הערך שלהם.\newline{}
+נרצה לראות כיצד מגבים אותם:\begin{LTR}\begin{lstlisting}[language=assembly]
+Leaf: 
+  addi sp, sp, -8  # adjust stack for 2 items
+  sw s1, 4(sp)     # save s1 for use afterwards
+  sw s0, 0(sp)     # save s0 for use afterwards
+  add s0, a0, a1   # s0 = g + h
+  add s1, a2, a3   # s1 = i + j
+  sub a0, s0, s1   # return value (g + h) - (i + j)
+  lw s0, 0(sp)     # restore register s0 for caller
+  lw s1, 4(sp)     # restore register s1 for caller
+  addi sp, sp, 8   # adjust stack to delete 2 items
+  ret              # returning to original location
+
+\end{lstlisting}\end{LTR}
+\end{example}
+\subsection{('קריאה לפונקציה מתוך פונקציה', {})}
+ראינו כי אנו משתמשים ברגיסטר \({ra}\) לכתובת החזרה, אך אם אנו קוראים לפונקציה בתוך פונקציה, אנו צריכים לשמור שני ערכים עבור כתובת ההחזרה: כתובת ההחזרה מהפונקציה המקוננת אל הפונקציה וכתובת ההחזרה מהפונקציה אל המקור.\newline{}
+נעשה זאת באמצעות שמירה של \({ra}\) למחסנית כפי שראינו עכשיו.\begin{example}
+\begin{LTR}\begin{lstlisting}[language=c]
+int sumSquare(int x, int y)
+{
+  return mult(x,x) + y;
+}
+
+\end{lstlisting}\end{LTR}נממש את הקוד הבא באסמבלי כך:\begin{LTR}\begin{lstlisting}[language=assembly]
+sumSquare: # param x in a0, y in a1, return in a0
+  addi sp, sp, -8  # space on stack
+  sw ra, 4(sp)     # save ret addr
+  sw a1, 0(sp)     # save y (since we are going to use a1)
+  
+  mv a1, a0
+  jal mult         # call mult: get param in a0,a1; return in a0
+  lw a1, 0(sp)     # restore y
+  add a0, a0, a1
+  
+  lw ra, 4(sp)     # get ret addr
+  addi sp, sp, 8   # restore stack
+  ret              # = jr ra
+
+\end{lstlisting}\end{LTR}
+\end{example}
+
+\end{document}

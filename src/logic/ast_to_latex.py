@@ -28,7 +28,8 @@ def ast_to_latex(ast: dict, head: dict) -> tuple[str, dict]:
         if node["type"] == "heading":
             result += get_header(node)
         elif node["type"] == "paragraph":
-            result, head += get_text(node.get("children", []), head) + blank_line()
+            result_temp, head = get_text(node.get("children", []), head)
+            result += result_temp + blank_line()
         elif node["type"] == "table":
             result += table(node) + blank_line()
         elif node["type"] == "list":
@@ -38,17 +39,18 @@ def ast_to_latex(ast: dict, head: dict) -> tuple[str, dict]:
         elif node["type"] == "thematic_break":
             result += thematic_break()
         elif node["type"] == "block_code":
-            result, head += codeblock(node, head)
+            result_temp, head = codeblock(node, head)
+            result += result_temp
         elif node["type"] == "block_quote":
-            body = ast_to_latex(node.get("children", []))
-            result += quote(body, "quote")
+            result_temp, head = ast_to_latex(node.get("children", []), head)
+            result += quote(result_temp, "quote")
         elif node["type"] == "callout":
-            body = ast_to_latex(node.get("children", []))
+            result_temp, head = ast_to_latex(node.get("children", []), head)
             attrs: dict = node.get("attrs", {})
-            result += callout(body, attrs)
+            result += callout(result_temp, attrs)
         elif node["type"] == "proof":
-            body = ast_to_latex(node.get("children", []))
-            result += "\\begin{proof}\n" + body + "\n\\end{proof}\n"
+            result_temp, head = ast_to_latex(node.get("children", []), head)
+            result += "\\begin{proof}\n" + result_temp + "\n\\end{proof}\n"
         elif node["type"] == "block_math":
             result += math_block(node.get("raw", "")) + blank_line()
         else:
