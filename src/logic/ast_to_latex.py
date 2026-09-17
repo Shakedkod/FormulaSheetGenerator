@@ -1,31 +1,22 @@
 from rich.console import Console
-from logic.latex_constants import BASE_LATEX_DOC_START, BASE_LATEX_DOC_END, START_OF_DOCUMENT_CONTENT
 from logic.latex_parts import get_text, get_header, blank_line, math_block, parse_list, table, thematic_break
 from logic.obsidian_special_blocks import quote, callout
 from logic.codeblock_logic import codeblock
 
 console = Console()
 
-def parse_ast_to_latex(ast: dict, preamble: str = "") -> (str, dict):
+def parse_ast_to_latex(ast: dict, head: dict = None) -> tuple[str, dict]:
     """
     Parses the abstract syntax tree (AST) to a LaTeX document.
     """
-
-    if preamble:
-        final_document = BASE_LATEX_DOC_START + "\n" + preamble + "\n" + START_OF_DOCUMENT_CONTENT + "\n"
-    else:
-        final_document = BASE_LATEX_DOC_START + "\n" + START_OF_DOCUMENT_CONTENT + "\n"
+    new_head = head.copy() if head else {}
 
     # Convert the AST to LaTeX content
-    latex_content = ast_to_latex(ast)
-    final_document += latex_content + "\n"
+    latex_content, new_head = ast_to_latex(ast, head)
 
-    # End the document
-    final_document += BASE_LATEX_DOC_END
+    return (latex_content, new_head)
 
-    return (final_document, {})
-
-def ast_to_latex(ast: dict) -> str:
+def ast_to_latex(ast: dict, head: dict) -> tuple[str, dict]:
     """
     Converts the abstract syntax tree (AST) to LaTeX content.
     """
@@ -37,7 +28,7 @@ def ast_to_latex(ast: dict) -> str:
         if node["type"] == "heading":
             result += get_header(node)
         elif node["type"] == "paragraph":
-            result += get_text(node.get("children", [])) + blank_line()
+            result, head += get_text(node.get("children", []), head) + blank_line()
         elif node["type"] == "table":
             result += table(node) + blank_line()
         elif node["type"] == "list":
@@ -47,7 +38,7 @@ def ast_to_latex(ast: dict) -> str:
         elif node["type"] == "thematic_break":
             result += thematic_break()
         elif node["type"] == "block_code":
-            result += codeblock(node)
+            result, head += codeblock(node, head)
         elif node["type"] == "block_quote":
             body = ast_to_latex(node.get("children", []))
             result += quote(body, "quote")
@@ -64,7 +55,7 @@ def ast_to_latex(ast: dict) -> str:
             console.print(f"[yellow]Warning: Unhandled AST node type: {node['type']}[/yellow]")
 
     
-    return result
+    return (result, head)
 
 def second_pass_parse(latex_content: str) -> str:
     """

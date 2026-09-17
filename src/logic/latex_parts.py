@@ -2,7 +2,7 @@ import copy
 
 from logic.obsidian_special_blocks import obsidian_link, self_ref
 
-def get_text(children: list) -> str:
+def get_text(children: list, head: dict = {}) -> tuple[str, dict]:
     """
     Recursively extracts text from a list of children nodes.
     """
@@ -12,13 +12,13 @@ def get_text(children: list) -> str:
         if child["type"] == "text":
             text += child["raw"]
         elif child["type"] == "strong":
-            bold_text = get_text(child.get("children", []))
+            bold_text, head = get_text(child.get("children", []), head)
             text += bold(bold_text)
         elif child["type"] == "emphasis":
-            italic_text = get_text(child.get("children", []))
+            italic_text, head = get_text(child.get("children", []), head)
             text += emph(italic_text)
         elif child["type"] == "underline":
-            underline_text = get_text(child.get("children", []))
+            underline_text, head = get_text(child.get("children", []), head)
             text += underline(underline_text)
         elif child["type"] == "thematic_break":
             text += thematic_break()
@@ -28,7 +28,7 @@ def get_text(children: list) -> str:
         
         # links & references
         elif child["type"] == "link":
-            link_text = get_text(child.get("children", []))
+            link_text, head = get_text(child.get("children", []), head)
             link_url = child.get("attrs", {}).get("href", "")
             text += link(link_text, link_url)
         elif child["type"] == "wiki_link":
@@ -58,6 +58,7 @@ def get_text(children: list) -> str:
         elif child["type"] == "list":
             text += parse_list(child)
         elif child["type"] == "image":
+            head["images"] = True
             image_path = child.get("attrs", {}).get("src", "")
             text += image(image_path)
         elif child["type"] == "wiki_embed":
@@ -65,13 +66,14 @@ def get_text(children: list) -> str:
             size = child.get("attrs", {}).get("size", "0.8\\textwidth")
             text += svg(embed_path, size)
         elif child["type"] == "svg":
+            head["images"] = True
             svg_path = child.get("attrs", {}).get("src", "")
             text += svg(svg_path)
         elif "children" in child:
-            text += get_text(child["children"])
+            text, head = get_text(child["children"], head)
         else:
             text += ""
-    return text
+    return (text, head)
 
 def get_header(header: dict) -> str:
     level = header.get("attrs", {}).get("level", 1)

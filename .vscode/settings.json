@@ -1,11 +1,33 @@
 {
     "cSpell.words": [
+        "documentclass",
+        "englishfont",
+        "fancyfoot",
+        "fontspec",
+        "gematria",
+        "hebrewfont",
+        "hebrewfonttt",
+        "hyperref",
+        "labelitemi",
+        "labelitemii",
+        "labelitemiii",
+        "labelitemiv",
         "lamath",
         "mathjax",
+        "newfontfamily",
+        "pageref",
         "pdflatex",
+        "polyglossia",
+        "renewcommand",
+        "setdefaultlanguage",
+        "setotherlanguage",
         "subsubsection",
         "textbf",
         "textit",
+        "thepage",
+        "TIKZ",
+        "titlefont",
+        "usepackage",
         "xelatex"
     ]
 }

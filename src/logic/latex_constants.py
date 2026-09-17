@@ -1,3 +1,9 @@
+BASE_LATEX_DOC_START = r"""% ============================================================
+% === Created by MDtoLatex - A Markdown to LaTeX Converter ===
+% ====== ShakedKod, 2026 - https://github.com/ShakedKod ======
+% ============================================================
+\documentclass[12pt]{article}"""
+
 BASE_LATEX_TEXT = r"""% ---------- Fonts & language ----------
 \usepackage{hyperref}
 \usepackage{fontspec}
@@ -286,6 +292,9 @@ START_OF_DOCUMENT_CONTENT = r"""
 
 LATEX_TABLE_OF_CONTENTS = r"""\tableofcontents
 \newpage
+"""
+
+EXTRA_LATEX_PACKAGES_HEADER = r"""% ---------- Extra LaTeX Packages ----------
 """
 
 CREDIT_BOX = r"""\vspace{2cm}

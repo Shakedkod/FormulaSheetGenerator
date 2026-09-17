@@ -14,20 +14,24 @@ def generic_codeblock(code: str, language: str) -> str:
         return f"\\begin{{LTR}}\\begin{{lstlisting}}\n{code}\n\\end{{lstlisting}}\\end{{LTR}}"
     return f"\\begin{{LTR}}\\begin{{lstlisting}}[language={language}]\n{code}\n\\end{{lstlisting}}\\end{{LTR}}"
 
-def codeblock(block: dict) -> str:
+def codeblock(block: dict, head: dict) -> tuple[str, dict]:
     """
     Converts a code block AST node to LaTeX content.
     """
+    head["code"] = True
     block_type = block.get("attrs", {}).get("info", "")
     
     match block_type:
         case "mermaid":
+            head["tikz"] = True
             pass
             #return mermaid(block.get("raw", ""))
         case "dot":
+            head["tikz"] = True
             pass
             #return dot(block.get("raw", ""))
         case "desmos-graph":
+            head["tikz"] = True
             # return desmos_graph(block.get("raw", ""))
             return generic_codeblock(block.get("raw", ""), "text")
         case _:

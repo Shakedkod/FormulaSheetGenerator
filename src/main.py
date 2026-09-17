@@ -80,7 +80,7 @@ def main(input: str, preamble: str = None, style: str = "regular"):
     isPreamble = False
     preamble_text = ""
     try:
-        with open(".\\test\\UniTest4.md", "r", encoding="utf-8") as f:
+        with open(input, "r", encoding="utf-8") as f:
             text = f.read()
             ast = markdown_parser(text)
     except Exception as e:
@@ -88,7 +88,7 @@ def main(input: str, preamble: str = None, style: str = "regular"):
         sys.exit(1)
     
     try:
-        with open(".\\test\\preamble.sty", "r", encoding="utf-8") as f:
+        with open(preamble, "r", encoding="utf-8") as f:
             preamble_text = f.read()
             isPreamble = True
     except Exception as e:
@@ -125,5 +125,5 @@ if __name__ == "__main__":
         
         main(input_file, preamble_file, style)
     else:
-        console.print("[blue]Usage: python main.py <input_file> [--preamble|-p <preamble_file>] [--style|-s <regular|fancy-academic>] [--no-toc|-nt][/blue]")
+        console.print("[blue]Usage: python main.py <input_file> [--preamble|-p <preamble_file>] [--style|-s <regular|fancy-academic>] [--no-toc|-nt] [--title|-t <title>] [--author|-a <author>] [--date|-d <date>] [--footer|-f <footer>] [--header|-h <header>] [--language|-l <language>] [-hide-date] [/blue]")
         sys.exit(1)
