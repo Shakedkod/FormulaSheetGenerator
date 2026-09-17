@@ -1,0 +1,10 @@
+\xpg@aux {}{hebrew}
+\contentsline {section}{\numberline {1}הרגיסטרים}{2}{section.1}%
+\contentsline {section}{\numberline {2}פקודות ריסק-5}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}פקודות בסיסיות}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}פקודות זיכרון}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}פקודות לוגיות}{5}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}בקרת זרימה}{6}{subsection.2.4}%
+\contentsline {part}{I\hspace {1em}קריאות לפונקציות}{8}{part.1}%
+\contentsline {section}{\numberline {3}המחסנית}{9}{section.3}%
+\contentsline {subsection}{\numberline {3.1}קריאה לפונקציה מתוך פונקציה}{10}{subsection.3.1}%

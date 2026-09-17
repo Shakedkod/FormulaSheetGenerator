@@ -77,7 +77,7 @@ def get_text(children: list, head: dict = {}) -> tuple[str, dict]:
 
 def get_header(header: dict) -> str:
     level = header.get("attrs", {}).get("level", 1)
-    title = get_text(header.get("children", []))
+    title, _ = get_text(header.get("children", []))
     if level == 1:
         return h1(title)
     elif level == 2:
@@ -210,7 +210,7 @@ def list_content_parse(list_content: dict) -> str:
     
     for item in list_content:
             if item["type"] == "list_item":
-                item_text = get_text(item.get("children", []))
+                item_text, _ = get_text(item.get("children", []))
                 result += f"\\item {item_text}\n"
                 
     return result
