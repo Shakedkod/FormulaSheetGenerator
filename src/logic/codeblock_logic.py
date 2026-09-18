@@ -1,9 +1,6 @@
-def desmos_graph(code: str) -> str:
-    """
-    Converts a Desmos graph code block to LaTeX tikz picture.
-    """
-    info, *body = code.split("\n---\n", 1)
-    info_dicts = [dict(item.split("=") for item in line.split(";")) for line in info.splitlines()]
+from logic.desmos_to_tikz import desmos_graph_to_tikz
+from logic.dot_to_tikz import dot_to_tikz
+from logic.mermaid_to_tikz import mermaid_to_tikz
 
 
 def generic_codeblock(code: str, language: str) -> str:
@@ -24,15 +21,16 @@ def codeblock(block: dict, head: dict) -> tuple[str, dict]:
     match block_type:
         case "mermaid":
             head["tikz"] = True
-            pass
-            #return mermaid(block.get("raw", ""))
+            tikz = mermaid_to_tikz(block.get("raw", ""))
+            return (tikz or generic_codeblock(block.get("raw", ""), "text"), head)
         case "dot":
             head["tikz"] = True
-            pass
-            #return dot(block.get("raw", ""))
+            tikz = dot_to_tikz(block.get("raw", ""))
+            return (tikz or generic_codeblock(block.get("raw", ""), "text"), head)
         case "desmos-graph":
             head["tikz"] = True
-            # return desmos_graph(block.get("raw", ""))
-            return (generic_codeblock(block.get("raw", ""), "text"), head)
+            head["packages"].append("pgfplots")
+            tikz = desmos_graph_to_tikz(block.get("raw", ""))
+            return (tikz or generic_codeblock(block.get("raw", ""), "text"), head)
         case _:
             return (generic_codeblock(block.get("raw", ""), block_type), head)

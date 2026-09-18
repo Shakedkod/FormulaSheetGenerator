@@ -55,6 +55,8 @@
   {\normalfont\normalsize\bfseries}}
 \makeatletter
 % ---------- Extra LaTeX Packages ----------
+\usepackage{pgfplots}
+\usepackage{pgfplots}
 % ---------- Custom Preamble ----------
 % integrals
 \let\oldint\int
@@ -267,9 +269,9 @@
     breaklines=true
 }
 % ---------- Metadata ----------
-\title{אינפי 2 - אינטגרלים}
-\author{שקד קוד}
-\date{ספטמבר 17, 2026 (ו׳ בתשרי ה'תשפ״ז)}
+\title{אינפי 2מ}
+\author{שקד}
+\date{ספטמבר 18, 2026 (ז׳ בתשרי ה'תשפ״ז)}
 
 
 % ============================================================
@@ -419,22 +421,28 @@
 
 \end{example}
 \begin{remark}
-לא לכל \({f}\) יש פונקציה קדומה. לדוגמה:\begin{LTR}\begin{lstlisting}
-width=200; height=200;
-bottom=-1; top=2
----
-f(x)=0 |x<0
-g(x)=1 |x>1
+לא לכל \({f}\) יש פונקציה קדומה. לדוגמה:\begin{LTR}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=6.00cm, height=6.00cm, xmin=-5, xmax=5, ymin=-1, ymax=2, axis lines=middle, samples=200, thick, xlabel={\(x\)}, ylabel={\(y\)}]
+\addplot[domain=-5:0] {0};
+\addplot[domain=1:5] {1};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\end{LTR}
+לפי משפט דרבו, הפונקציה הנ"ל לא יכולה להיות נגזרת ולכן אין לה פונקציה קדומה.\newline{}
+הפונקציה הקדומה אינה יכולה להיות הפונקציה הבאה שכן היא(הפונקציה הבאה) לא גזירה ב-\({0}\).\begin{LTR}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=6.00cm, height=6.00cm, xmin=-5, xmax=5, ymin=-1, ymax=10, axis lines=middle, samples=200, thick, xlabel={\(x\)}, ylabel={\(y\)}]
+\addplot[domain=0:5] {x};
+\addplot[domain=-5:0] {0};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\end{LTR}
 
-\end{lstlisting}\end{LTR}לפי משפט דרבו, הפונקציה הנ"ל לא יכולה להיות נגזרת ולכן אין לה פונקציה קדומה.\newline{}
-הפונקציה הקדומה אינה יכולה להיות הפונקציה הבאה שכן היא(הפונקציה הבאה) לא גזירה ב-\({0}\).\begin{LTR}\begin{lstlisting}
-width=200;height=200;
-bottom=-1;top=10
----
-f(x)=x |x>0
-g(x)=0 |x<0
-
-\end{lstlisting}\end{LTR}
 \end{remark}
 \section{אינטגרציה בחלקים}
 יהיו שתי פונקציות \({u,v}\). אזי לפי נגזרת של מכפלה:\[

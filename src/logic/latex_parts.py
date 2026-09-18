@@ -75,21 +75,21 @@ def get_text(children: list, head: dict = {}) -> tuple[str, dict]:
             text += ""
     return (text, head)
 
-def get_header(header: dict) -> str:
+def get_header(header: dict, head: dict) -> tuple[str, dict]:
     level = header.get("attrs", {}).get("level", 1)
-    title, _ = get_text(header.get("children", []))
+    title, head = get_text(header.get("children", []), head)
     if level == 1:
-        return h1(title)
+        return (h1(title), head)
     elif level == 2:
-        return h2(title)
+        return (h2(title), head)
     elif level == 3:
-        return h3(title)
+        return (h3(title), head)
     elif level == 4:
-        return h4(title)
+        return (h4(title), head)
     elif level == 5:
-        return h5(title)
+        return (h5(title), head)
     else:
-        return h6(title)
+        return (h6(title), head)
 
 def h1(title: str) -> str:
     return f"\\part{{{title}}}\n"
@@ -205,27 +205,29 @@ def table(table_content: dict) -> str:
     result += "\\end{tabular}\n\\end{table}\n"
     return result
 
-def list_content_parse(list_content: dict) -> str:
+def list_content_parse(list_content: dict, head: dict) -> tuple[str, dict]:
     result = ""
     
     for item in list_content:
             if item["type"] == "list_item":
-                item_text, _ = get_text(item.get("children", []))
+                item_text, head = get_text(item.get("children", []), head)
                 result += f"\\item {item_text}\n"
                 
-    return result
+    return (result, head)
 
-def enumerate(list_content: dict) -> str:
+def enumerate(list_content: dict, head: dict) -> tuple[str, dict]:
     result = "\\begin{enumerate}\n"
-    result += list_content_parse(list_content)
-    return result + "\\end{enumerate}\n"
+    new_result, head = list_content_parse(list_content, head)
+    result += new_result
+    return (result + "\\end{enumerate}\n", head)
 
-def itemize(list_content: dict) -> str:
+def itemize(list_content: dict, head: dict) -> tuple[str, dict]:
     result = "\\begin{itemize}\n"
-    result += list_content_parse(list_content)
-    return result + "\\end{itemize}\n"
+    new_result, head = list_content_parse(list_content, head)
+    result += new_result
+    return (result + "\\end{itemize}\n", head)
 
-def parse_list(list: dict) -> str:
+def parse_list(list: dict, head: dict) -> tuple[str, dict]:
     """
     Converts a list represented as a dictionary to LaTeX itemize or enumerate format.
     """
@@ -234,6 +236,6 @@ def parse_list(list: dict) -> str:
     props.pop("type")
     
     if (props["attrs"]["ordered"]):
-        return enumerate(list["children"])
+        return enumerate(list["children"], head)
     else:
-        return itemize(list["children"])
+        return itemize(list["children"], head)

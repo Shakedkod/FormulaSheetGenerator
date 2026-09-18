@@ -26,14 +26,16 @@ def ast_to_latex(ast: dict, head: dict) -> tuple[str, dict]:
     
     for node in ast:
         if node["type"] == "heading":
-            result += get_header(node)
+            new_result, head = get_header(node, head)
+            result += new_result
         elif node["type"] == "paragraph":
             result_temp, head = get_text(node.get("children", []), head)
             result += result_temp + blank_line()
         elif node["type"] == "table":
             result += table(node) + blank_line()
         elif node["type"] == "list":
-            result += parse_list(node) + blank_line()
+            new_result, head = parse_list(node, head)
+            result += new_result + blank_line()
         elif node["type"] == "blank_line":
             result += blank_line()
         elif node["type"] == "thematic_break":
